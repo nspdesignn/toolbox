@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>非都市土地變更編定判斷精靈</title>
+  <style>
+    :root {
+      --primary: #8C5A4B;
+      --primary-dark: #704437;
+      --bg-page: #F5EFEB;
+      --card-bg: #FFFFFF;
+      --border: #DDD5C7;
+      --text: #4A3E39;
+      --text-muted: #7D7065;
+      --accent-amber: #B45309;
+      --accent-amber-bg: #FEF3C7;
+      --accent-purple: #6B21A8;
+      --accent-purple-bg: #F3E8FF;
+      --accent-green: #047857;
+      --accent-green-bg: #D1FAE5;
+      --radius: 14px;
+      --shadow: 0 2px 8px rgba(74, 62, 57, 0.06);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background: var(--bg-page);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 24px 16px 40px;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    /* 頂部標頭與大型重設按鈕 */
+    .header {
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: var(--shadow);
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .header-title h1 {
+      font-size: 22px;
+      color: var(--primary-dark);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header-title p {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .btn-reset-top {
+      background: #FAF7F4;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      padding: 10px 22px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .btn-reset-top:hover {
+      background: #F2ECE4;
+      transform: translateY(-1px);
+    }
+
+    /* 題目卡片 */
+    .question-card {
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .question-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-group {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+    }
+
+    .option-btn {
+      background: #FAF7F4;
+      border: 2px solid #E6DFD5;
+      border-radius: 12px;
+      padding: 14px 18px;
+      text-align: left;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      transition: all 0.2s;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .option-btn:hover {
+      background: #F4EFEB;
+      border-color: #D5C9BC;
+    }
+
+    .option-btn.active {
+      background: #FFFFFF;
+      border-color: var(--primary);
+      color: var(--primary-dark);
+      box-shadow: 0 0 0 3px rgba(140, 90, 75, 0.2);
+    }
+
+    .option-btn .sub {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .sub-filter-box {
+      margin-top: 16px;
+      padding: 16px 18px;
+      border-top: 1.5px dashed var(--border);
+      background: #FAF7F4;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+
+    .sub-filter-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .status-badge {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+
+    .status-badge.review {
+      background: var(--accent-amber-bg);
+      color: var(--accent-amber);
+      border: 1px solid #FCD34D;
+    }
+
+    .status-badge.exempt {
+      background: var(--accent-green-bg);
+      color: var(--accent-green);
+      border: 1px solid #6EE7B7;
+    }
+
+    .checkbox-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 2px solid #E6DFD5;
+      background: #FFFFFF;
+      cursor: pointer;
+      margin-bottom: 8px;
+      transition: all 0.2s;
+    }
+
+    .checkbox-item:hover {
+      background: #F9F5F0;
+    }
+
+    .checkbox-item.checked {
+      border-color: #047857;
+      background: #F0FDF4;
+    }
+
+    .checkbox-item.checked.none-item {
+      border-color: #B45309;
+      background: #FFFBEB;
+    }
+
+    .checkbox-item input {
+      margin-top: 3px;
+      cursor: pointer;
+    }
+
+    .checkbox-item .label-text {
+      font-size: 13.5px;
+      font-weight: 600;
+      line-height: 1.45;
+      flex: 1;
+    }
+
+    .info-box {
+      background: #FAF7F4;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .info-box-title {
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 2px;
+    }
+
+    /* 流程圖產製區 */
+    .flowchart-section {
+      background: #FAF6F0;
+      border: 2px solid #A06C5D;
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: 0 4px 14px rgba(160, 108, 93, 0.08);
+      margin-top: 20px;
+    }
+
+    .flowchart-header {
+      border-bottom: 1.5px solid #EFE8E0;
+      padding-bottom: 16px;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .flowchart-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    .tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: #F4EFEB;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+
+    .tag.highlight {
+      background: var(--accent-amber-bg);
+      color: var(--accent-amber);
+      border-color: #FCD34D;
+    }
+
+    .tag.purple {
+      background: var(--accent-purple-bg);
+      color: var(--accent-purple);
+      border-color: #E9D5FF;
+    }
+
+    .tag.green {
+      background: var(--accent-green-bg);
+      color: var(--accent-green);
+      border-color: #A7F3D0;
+    }
+
+    .tag.blue {
+      background: #DBEAFE;
+      color: #1E40AF;
+      border-color: #BFDBFE;
+    }
+
+    .flow-diagram {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .node {
+      width: 100%;
+      background: #FFFFFF;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 20px;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .node.start, .node.end {
+      background: #F7EFEA;
+      border-color: var(--primary);
+    }
+
+    .node.branch {
+      background: #FFFDF9;
+      border-color: #F59E0B;
+    }
+
+    .node-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .badge {
+      font-size: 13px;
+      font-weight: 700;
+      padding: 2px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: #FAF7F4;
+      color: var(--text-muted);
+    }
+
+    .badge.purple { background: var(--accent-purple-bg); color: var(--accent-purple); border-color: #E9D5FF; }
+    .badge.amber { background: var(--accent-amber-bg); color: var(--accent-amber); border-color: #FDE68A; }
+    .badge.green { background: var(--accent-green-bg); color: var(--accent-green); border-color: #A7F3D0; }
+    .badge.blue { background: #DBEAFE; color: #1E40AF; border-color: #BFDBFE; }
+
+    .node-step-no {
+      font-size: 12px;
+      font-family: monospace;
+      color: #A89C90;
+      font-weight: 700;
+    }
+
+    .node-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    /* 流程圖裡面每個步驟的小字大一點：調升至 14.5px */
+    .node-desc {
+      font-size: 14.5px;
+      color: #3E3530;
+      line-height: 1.6;
+    }
+
+    .arrow {
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      font-size: 18px;
+    }
+
+    .actions-bar {
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid #EFE8E0;
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
+    .btn-action {
+      background: #F4EFEB;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-size: 14.5px;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--text);
+      transition: all 0.2s;
+    }
+
+    .btn-action:hover {
+      background: #EAE2D8;
+    }
+
+    .btn-action-primary {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+    }
+
+    .btn-action-primary:hover {
+      background: var(--primary-dark);
+    }
+
+    /* 最下方巨大「判斷下一件」按鈕 */
+    .bottom-bar {
+      margin-top: 28px;
+      margin-bottom: 40px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .btn-next-case {
+      background: var(--primary);
+      color: #FFFFFF;
+      font-size: 18px;
+      font-weight: 700;
+      padding: 16px 44px;
+      border-radius: 16px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(140, 90, 75, 0.25);
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-next-case:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(140, 90, 75, 0.35);
+    }
+
+    @media print {
+      body { background: #fff; padding: 0; }
+      .question-card, .header, .actions-bar, .bottom-bar { display: none !important; }
+      .flowchart-section { border: none; box-shadow: none; padding: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container" id="top-anchor">
+  <!-- 頂部標題與大按鈕 -->
+  <header class="header">
+    <div class="header-title">
+      <h1>🧭 變更編定判斷精靈</h1>
+      <p>點選案件條件，快速自動產製客製化作業流程圖</p>
+    </div>
+    <button class="btn-reset-top" onclick="resetForm()">
+      ↺ 重設條件
+    </button>
+  </header>
+
+  <!-- 題目 1: 案件性質 -->
+  <div class="question-card">
+    <div class="question-title">1. 案件辦理途徑</div>
+    <div class="btn-group">
+      <button type="button" class="option-btn active" id="btn-case-general" onclick="setOption('caseType', 'general')">
+        一般變更編定案件
+        <span class="sub">依非都市土地使用管制規則第28條申辦（須會辦、實地會勘、開繳規費）</span>
+      </button>
+      <button type="button" class="option-btn" id="btn-case-concurrent" onclick="setOption('caseType', 'concurrent')">
+        公地撥用一併變更編定
+        <span class="sub">依執行要點第10點申辦（政府機關撥用公地，免會勘、免規費、免提專審）</span>
+      </button>
+    </div>
+  </div>
+
+  <div id="general-questions">
+    <!-- 題目 2: 山坡地 -->
+    <div class="question-card">
+      <div class="question-title">2. 是否位於山坡地範圍？</div>
+      <div class="btn-group">
+        <button type="button" class="option-btn active" id="btn-hill-no" onclick="setOption('isHillside', 'no')">
+          否（非山坡地 / 平地）
+          <span class="sub">平地案件，依法免提山坡地審查會，續檢核農業回饋金</span>
+        </button>
+        <button type="button" class="option-btn" id="btn-hill-yes" onclick="setOption('isHillside', 'yes')">
+          是（位於山坡地範圍）
+          <span class="sub">位於山坡地範圍，可能涉及山坡地開發利用回饋金（依農業局審查結果為主），續檢核是否提審議小組審查會</span>
+        </button>
+      </div>
+
+      <!-- 山坡地專屬子篩選：8項勾選檢核 -->
+      <div id="hillside-sub-filter" class="sub-filter-box" style="display: none;">
+        <div class="sub-filter-title">
+          <span>⛰️ 是否涉及建築行為（提審議小組審查會檢核）？</span>
+          <span id="hill-eval-badge" class="status-badge review">判定：提審查會</span>
+        </div>
+        <p style="font-size: 12.5px; color: var(--text-muted); margin-bottom: 12px; background: #fff; padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border);">
+          <strong>審查邏輯：</strong>第 1～7 項只要勾選任一項＝<strong>免提審查會</strong>；全部未勾選、或勾選第 8 項「以上皆無」＝<strong>提審查會</strong>。
+        </p>
+
+        <div id="exemption-checkboxes-list">
+          <!-- 動態載入8項勾選清單 -->
+        </div>
+      </div>
+    </div>
+
+    <!-- 題目 3: 農業回饋金 -->
+    <div class="question-card">
+      <div class="question-title">3. 農業回饋金繳納檢核</div>
+      
+      <div id="agri-hillside-exempt-notice" class="info-box" style="display: none; border-color: #FCD34D; background: #FFFDF9;">
+        <div class="info-box-title" style="color: #92400E;">⛰️ 山坡地範圍：可能涉及山坡地開發利用回饋金，依農業局審查結果為主</div>
+        <div>本案位於山坡地範圍，可能涉及「山坡地開發利用回饋金」，由農業局依山坡地保育利用條例相關規定審查認定並核算。</div>
+      </div>
+
+      <div class="btn-group" id="agri-fee-buttons">
+        <button type="button" class="option-btn active" id="btn-fee-req" onclick="setOption('agriFee', 'required')">
+          須繳納農業回饋金
+          <span class="sub">核准後須檢送繳款證明，後續才能函請轄區地所辦理土地使用地類別異動登記及登錄土參檔</span>
+        </button>
+        <button type="button" class="option-btn" id="btn-fee-no" onclick="setOption('agriFee', 'exempt')">
+          免繳農業回饋金
+          <span class="sub">非屬農牧/林業用地變更，或依農業發展條例相關規定免繳</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 題目 4: 地籍分割（一般案件與公地撥用一併變更均檢核要不要分割） -->
+  <div class="question-card">
+    <div class="question-title" id="split-card-title">4. 土地變更範圍與地籍分割</div>
+    <div class="btn-group">
+      <button type="button" class="option-btn active" id="btn-split-no" onclick="setOption('split', 'no')">
+        全筆土地變更（免分割）
+        <span class="sub">整筆地號全數變更編定，無須向轄區地所辦理土地分割</span>
+      </button>
+      <button type="button" class="option-btn" id="btn-split-yes" onclick="setOption('split', 'yes')">
+        部分土地變更（須辦分割）
+        <span class="sub">涉及部分土地變更，核准後須先洽地所辦竣逕為分割測量再行異動登記</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- 產製出的流程圖區塊 -->
+  <section class="flowchart-section">
+    <div class="flowchart-header">
+      <div class="flowchart-title" id="flow-title">產製作業流程圖</div>
+    </div>
+
+    <div class="flow-diagram" id="flow-diagram-container">
+      <!-- 動態載入流程圖節點 -->
+    </div>
+
+    <div class="actions-bar">
+      <button class="btn-action" onclick="copyFlowText()">複製流程文字</button>
+      <button class="btn-action btn-action-primary" onclick="printFlowchart()">列印流程圖</button>
+    </div>
+  </section>
+
+  <!-- 最下方「判斷下一件」按鈕 -->
+  <div class="bottom-bar">
+    <button class="btn-next-case" onclick="resetForm()">
+      <span>↺ 判斷下一件</span>
+      <span>➔</span>
+    </button>
+  </div>
+</div>
+
+<script>
+  const EXEMPTION_ITEMS = [
+    { id: 1, label: '符合第 35 條、第 35 條之 1 第 1 項第 1、2、4 或 5 款規定之零星或狹小土地' },
+    { id: 2, label: '依第 40 條規定已檢附需地機關核發之拆除通知書' },
+    { id: 3, label: '鄉村區土地變更編定為乙種建築用地' },
+    { id: 4, label: '變更編定為農牧、林業、國土保安或生態保護用地' },
+    { id: 5, label: '案件已經區域計畫委員會審議通過' },
+    { id: 6, label: '符合規則第 48 條第 1 項第 2 款或第 3 款情形之一（建築用地間相互變更；或徵收/撥用/協議價購一併辦理）' },
+    { id: 7, label: '單純將現有道路變更編定為交通用地，作道路使用' },
+    { id: 8, label: '以上皆無，均未符合（與其他選項互斥，勾選會自動取消其他勾選）', isNone: true }
+  ];
+
+  const state = {
+    caseType: 'general',
+    isHillside: 'no',
+    checkedExemptions: [], // 勾選之項目 id
+    agriFee: 'required',
+    split: 'no'
+  };
+
+  function setOption(key, val) {
+    state[key] = val;
+    renderUI();
+  }
+
+  function toggleExemption(id) {
+    if (id === 8) {
+      if (state.checkedExemptions.includes(8)) {
+        state.checkedExemptions = [];
+      } else {
+        state.checkedExemptions = [8];
+      }
+    } else {
+      if (state.checkedExemptions.includes(id)) {
+        state.checkedExemptions = state.checkedExemptions.filter(i => i !== id);
+      } else {
+        const withoutEight = state.checkedExemptions.filter(i => i !== 8);
+        state.checkedExemptions = [...withoutEight, id];
+      }
+    }
+    renderUI();
+  }
+
+  function resetForm() {
+    state.caseType = 'general';
+    state.isHillside = 'no';
+    state.checkedExemptions = [];
+    state.agriFee = 'required';
+    state.split = 'no';
+    renderUI();
+    document.getElementById('top-anchor').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function renderCheckboxes() {
+    const container = document.getElementById('exemption-checkboxes-list');
+    if (!container) return;
+    container.innerHTML = '';
+
+    EXEMPTION_ITEMS.forEach(item => {
+      const isChecked = state.checkedExemptions.includes(item.id);
+      const div = document.createElement('div');
+      div.className = `checkbox-item ${isChecked ? 'checked' : ''} ${item.isNone ? 'none-item' : ''}`;
+      div.onclick = () => toggleExemption(item.id);
+
+      div.innerHTML = `
+        <input type="checkbox" ${isChecked ? 'checked' : ''} readonly />
+        <div class="label-text">${item.id}. ${item.label}</div>
+        ${isChecked ? `<span style="font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; background: ${item.isNone ? '#FDE68A; color: #78350F;' : '#BBF7D0; color: #065F46;'}">${item.isNone ? '須提審查會' : '免提審查會'}</span>` : ''}
+      `;
+      container.appendChild(div);
+    });
+  }
+
+  function renderUI() {
+    document.getElementById('btn-case-general').classList.toggle('active', state.caseType === 'general');
+    document.getElementById('btn-case-concurrent').classList.toggle('active', state.caseType === 'concurrent');
+
+    const generalQuestions = document.getElementById('general-questions');
+    const splitCardTitle = document.getElementById('split-card-title');
+
+    if (state.caseType === 'concurrent') {
+      generalQuestions.style.display = 'none';
+      splitCardTitle.textContent = '2. 公地撥用範圍與地籍分割';
+    } else {
+      generalQuestions.style.display = 'block';
+      splitCardTitle.textContent = '4. 土地變更範圍與地籍分割';
+
+      document.getElementById('btn-hill-no').classList.toggle('active', state.isHillside === 'no');
+      document.getElementById('btn-hill-yes').classList.toggle('active', state.isHillside === 'yes');
+
+      const hillSub = document.getElementById('hillside-sub-filter');
+      const agriNotice = document.getElementById('agri-hillside-exempt-notice');
+      const agriButtons = document.getElementById('agri-fee-buttons');
+      const hillEvalBadge = document.getElementById('hill-eval-badge');
+
+      if (state.isHillside === 'yes') {
+        hillSub.style.display = 'block';
+        renderCheckboxes();
+
+        const hasExempt = state.checkedExemptions.some(id => id >= 1 && id <= 7);
+        if (hasExempt) {
+          hillEvalBadge.className = 'status-badge exempt';
+          hillEvalBadge.textContent = '判定：免提審查會';
+        } else {
+          hillEvalBadge.className = 'status-badge review';
+          hillEvalBadge.textContent = '判定：提審查會';
+        }
+
+        // 山坡地不涉農業回饋金
+        agriNotice.style.display = 'block';
+        agriButtons.style.display = 'none';
+      } else {
+        hillSub.style.display = 'none';
+        agriNotice.style.display = 'none';
+        agriButtons.style.display = 'grid';
+
+        document.getElementById('btn-fee-req').classList.toggle('active', state.agriFee === 'required');
+        document.getElementById('btn-fee-no').classList.toggle('active', state.agriFee === 'exempt');
+      }
+    }
+
+    // 地籍分割
+    document.getElementById('btn-split-no').classList.toggle('active', state.split === 'no');
+    document.getElementById('btn-split-yes').classList.toggle('active', state.split === 'yes');
+
+    renderFlowchart();
+  }
+
+  function getFlowNodes() {
+    if (state.caseType === 'concurrent') {
+      const nodes = [
+        {
+          type: 'start',
+          badge: '步驟 1',
+          title: '申請人送件（需用土地人送件）',
+          desc: '需用土地人檢附撥用公地申請書及中央核准撥用證明文件（確認撥用計畫書已勾選「撥用一併變更編定」，依管制規則第48條免水保完工證明）。'
+        },
+        {
+          type: 'normal',
+          badge: '步驟 2',
+          badgeClass: '',
+          title: '補正 (非必要)',
+          desc: '核對撥用及一併變更編定應備文件，如有缺漏通知需用土地人補齊（依要點第10點原則免會辦相關單位）。'
+        },
+        {
+          type: 'normal',
+          badge: '步驟 3',
+          badgeClass: '',
+          title: '書面審查與簽核',
+          desc: '依非都市土地變更編定執行要點第10點審查（免現場勘查、免繳審查規費、免提審查會），審查符合管制規則規定後簽報層決核定。'
+        }
+      ];
+
+      let concApprovalDesc = '奉核後發函核復需用土地人，核定一併變更編定結果。';
+      if (state.split === 'yes') {
+        concApprovalDesc += '【地籍分割】涉及部分公地撥用變更，請需用土地人洽轄區地政事務所辦竣地籍逕為分割後，再檢附分割成果資料續辦異動。';
+      } else {
+        concApprovalDesc += '【全筆變更】無涉土地分割，核定函同步副知地政事務所辦理後續登載。';
+      }
+
+      nodes.push({
+        type: 'branch',
+        badge: '步驟 4',
+        badgeClass: 'blue',
+        title: '核發變更編定核定函' + (state.split === 'yes' ? '（須銜接地籍分割）' : '（全筆免分割）'),
+        desc: concApprovalDesc
+      });
+
+      nodes.push({
+        type: 'end',
+        badge: '步驟 5',
+        badgeClass: '',
+        title: '囑託地政事務所辦理異動登記',
+        desc: state.split === 'yes'
+          ? '涉及公地分割：需用機關辦竣地籍逕為分割測量後，函請轄區地所完成土地登記簿標示部使用地類別異動登記，並登錄土參檔。'
+          : '全筆免分割：核定函直接副本請轄區地政事務所完成土地登記簿使用地類別異動登記，並登錄土參檔。'
+      });
+
+      return nodes;
+    }
+
+    // 一般變更編定案件
+    const nodes = [];
+    const hasExempt = state.checkedExemptions.some(id => id >= 1 && id <= 7);
+    const needReview = state.isHillside === 'yes' && !hasExempt;
+
+    nodes.push({
+      type: 'start',
+      badge: '步驟 1',
+      title: '申請人送件（核對應備文件）',
+      desc: state.isHillside === 'yes'
+        ? '受理變更編定申請書及興辦事業計畫核准函。山坡地範圍須擬具水保計畫者，應檢附水保完工證明（管制規則第28、30、48條）。'
+        : '受理變更編定申請書、興辦事業計畫核准函、土地登記謄本、環敏查詢結果等應備文件（管制規則第28、30條）。'
+    });
+
+    nodes.push({
+      type: 'normal',
+      badge: '步驟 2',
+      title: '會辦各單位 + 會勘 + 繳規費',
+      desc: state.isHillside === 'yes'
+        ? '檢送審查表會辦工務、農業、水利、環保等局處，並依「非都市山坡地範圍內土地變更編定審查原則」會審；會辦農業局審認是否涉及山坡地開發利用回饋金；訂期實地會勘指界，開立規費繳款書通知申請人繳納。'
+        : '檢送審查表會辦工務、農業、水利、環保等相關局處；訂期聯合實地會勘指界，並開立規費繳款書通知申請人繳納。'
+    });
+
+    nodes.push({
+      type: 'normal',
+      badge: '步驟 3',
+      badgeClass: 'amber',
+      title: '補正 (非必要)',
+      desc: '彙整各會辦機關意見及現場會勘結論，如有審查意見或缺件，發文通知申請人限期辦理補正。'
+    });
+
+    if (state.isHillside === 'yes' && needReview) {
+      nodes.push({
+        type: 'normal',
+        badge: '步驟 4',
+        badgeClass: 'purple',
+        title: '簽核（簽報提審查會）',
+        desc: '經檢核未符合1~7項免提審查會條件，彙整各單位審查意見與山坡地審查原則分工表，簽擬召開「新北市非都市土地使用審議小組審查會」，簽准後製作提會資料。'
+      });
+    } else {
+      nodes.push({
+        type: 'normal',
+        badge: '步驟 4',
+        title: '簽核（簽擬核准）',
+        desc: state.isHillside === 'yes'
+          ? '本案符合免提審查會規定（已勾選符合免提審查會項目），彙整各機關審查合格意見，簽奉府層決核定。'
+          : '平地案件免提山坡地審查會，彙整各單位審查同意意見及會勘結果，簽報層決核定變更編定。'
+      });
+    }
+
+    if (state.isHillside === 'yes') {
+      if (needReview) {
+        nodes.push({
+          type: 'branch',
+          badge: '步驟 5',
+          badgeClass: 'amber',
+          title: '提審查會（新北市非都市土地使用審議小組）',
+          desc: '發開會通知單，召開非都市土地使用審議小組審查會；通知申請人及專業技師列席說明坡度分析及建築配置，會後製作會議紀錄簽准發文。'
+        });
+      } else {
+        nodes.push({
+          type: 'normal',
+          badge: '步驟 5',
+          badgeClass: 'green',
+          title: '免提審查會（符合免提專審條件）',
+          desc: '本案經檢核符合免提審議小組審查規定，免提審查會，逕依一般簽核程序簽奉核定。'
+        });
+      }
+    } else {
+      nodes.push({
+        type: 'normal',
+        badge: '步驟 5',
+        badgeClass: '',
+        title: '免提審查會（非山坡地案件）',
+        desc: '本案土地位於平地（非山坡地範圍），依法免提非都市土地使用審議小組審查。'
+      });
+    }
+
+    let approvalDesc = '審核符合管制規則規定，核發變更編定核准函。';
+    if (state.isHillside === 'yes') {
+      approvalDesc += '【山坡地回饋金】可能涉及山坡地開發利用回饋金，依農業局審查結果為主，如有涉及應依規定繳納並檢送相關證明。';
+    } else if (state.agriFee === 'required') {
+      approvalDesc += '【農業回饋金】由農業主管機關核算回饋金並發單，核准後申請人須檢送繳款證明，地政局始得續辦地所登記函請程序。';
+    } else {
+      approvalDesc += '【農業回饋金】依法免繳納農業回饋金。';
+    }
+
+    if (state.split === 'yes') {
+      approvalDesc += '【地籍分割】涉及部分土地變更，請申請人先洽轄區地政事務所辦竣地籍逕為分割後，再檢附分割資料續辦異動。';
+    } else {
+      approvalDesc += '【地籍分割】全筆土地變更，無涉地籍分割。';
+    }
+
+    nodes.push({
+      type: 'branch',
+      badge: '步驟 6',
+      badgeClass: 'blue',
+      title: '核准（發核准函與繳款/分割銜接）',
+      desc: approvalDesc
+    });
+
+    let transDesc = '';
+    if (state.isHillside === 'no' && state.agriFee === 'required') {
+      if (state.split === 'yes') {
+        transDesc = '須繳農變回饋金案件（涉及土地分割）：核准後申請人須檢送農業回饋金繳款證明，並辦竣地籍逕為分割測量後，始得函請轄區地政事務所辦理土地使用地類別異動登記及登錄土參檔。';
+      } else {
+        transDesc = '須繳農變回饋金案件（全筆免分割）：核准後申請人須檢送農業回饋金繳款證明，地政局確認繳竣後，始得函請轄區地政事務所辦理土地使用地類別異動登記及登錄土參檔。';
+      }
+    } else if (state.isHillside === 'yes') {
+      if (state.split === 'yes') {
+        transDesc = '部分土地辦理分割案件：核准後申請人須辦竣地籍逕為分割測量後，始得函請轄區地所辦理土地使用地類別異動登記及登錄土參檔。';
+      } else {
+        transDesc = '全筆免分割案件：核准後副本函請轄區地政事務所辦理土地使用地類別異動登記及登錄土參檔。';
+      }
+    } else {
+      if (state.split === 'yes') {
+        transDesc = '免繳農業回饋金案件（涉及土地分割）：申請人辦竣土地逕為分割並檢送成果後，函請轄區地所辦理土地使用地類別異動登記及登錄土參檔。';
+      } else {
+        transDesc = '免繳農業回饋金案件（全筆免分割）：核准函直接副本請轄區地政事務所辦理土地使用地類別異動登記，並登錄土參檔。';
+      }
+    }
+
+    nodes.push({
+      type: 'end',
+      badge: '步驟 7',
+      badgeClass: '',
+      title: '異動（函請地政事務所登記）',
+      desc: transDesc
+    });
+
+    return nodes;
+  }
+
+  function renderFlowchart() {
+    const titleEl = document.getElementById('flow-title');
+    const container = document.getElementById('flow-diagram-container');
+
+    const nodes = getFlowNodes();
+
+    if (state.caseType === 'concurrent') {
+      titleEl.textContent = '公地撥用一併變更編定流程圖';
+    } else {
+      titleEl.textContent = '一般變更編定作業流程圖';
+    }
+
+    container.innerHTML = '';
+    nodes.forEach((node, idx) => {
+      const nodeDiv = document.createElement('div');
+      nodeDiv.className = `node ${node.type}`;
+      nodeDiv.innerHTML = `
+        <div class="node-header">
+          <span class="badge ${node.badgeClass || ''}">${node.badge}</span>
+          <span class="node-step-no">STEP ${String(idx + 1).padStart(2, '0')}</span>
+        </div>
+        <div class="node-title">${node.title}</div>
+        <div class="node-desc">${node.desc}</div>
+      `;
+      container.appendChild(nodeDiv);
+
+      if (idx < nodes.length - 1) {
+        const arrow = document.createElement('div');
+        arrow.className = 'arrow';
+        arrow.innerHTML = '▼';
+        container.appendChild(arrow);
+      }
+    });
+  }
+
+  function copyFlowText() {
+    const nodes = getFlowNodes();
+    const title = state.caseType === 'concurrent' ? '公地撥用一併變更編定流程圖' : '一般變更編定作業流程圖';
+    let text = `【${title}】\n`;
+    nodes.forEach((n, idx) => {
+      text += `${idx + 1}. [${n.badge}] ${n.title}：${n.desc}\n`;
+    });
+
+    navigator.clipboard.writeText(text).then(() => {
+      alert('已複製流程圖文字內容至剪貼簿！');
+    });
+  }
+
+  function printFlowchart() {
+    try {
+      const nodes = getFlowNodes();
+      const title = state.caseType === 'concurrent' ? '公地撥用一併變更編定流程圖' : '一般變更編定作業流程圖';
+      const printWindow = window.open('', '_blank');
+      if (printWindow) {
+        let nodesHtml = '';
+        nodes.forEach((node, idx) => {
+          nodesHtml += `
+            <div style="border: 1.5px solid #DDD5C7; border-radius: 10px; padding: 14px 18px; margin-bottom: 12px; background: #FFFDF9; page-break-inside: avoid;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <span style="font-weight: bold; background: #8C5A4B; color: #fff; padding: 3px 10px; border-radius: 6px; font-size: 13px;">${node.badge}</span>
+                <span style="font-size: 12px; color: #888; font-family: monospace;">STEP ${String(idx + 1).padStart(2, '0')}</span>
+              </div>
+              <div style="font-size: 16px; font-weight: bold; color: #4A3E39; margin-bottom: 6px;">${node.title}</div>
+              <div style="font-size: 14px; color: #444; line-height: 1.6;">${node.desc}</div>
+            </div>
+          `;
+          if (idx < nodes.length - 1) {
+            nodesHtml += `<div style="text-align: center; color: #8C5A4B; font-size: 18px; margin: -4px 0 8px 0;">▼</div>`;
+          }
+        });
+
+        printWindow.document.write(`
+          <!DOCTYPE html>
+          <html>
+            <head>
+              <meta charset="utf-8">
+              <title>${title}</title>
+              <style>
+                body {
+                  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang TC", "Microsoft JhengHei", sans-serif;
+                  padding: 24px; color: #333; max-width: 800px; margin: 0 auto;
+                }
+                h1 { font-size: 22px; color: #4A3E39; border-bottom: 2px solid #8C5A4B; padding-bottom: 8px; margin-bottom: 16px; }
+              </style>
+            </head>
+            <body>
+              <h1>${title}</h1>
+              <div>${nodesHtml}</div>
+              <script>
+                window.onload = function() { window.print(); };
+              <\/script>
+            </body>
+          </html>
+        `);
+        printWindow.document.close();
+      } else {
+        window.print();
+      }
+    } catch(e) {
+      window.print();
+    }
+  }
+
+  // 初始化
+  renderUI();
+</script>
+</body>
+</html>

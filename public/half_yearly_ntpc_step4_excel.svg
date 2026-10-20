@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 560" width="100%" height="100%" style="background-color: #f8fafc; font-family: 'Microsoft JhengHei', 'PingFang TC', 'Noto Sans TC', sans-serif;">
+  <defs>
+    <filter id="shadow-excel" x="-3%" y="-3%" width="106%" height="106%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.12" />
+    </filter>
+  </defs>
+
+  <!-- Title Banner -->
+  <g transform="translate(20, 16)">
+    <rect x="0" y="0" width="900" height="42" rx="6" fill="#15803d" />
+    <text x="16" y="27" font-size="15" font-weight="bold" fill="#ffffff">
+      【步驟 4】Excel 數據填報示範（純文字貼入各行政區表，總計自動計算）
+    </text>
+  </g>
+
+  <!-- Excel Sheet Container -->
+  <g transform="translate(20, 68)">
+    <rect x="0" y="0" width="900" height="400" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow-excel)" />
+
+    <!-- Excel Ribbon Top -->
+    <rect x="0" y="0" width="900" height="28" rx="6" fill="#f1f5f9" />
+    <text x="14" y="19" font-size="11" fill="#475569">檔案 ｜ 常用 ｜ 插入 ｜ 版面配置 ｜ 公式 ｜ 資料 ｜ 校閱 ｜ 檢視</text>
+
+    <!-- Table Title in Sheet -->
+    <g transform="translate(180, 36)">
+      <text x="180" y="24" font-size="16" font-weight="bold" fill="#0f172a" text-anchor="middle">
+        新北市板橋區非都市土地使用分區與編定筆數及面積(續4)
+      </text>
+
+      <!-- Red Outline Box around sheet title: 選行政區的表，不要選到地所 -->
+      <rect x="40" y="5" width="280" height="28" rx="4" fill="none" stroke="#dc2626" stroke-width="2.5" />
+
+      <!-- Callout: 選行政區的表，不要選到地所 -->
+      <g transform="translate(330, 2)">
+        <polygon points="0,15 10,8 10,22" fill="#dc2626" />
+        <rect x="10" y="0" width="220" height="30" rx="4" fill="#dc2626" />
+        <text x="20" y="20" font-size="12" font-weight="bold" fill="#ffffff">★ 選行政區的表，不要選到地所</text>
+      </g>
+    </g>
+
+    <!-- Sheet Table -->
+    <g transform="translate(20, 75)">
+      <!-- Header row 1: 使用分區 -->
+      <rect x="0" y="0" width="130" height="48" fill="#e2e8f0" stroke="#94a3b8" />
+      <text x="65" y="29" font-size="12" font-weight="bold" fill="#1e293b" text-anchor="middle">使用地類別</text>
+
+      <!-- Header row: 總計 (Green shaded, DO NOT TOUCH) -->
+      <rect x="130" y="0" width="140" height="24" fill="#dcfce7" stroke="#86efac" />
+      <text x="200" y="17" font-size="12" font-weight="bold" fill="#166534" text-anchor="middle">總計（內建公式）</text>
+      <rect x="130" y="24" width="70" height="24" fill="#dcfce7" stroke="#86efac" />
+      <text x="165" y="40" font-size="11" font-weight="bold" fill="#166534" text-anchor="middle">筆數</text>
+      <rect x="200" y="24" width="70" height="24" fill="#dcfce7" stroke="#86efac" />
+      <text x="235" y="40" font-size="11" font-weight="bold" fill="#166534" text-anchor="middle">面積</text>
+
+      <!-- Header row: 特定農業區 -->
+      <rect x="270" y="0" width="140" height="24" fill="#f1f5f9" stroke="#94a3b8" />
+      <text x="340" y="17" font-size="11" font-weight="bold" fill="#334155" text-anchor="middle">特定農業區</text>
+      <rect x="270" y="24" width="70" height="24" fill="#f1f5f9" stroke="#94a3b8" />
+      <text x="305" y="40" font-size="11" fill="#475569" text-anchor="middle">筆數</text>
+      <rect x="340" y="24" width="70" height="24" fill="#f1f5f9" stroke="#94a3b8" />
+      <text x="375" y="40" font-size="11" fill="#475569" text-anchor="middle">面積</text>
+
+      <!-- Header row: 一般農業區 -->
+      <rect x="410" y="0" width="140" height="24" fill="#f1f5f9" stroke="#94a3b8" />
+      <text x="480" y="17" font-size="11" font-weight="bold" fill="#334155" text-anchor="middle">一般農業區</text>
+      <rect x="410" y="24" width="70" height="24" fill="#f1f5f9" stroke="#94a3b8" />
+      <text x="445" y="40" font-size="11" fill="#475569" text-anchor="middle">筆數</text>
+      <rect x="480" y="24" width="70" height="24" fill="#f1f5f9" stroke="#94a3b8" />
+      <text x="515" y="40" font-size="11" fill="#475569" text-anchor="middle">面積</text>
+
+      <!-- Header row: 工業區 -->
+      <rect x="550" y="0" width="140" height="24" fill="#f1f5f9" stroke="#94a3b8" />
+      <text x="620" y="17" font-size="11" font-weight="bold" fill="#334155" text-anchor="middle">工業區</text>
+      <rect x="550" y="24" width="70" height="24" fill="#f1f5f9" stroke="#94a3b8" />
+      <text x="585" y="40" font-size="11" fill="#475569" text-anchor="middle">筆數</text>
+      <rect x="620" y="24" width="70" height="24" fill="#f1f5f9" stroke="#94a3b8" />
+      <text x="655" y="40" font-size="11" fill="#475569" text-anchor="middle">面積</text>
+
+      <!-- Header row: 鄉村區... -->
+      <rect x="690" y="0" width="170" height="24" fill="#f1f5f9" stroke="#94a3b8" />
+      <text x="775" y="17" font-size="11" font-weight="bold" fill="#334155" text-anchor="middle">鄉村區 ...</text>
+      <rect x="690" y="24" width="85" height="24" fill="#f1f5f9" stroke="#94a3b8" />
+      <text x="732" y="40" font-size="11" fill="#475569" text-anchor="middle">筆數</text>
+      <rect x="775" y="24" width="85" height="24" fill="#f1f5f9" stroke="#94a3b8" />
+      <text x="817" y="40" font-size="11" fill="#475569" text-anchor="middle">面積</text>
+
+      <!-- Rows Data -->
+      <!-- Row 1: 總計行 -->
+      <rect x="0" y="48" width="130" height="24" fill="#f8fafc" stroke="#94a3b8" />
+      <text x="14" y="64" font-size="11" font-weight="bold" fill="#0f172a">總計</text>
+
+      <!-- Rows: 各種用地 -->
+      <rect x="0" y="72" width="130" height="22" fill="#ffffff" stroke="#cbd5e1" />
+      <text x="14" y="87" font-size="10.5" fill="#334155">甲種建築用地</text>
+      <rect x="0" y="94" width="130" height="22" fill="#ffffff" stroke="#cbd5e1" />
+      <text x="14" y="109" font-size="10.5" fill="#334155">乙種建築用地</text>
+      <rect x="0" y="116" width="130" height="22" fill="#ffffff" stroke="#cbd5e1" />
+      <text x="14" y="131" font-size="10.5" fill="#334155">丙種建築用地</text>
+      <rect x="0" y="138" width="130" height="22" fill="#ffffff" stroke="#cbd5e1" />
+      <text x="14" y="153" font-size="10.5" fill="#334155">丁種建築用地</text>
+      <rect x="0" y="160" width="130" height="22" fill="#ffffff" stroke="#cbd5e1" />
+      <text x="14" y="175" font-size="10.5" fill="#334155">農牧用地</text>
+      <rect x="0" y="182" width="130" height="22" fill="#ffffff" stroke="#cbd5e1" />
+      <text x="14" y="197" font-size="10.5" fill="#334155">林業用地</text>
+      <rect x="0" y="204" width="130" height="22" fill="#ffffff" stroke="#cbd5e1" />
+      <text x="14" y="219" font-size="10.5" fill="#334155">養殖用地 / 礦業用地</text>
+      <rect x="0" y="226" width="130" height="22" fill="#ffffff" stroke="#cbd5e1" />
+      <text x="14" y="241" font-size="10.5" fill="#334155">交通用地 / 水利用地</text>
+      <rect x="0" y="248" width="130" height="22" fill="#ffffff" stroke="#cbd5e1" />
+      <text x="14" y="263" font-size="10.5" fill="#334155">生態保護 / 國土保安</text>
+
+      <!-- Total column background (light green with formula) -->
+      <rect x="130" y="48" width="140" height="222" fill="#f0fdf4" stroke="#86efac" />
+      <text x="200" y="140" font-size="12" fill="#15803d" font-weight="bold" text-anchor="middle">=SUM(公式)</text>
+
+      <!-- BIG RED X OVER THE TOTAL COLUMN -->
+      <line x1="130" y1="48" x2="270" y2="270" stroke="#dc2626" stroke-width="4.5" />
+      <line x1="270" y1="48" x2="130" y2="270" stroke="#dc2626" stroke-width="4.5" />
+
+      <!-- RED BORDER AROUND ALL OTHER COLUMNS (Data Entry Range) -->
+      <rect x="270" y="48" width="590" height="222" fill="#fffbeb" fill-opacity="0.3" stroke="#dc2626" stroke-width="3" />
+
+      <!-- Callout pointing to Total Column: 不要貼到總計的欄位 -->
+      <g transform="translate(135, 278)">
+        <polygon points="40,0 48,10 32,10" fill="#dc2626" />
+        <rect x="0" y="10" width="220" height="34" rx="4" fill="#dc2626" />
+        <text x="12" y="32" font-size="12" font-weight="bold" fill="#ffffff">❌ 不要貼到總計的欄位！</text>
+      </g>
+
+      <!-- Callout pointing to Red Border Area: 貼至紅色框線內就好 -->
+      <g transform="translate(420, 100)">
+        <rect x="0" y="0" width="370" height="65" rx="6" fill="#dc2626" filter="url(#shadow-excel)" />
+        <text x="14" y="24" font-size="13" font-weight="bold" fill="#ffffff">
+          把內政部 excel 數據以純文字貼到新北市報表
+        </text>
+        <text x="14" y="46" font-size="12" font-weight="bold" fill="#fef08a">
+          ★ 貼至紅色框線內就好，不要貼到總計欄位（公式會自己計算）
+        </text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Bottom Important Instruction Banner -->
+  <g transform="translate(20, 476)">
+    <rect x="0" y="0" width="900" height="72" rx="6" fill="#eff6ff" stroke="#3b82f6" stroke-width="2" />
+    <text x="16" y="24" font-size="13" font-weight="bold" fill="#1e40af">
+      ⚠️ 貼上防呆注意事項與後續匯入：
+    </text>
+    <text x="16" y="45" font-size="12" font-weight="bold" fill="#dc2626">
+      1. 只要以「純文字」複製貼上到「各行政區」的表（按右鍵選「以純文字貼上 / 貼上值」）。
+    </text>
+    <text x="16" y="63" font-size="12" font-weight="bold" fill="#0369a1">
+      2. 完成後至公務統計行政作業匯入填好的 excel。
+    </text>
+  </g>
+</svg>

@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>非都市土地更正編定判斷精靈</title>
+  <style>
+    :root {
+      --primary: #8C5A4B;
+      --primary-dark: #704437;
+      --bg-page: #F5EFEB;
+      --card-bg: #FFFFFF;
+      --border: #DDD5C7;
+      --text: #4A3E39;
+      --text-muted: #7D7065;
+      --radius: 14px;
+      --shadow: 0 2px 8px rgba(74, 62, 57, 0.06);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background: var(--bg-page);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 24px 16px 40px;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    /* 頂部標頭與大型重設按鈕 */
+    .header {
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: var(--shadow);
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .header-title h1 {
+      font-size: 22px;
+      color: var(--primary-dark);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header-title p {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .btn-reset-top {
+      background: #FAF7F4;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      padding: 10px 22px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .btn-reset-top:hover {
+      background: #F2ECE4;
+      transform: translateY(-1px);
+    }
+
+    /* 題目卡片 */
+    .question-card {
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .question-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .badge-date {
+      font-size: 12px;
+      font-weight: 600;
+      background: #FAF7F2;
+      color: var(--primary);
+      border: 1px solid var(--border);
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+
+    .btn-group {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+    }
+
+    .option-btn {
+      background: #FAF7F4;
+      border: 2px solid #E6DFD5;
+      border-radius: 12px;
+      padding: 14px 18px;
+      text-align: left;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      transition: all 0.2s;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .option-btn:hover {
+      background: #F4EFEB;
+      border-color: #D5C9BC;
+    }
+
+    .option-btn.active {
+      background: #FFFFFF;
+      border-color: var(--primary);
+      color: var(--primary-dark);
+      box-shadow: 0 0 0 3px rgba(140, 90, 75, 0.2);
+    }
+
+    .option-btn .sub {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .notice-box {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .notice-box.danger {
+      background: #FEF2F2;
+      border: 1px solid #FECACA;
+      color: #991B1B;
+    }
+
+    .notice-box.warning {
+      background: #FFFBEB;
+      border: 1px solid #FDE68A;
+      color: #92400E;
+    }
+
+    /* 流程圖產製區 */
+    .flowchart-section {
+      background: #FAF6F0;
+      border: 2px solid #A06C5D;
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: 0 4px 14px rgba(160, 108, 93, 0.08);
+      margin-top: 24px;
+    }
+
+    .flowchart-header {
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid rgba(160, 108, 93, 0.2);
+    }
+
+    .flowchart-title {
+      font-size: 19px;
+      font-weight: 700;
+      color: #5A4B43;
+    }
+
+    .flow-diagram {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .flow-node {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+      transition: all 0.2s;
+    }
+
+    .flow-node:hover {
+      border-color: rgba(140, 90, 75, 0.5);
+    }
+
+    .flow-node-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+
+    .node-badge {
+      font-size: 13px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: var(--primary);
+      color: #fff;
+      border: 1px solid var(--primary);
+    }
+
+    .node-badge.amber { background: #FEF3C7; color: #92400E; border-color: #FCD34D; }
+    .node-badge.blue { background: #DBEAFE; color: #1E40AF; border-color: #93C5FD; }
+    .node-badge.stone { background: #F5F5F4; color: #44403C; border-color: #D6D3D1; }
+    .node-badge.red { background: #FEE2E2; color: #991B1B; border-color: #FCA5A5; }
+
+    .node-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .node-desc {
+      font-size: 14px;
+      color: #4A3E39;
+      line-height: 1.6;
+    }
+
+    .flow-connector {
+      display: flex;
+      justify-content: center;
+      margin: -4px 0;
+    }
+
+    .connector-line {
+      width: 2px;
+      height: 16px;
+      background: rgba(160, 108, 93, 0.4);
+    }
+
+    .actions-bar {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(160, 108, 93, 0.2);
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-action {
+      background: #FFFFFF;
+      border: 2px solid var(--border);
+      color: #5A4B43;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .btn-action:hover {
+      background: #F2ECE4;
+      border-color: var(--primary);
+    }
+
+    .btn-action-primary {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #FFFFFF;
+    }
+
+    .btn-action-primary:hover {
+      background: var(--primary-dark);
+      border-color: var(--primary-dark);
+    }
+
+    /* 最下方判斷下一件 */
+    .bottom-bar {
+      margin-top: 24px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .btn-next-case {
+      background: var(--primary);
+      color: #FFFFFF;
+      border: none;
+      padding: 16px 48px;
+      border-radius: 14px;
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.2s;
+      box-shadow: 0 4px 14px rgba(140, 90, 75, 0.25);
+    }
+
+    .btn-next-case:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(140, 90, 75, 0.35);
+    }
+
+    @media print {
+      body { background: #fff; padding: 0; }
+      .question-card, .header, .actions-bar, .bottom-bar { display: none !important; }
+      .flowchart-section { border: none; box-shadow: none; padding: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container" id="top-anchor">
+  <!-- 頂部標題與大按鈕 -->
+  <header class="header">
+    <div class="header-title">
+      <h1>🧭 更正編定判斷精靈</h1>
+      <p>點選案件條件，快速自動產製客製化作業流程圖</p>
+    </div>
+    <button class="btn-reset-top" onclick="resetForm()">
+      ↺ 重設條件
+    </button>
+  </header>
+
+  <!-- 題目 1: 申請更正編定之使用地類別 -->
+  <div class="question-card">
+    <div class="question-title">1. 申請更正編定之使用地類別</div>
+    <div class="btn-group">
+      <button type="button" class="option-btn active" id="btn-type-building" onclick="setOption('targetLandType', 'building')">
+        更正為建築用地（老舊合法房屋）
+        <span class="sub">最常見類型：編定公告前已建有合法自用房屋，申請更正為甲/乙/丙種建築用地</span>
+      </button>
+      <button type="button" class="option-btn" id="btn-type-other" onclick="setOption('targetLandType', 'other')">
+        更正為其他使用地（非建築用地）
+        <span class="sub">因編定當時清冊誤植或漏列，更正為農牧、林業、國土保安、交通或水利用地等</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- 題目 2: 證明文件時間要件 -->
+  <div class="question-card">
+    <div class="question-title">
+      <span>2. 證明文件時間要件（是否早於公告編定日？）</span>
+      <span class="badge-date">新北市公告編定基準日：民國70年2月15日</span>
+    </div>
+    <div class="btn-group">
+      <button type="button" class="option-btn active" id="btn-doc-before" onclick="setOption('docTime', 'before')">
+        早於公告編定日
+        <span class="sub">檢附70.2.15前之水電裝表證明、舊房屋稅籍、建物謄本或歷史航照圖</span>
+      </button>
+      <button type="button" class="option-btn" id="btn-doc-after" onclick="setOption('docTime', 'after')">
+        晚於公告編定日
+        <span class="sub">證明文件均在公告編定日之後始設立，不符合法定更正時效要件</span>
+      </button>
+      <button type="button" class="option-btn" id="btn-doc-household" onclick="setOption('docTime', 'household_only')">
+        僅有戶籍謄本設籍
+        <span class="sub">僅提戶籍設籍證明，查無水電或稅籍證明，依函釋須開立限期補正</span>
+      </button>
+    </div>
+
+    <div id="notice-doc-after" class="notice-box danger" style="display: none;">
+      <strong>不符合要件警告：</strong>更正編定以非都市土地編定公告前已合法存在之事實為限。若提出之證明文件晚於民國70年2月15日，依法應簽擬審查不符要件並正式函復駁回。
+    </div>
+
+    <div id="notice-doc-household" class="notice-box warning" style="display: none;">
+      <strong>補正通知程序：</strong>依內政部函釋，單憑戶籍謄本僅能證明設籍，無法直接推定現場確有實體合法建築物，不得逕行核准，應發函限期申請人補正通電證明或舊稅籍證明。
+    </div>
+  </div>
+
+  <!-- 題目 3: 現場老屋實體存續現況（更正為建地時檢核） -->
+  <div class="question-card" id="card-building-status">
+    <div class="question-title">3. 現場老屋實體存續現況</div>
+    <div class="btn-group">
+      <button type="button" class="option-btn active" id="btn-bldg-intact" onclick="setOption('buildingStatus', 'intact')">
+        原老屋完整存續
+        <span class="sub">原公告前老屋主體構造完整，仍有人居住或供原合法用途使用</span>
+      </button>
+      <button type="button" class="option-btn" id="btn-bldg-expanded" onclick="setOption('buildingStatus', 'expanded')">
+        原老屋有擴建／改建
+        <span class="sub">老屋仍在但有擴建鐵皮或改建，僅公告前原合法範圍得更正，擴建部分不得計入</span>
+      </button>
+      <button type="button" class="option-btn" id="btn-bldg-collapsed" onclick="setOption('buildingStatus', 'collapsed')">
+        老屋已全部倒塌滅失
+        <span class="sub">老屋已全數倒塌或拆除夷平為空地，依內政部函釋「不得再申請更正編定」</span>
+      </button>
+    </div>
+
+    <div id="notice-bldg-collapsed" class="notice-box danger" style="display: none;">
+      <strong>建物滅失不得更正依據：</strong>內政部78年台內地字第730811號函釋明確規定，更正編定為建築用地以現存合法建物實際坐落之基地為限，若建物已滅失無存者，無更正編定之適用，應予駁回。
+    </div>
+  </div>
+
+  <!-- 題目 4: 土地更正範圍與地籍分割 -->
+  <div class="question-card">
+    <div class="question-title" id="split-card-title">4. 土地更正範圍與地籍分割</div>
+    <div class="btn-group">
+      <button type="button" class="option-btn active" id="btn-split-no" onclick="setOption('split', 'no')">
+        全筆土地更正（免分割）
+        <span class="sub">整筆地號全數符合更正範圍與法定空地，核准後免向地所辦理土地分割</span>
+      </button>
+      <button type="button" class="option-btn" id="btn-split-yes" onclick="setOption('split', 'yes')">
+        部分土地更正（須辦逕為分割）
+        <span class="sub">僅老屋坐落基地與法定空地更正，核准後由地政事務所辦竣地籍逕為分割測量再行異動</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- 產製出的流程圖區塊 -->
+  <section class="flowchart-section">
+    <div class="flowchart-header">
+      <div class="flowchart-title">產製作業流程圖</div>
+    </div>
+
+    <div class="flow-diagram" id="flow-diagram-container">
+      <!-- 動態載入流程圖節點 -->
+    </div>
+
+    <div class="actions-bar">
+      <button class="btn-action" onclick="copyFlowText()">複製流程文字</button>
+      <button class="btn-action btn-action-primary" onclick="printFlowchart()">列印流程圖</button>
+    </div>
+  </section>
+
+  <!-- 最下方「判斷下一件」按鈕 -->
+  <div class="bottom-bar">
+    <button class="btn-next-case" onclick="resetForm()">
+      <span>↺ 判斷下一件</span>
+      <span>➔</span>
+    </button>
+  </div>
+</div>
+
+<script>
+  const state = {
+    targetLandType: 'building',
+    docTime: 'before',
+    buildingStatus: 'intact',
+    split: 'no'
+  };
+
+  function setOption(key, val) {
+    state[key] = val;
+    updateUI();
+  }
+
+  function resetForm() {
+    state.targetLandType = 'building';
+    state.docTime = 'before';
+    state.buildingStatus = 'intact';
+    state.split = 'no';
+    updateUI();
+    document.getElementById('top-anchor').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function updateUI() {
+    // 按鈕 active 狀態更新
+    document.getElementById('btn-type-building').className = 'option-btn' + (state.targetLandType === 'building' ? ' active' : '');
+    document.getElementById('btn-type-other').className = 'option-btn' + (state.targetLandType === 'other' ? ' active' : '');
+
+    document.getElementById('btn-doc-before').className = 'option-btn' + (state.docTime === 'before' ? ' active' : '');
+    document.getElementById('btn-doc-after').className = 'option-btn' + (state.docTime === 'after' ? ' active' : '');
+    document.getElementById('btn-doc-household').className = 'option-btn' + (state.docTime === 'household_only' ? ' active' : '');
+
+    document.getElementById('btn-bldg-intact').className = 'option-btn' + (state.buildingStatus === 'intact' ? ' active' : '');
+    document.getElementById('btn-bldg-expanded').className = 'option-btn' + (state.buildingStatus === 'expanded' ? ' active' : '');
+    document.getElementById('btn-bldg-collapsed').className = 'option-btn' + (state.buildingStatus === 'collapsed' ? ' active' : '');
+
+    document.getElementById('btn-split-no').className = 'option-btn' + (state.split === 'no' ? ' active' : '');
+    document.getElementById('btn-split-yes').className = 'option-btn' + (state.split === 'yes' ? ' active' : '');
+
+    // 建物狀態區塊僅在更正為建築用地時顯示
+    const bldgCard = document.getElementById('card-building-status');
+    const splitTitle = document.getElementById('split-card-title');
+    if (state.targetLandType === 'building') {
+      bldgCard.style.display = 'block';
+      splitTitle.textContent = '4. 土地更正範圍與地籍分割';
+    } else {
+      bldgCard.style.display = 'none';
+      splitTitle.textContent = '3. 土地更正範圍與地籍分割';
+    }
+
+    // 提示通知顯示
+    document.getElementById('notice-doc-after').style.display = (state.docTime === 'after') ? 'block' : 'none';
+    document.getElementById('notice-doc-household').style.display = (state.docTime === 'household_only') ? 'block' : 'none';
+    document.getElementById('notice-bldg-collapsed').style.display = (state.targetLandType === 'building' && state.buildingStatus === 'collapsed') ? 'block' : 'none';
+
+    renderFlowchart();
+  }
+
+  function renderFlowchart() {
+    const container = document.getElementById('flow-diagram-container');
+    container.innerHTML = '';
+
+    const isIneligibleTime = state.docTime === 'after';
+    const isHouseholdOnly = state.docTime === 'household_only';
+    const isBuildingCollapsed = state.targetLandType === 'building' && state.buildingStatus === 'collapsed';
+
+    let nodes = [];
+
+    // 情況 A：文件晚於公告日 或 老屋倒塌滅失（不合要件，駁回）
+    if (isIneligibleTime || isBuildingCollapsed) {
+      nodes = [
+        {
+          stepBadge: '步驟 1',
+          title: '申請人送件（收件初審）',
+          desc: '受理更正編定申請書、土地登記謄本、地籍圖謄本及申請人檢附之證明文件。'
+        },
+        {
+          stepBadge: '步驟 2',
+          badgeClass: 'amber',
+          title: '書面及現況事證查核',
+          desc: isIneligibleTime
+            ? '經查核申請人提出之建物證明文件（如水電裝表日、房屋稅籍起課年份），其日期均晚於該管直轄市、縣市非都市土地公告編定生效日（新北市為民國70年2月15日），未符合公告前合法存在之實質時效要件。'
+            : '會同轄區地政事務所實地勘查，現場原公告前之合法建物已全數倒塌滅失或拆除夷平為空地，已無任何實體建築物存在跡象。'
+        },
+        {
+          stepBadge: '步驟 3',
+          badgeClass: 'red',
+          title: '判定不符更正要件',
+          desc: isIneligibleTime
+            ? '依非都市土地使用管制規則第35條之1規定，更正編定以編定公告前已符合製定非都市土地使用分區圖及編定各種使用地作業須知規定者為限。本案證明文件晚於公告日，依法不符要件。'
+            : '依內政部78年台內地字第730811號函釋：「更正編定為建築用地，建物已滅失無存者，無更正編定之適用。」本案建物已倒塌滅失，不符法定要件。'
+        },
+        {
+          stepBadge: '步驟 4',
+          title: '簽核（簽擬不予准許）',
+          desc: '彙整審查查核事證及相關法令函釋依據，簽報府層決核定不予准許更正編定。'
+        },
+        {
+          stepBadge: '步驟 5',
+          badgeClass: 'stone',
+          title: '駁回通知（正式發函駁回）',
+          desc: '正式函復申請人駁回更正編定申請案，敘明不符法令依據及理由，並副知轄區地政事務所銷案結案。'
+        }
+      ];
+    } else if (isHouseholdOnly) {
+      // 情況 B：僅提設籍證明（開立限期補正）
+      nodes = [
+        {
+          stepBadge: '步驟 1',
+          title: '申請人送件（收件初審）',
+          desc: '受理更正編定申請書及戶籍謄本設籍證明。'
+        },
+        {
+          stepBadge: '步驟 2',
+          badgeClass: 'amber',
+          title: '文件要件審查（單憑設籍不足）',
+          desc: '審查發現申請人僅檢附戶籍設籍謄本，依內政部相關函釋規定，設籍僅能證明有人口設籍登記，不足以單獨直接認定現場確有實體合法建築物坐落。'
+        },
+        {
+          stepBadge: '步驟 3',
+          badgeClass: 'amber',
+          title: '補正通知（限期檢附實體證明）',
+          desc: '函請申請人限期檢附編定公告前之實體建物證明（如台電裝表供電證明、自來水接水證明、舊房屋稅籍證明或建物登記謄本），或向相關機關查調證明。'
+        },
+        {
+          stepBadge: '步驟 4',
+          badgeClass: 'blue',
+          title: '補正結果續處',
+          desc: '若申請人於期限內補正合格實體證明，續排現場會勘測量與實質審查；若逾期未補正或補正未完全者，依法簽報駁回。'
+        }
+      ];
+    } else {
+      // 情況 C：具備實質要件完整流程
+      nodes.push({
+        stepBadge: '步驟 1',
+        title: '申請人送件（核對應備文件）',
+        desc: state.targetLandType === 'building'
+          ? '受理更正編定申請書、近3個月內土地登記第一類謄本、地籍圖謄本、公告編定前之合法建物證明文件（台電裝表通電證明、舊稅籍證明、自來水證明或建物謄本）及現況建物照片。'
+          : '受理更正編定申請書、土地登記謄本、地籍圖謄本及編定公告前已符合目的使用地作業須知之原始證明文件。'
+      });
+
+      nodes.push({
+        stepBadge: '步驟 2',
+        title: '調閱檔案與歷史航照圖套繪',
+        desc: '查核該宗土地非都市土地公告編定基準日（新北市為70年2月15日）；向農業部林業及自然保育署航測及遙感分署調取編定前最近年份之正射航照圖，套繪地籍圖界址，比對老屋輪廓與陰影坐落位置。'
+      });
+
+      let surveyDesc = '';
+      if (state.targetLandType === 'building') {
+        if (state.buildingStatus === 'expanded') {
+          surveyDesc = '會同轄區地政事務所測量課及建管單位實地會勘。比對現況建物構造與歷史航照；測量員實地測繪建物投影面積及法定空地。特別注意：僅得以公告前原合法建物坐落範圍辦理測繪更正，公告後自行擴建鐵皮或增建部分不得計入更正範圍。';
+        } else {
+          surveyDesc = '會同轄區地政事務所測量課及相關主管機關現場勘查。確認現況老屋構造與出入通路，由地政事務所測量員實地測繪合法老屋建築投影面積及依建築法規所需之法定空地。';
+        }
+      } else {
+        surveyDesc = '會同轄區地政事務所及相關目的事業主管機關實地會勘，查核現況實際合法使用情形，製作現場會勘紀錄表。';
+      }
+
+      nodes.push({
+        stepBadge: '步驟 3',
+        title: '現場會勘與合法基地測量',
+        desc: surveyDesc
+      });
+
+      nodes.push({
+        stepBadge: '步驟 4',
+        badgeClass: 'amber',
+        title: '補正 (非必要)',
+        desc: '彙整現場會勘結論、測量成果圖或相關機關會辦意見。如有文件缺漏、航照套繪疑義或土地共有權利人身分問題，發函通知申請人限期辦理補正。'
+      });
+
+      nodes.push({
+        stepBadge: '步驟 5',
+        title: '審查審核與簽核核定',
+        desc: '彙整地政事務所現場勘查紀錄表、合法建物測量成果圖、歷史航照比對表及編定前合法證明文件，審查符合非都市土地使用管制規則第35條之1及相關作業須知規定後，簽報府層決核定更正編定。'
+      });
+
+      if (state.split === 'yes') {
+        nodes.push({
+          stepBadge: '步驟 6',
+          badgeClass: 'blue',
+          title: '地籍逕為分割測量（部分更正案件）',
+          desc: '核准函檢附核准更正範圍圖說，函請轄區地政事務所辦理土地逕為分割複丈。分割後老屋基地更正為建築用地（子筆），其餘非坐落範圍土地維持原編定（母筆）。'
+        });
+      } else {
+        nodes.push({
+          stepBadge: '步驟 6',
+          badgeClass: 'stone',
+          title: '免辦地籍分割（全筆更正案件）',
+          desc: '本案為整筆土地全數符合更正編定範圍，無須向轄區地政事務所辦理地籍逕為分割測量，逕行接續辦理異動登記。'
+        });
+      }
+
+      let transDesc = '';
+      if (state.split === 'yes') {
+        transDesc = '地政事務所辦竣地籍逕為分割複丈測量後，辦理土地登記簿標示部使用地類別更正登記，並登錄土地參考資訊檔（土參檔），副知稅捐稽徵機關調整地價稅稅籍，函復申請人並結案。';
+      } else {
+        transDesc = '核准函直接副本囑託轄區地政事務所辦理土地登記簿標示部使用地類別更正登記，並登錄土地參考資訊檔（土參檔），副知稅捐機關更正稅籍，發發核准公文函復申請人。';
+      }
+
+      nodes.push({
+        stepBadge: '步驟 7',
+        title: '異動（囑託地政事務所登記）',
+        desc: transDesc
+      });
+    }
+
+    nodes.forEach((node, index) => {
+      const nodeEl = document.createElement('div');
+      nodeEl.className = 'flow-node';
+      const badgeCls = node.badgeClass ? `node-badge ${node.badgeClass}` : 'node-badge';
+
+      nodeEl.innerHTML = `
+        <div class="flow-node-header">
+          <span class="${badgeCls}">${node.stepBadge}</span>
+          <span class="node-title">${node.title}</span>
+        </div>
+        <div class="node-desc">${node.desc}</div>
+      `;
+      container.appendChild(nodeEl);
+
+      if (index < nodes.length - 1) {
+        const connEl = document.createElement('div');
+        connEl.className = 'flow-connector';
+        connEl.innerHTML = '<div class="connector-line"></div>';
+        container.appendChild(connEl);
+      }
+    });
+  }
+
+  function copyFlowText() {
+    let text = `【新北市非都市土地更正編定作業流程圖】\n`;
+    text += `■ 案件條件：\n`;
+    text += `  1. 更正使用地類別：${state.targetLandType === 'building' ? '更正為建築用地（甲/乙/丙種建築用地）' : '更正為其他使用地'}\n`;
+    text += `  2. 證明文件時點：${state.docTime === 'before' ? '早於公告編定基準日（符合時效）' : state.docTime === 'after' ? '晚於公告編定基準日（不合要件）' : '僅有戶籍設籍證明（須補正）'}\n`;
+    text += `  3. 現場建物現況：${state.buildingStatus === 'intact' ? '原老屋完整存續' : state.buildingStatus === 'expanded' ? '老屋有擴建改建（僅合法範圍得更正）' : '原老屋已倒塌滅失（空地）'}\n`;
+    text += `  4. 地籍分割：${state.split === 'no' ? '全筆更正（免辦分割）' : '部分更正（須辦逕為分割）'}\n\n`;
+
+    const nodes = document.querySelectorAll('.flow-node');
+    nodes.forEach(node => {
+      const badge = node.querySelector('.node-badge')?.textContent || '';
+      const title = node.querySelector('.node-title')?.textContent || '';
+      const desc = node.querySelector('.node-desc')?.textContent || '';
+      text += `[${badge}] ${title}\n說明：${desc}\n\n`;
+    });
+
+    navigator.clipboard.writeText(text).then(() => {
+      alert('已複製作業流程文字至剪貼簿！');
+    });
+  }
+
+  function printFlowchart() {
+    window.print();
+  }
+
+  // 初始化執行
+  updateUI();
+</script>
+
+</body>
+</html>

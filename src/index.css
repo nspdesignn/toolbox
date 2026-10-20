@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+:root {
+  --font-serif: "Noto Serif TC", serif;
+  --font-sans: "Noto Sans TC", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  /* Earth tone palette (大地色系 - 溫暖沉穩，無綠色) */
+  --bg-earth: #FAF7F2;
+  --bg-card: #FFFFFF;
+  --earth-clay: #8C5A4B;
+  --earth-clay-light: #F6EFEA;
+  --earth-cocoa: #5A4B43;
+  --earth-cocoa-light: #F0ECE8;
+  --earth-ochre: #8C6D4F;
+  --earth-ochre-light: #F5EFE7;
+  --earth-sand: #D8CFBF;
+  --earth-border: #DDD5C7;
+  --earth-ink: #2D2623;
+  --earth-ink-muted: #665A54;
+}
+
+body {
+  background-color: var(--bg-earth);
+  color: var(--earth-ink);
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.font-serif-tc {
+  font-family: var(--font-serif);
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+
+

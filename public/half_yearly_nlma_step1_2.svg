@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 480" width="100%" height="100%" style="background-color: #f8fafc; font-family: 'Microsoft JhengHei', 'PingFang TC', 'Noto Sans TC', sans-serif;">
+  <defs>
+    <filter id="card-shadow" x="-3%" y="-3%" width="106%" height="106%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.12" />
+    </filter>
+  </defs>
+
+  <!-- Part 1: 全國建築管理資訊系統入口網 Top Navbar -->
+  <g transform="translate(20, 20)">
+    <rect x="0" y="0" width="880" height="90" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#card-shadow)" />
+    <!-- Header title bar -->
+    <rect x="0" y="0" width="880" height="38" rx="8" fill="#f1f5f9" />
+    <path d="M 16 10 L 26 28 L 36 10 Z" fill="#0284c7" />
+    <text x="44" y="25" font-size="16" font-weight="bold" fill="#0369a1">全國建築管理資訊系統入口網</text>
+    <text x="790" y="24" font-size="12" fill="#64748b">回首頁 ｜ 登入</text>
+
+    <!-- Nav tabs -->
+    <g transform="translate(10, 46)">
+      <rect x="0" y="0" width="115" height="34" rx="4" fill="#0284c7" />
+      <text x="57" y="22" font-size="13" fill="#ffffff" font-weight="bold" text-anchor="middle">建管業務 ▾</text>
+
+      <rect x="122" y="0" width="115" height="34" rx="4" fill="#0284c7" />
+      <text x="179" y="22" font-size="13" fill="#ffffff" font-weight="bold" text-anchor="middle">營造業務 ▾</text>
+
+      <rect x="244" y="0" width="125" height="34" rx="4" fill="#0284c7" />
+      <text x="306" y="22" font-size="13" fill="#ffffff" font-weight="bold" text-anchor="middle">建照與講習 ▾</text>
+
+      <rect x="376" y="0" width="120" height="34" rx="4" fill="#0284c7" />
+      <text x="436" y="22" font-size="13" fill="#ffffff" font-weight="bold" text-anchor="middle">防救災系統 ▾</text>
+
+      <rect x="503" y="0" width="160" height="34" rx="4" fill="#0284c7" />
+      <text x="583" y="22" font-size="13" fill="#ffffff" font-weight="bold" text-anchor="middle">新建上傳入口專區</text>
+
+      <!-- 公務專區 (Highlighted with red box) -->
+      <rect x="670" y="0" width="190" height="34" rx="4" fill="#0369a1" />
+      <text x="765" y="22" font-size="14" fill="#ffffff" font-weight="bold" text-anchor="middle">公務專區 ➔ 登錄</text>
+      <rect x="668" y="-2" width="194" height="38" rx="5" fill="none" stroke="#dc2626" stroke-width="2.8" stroke-dasharray="none" />
+    </g>
+  </g>
+
+  <!-- Downward Arrow connecting step 1 to step 2 -->
+  <g transform="translate(460, 118)">
+    <line x1="0" y1="0" x2="0" y2="16" stroke="#dc2626" stroke-width="2.5" />
+    <polygon points="-5,14 5,14 0,22" fill="#dc2626" />
+    <text x="12" y="14" font-size="12" font-weight="bold" fill="#dc2626">點「公務專區」登錄後 ➔ 點「公務統計系統」</text>
+  </g>
+
+  <!-- Part 2: 公務統計系統 Dashboard & 國土計畫統計 Dropdown -->
+  <g transform="translate(20, 148)">
+    <rect x="0" y="0" width="880" height="312" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#card-shadow)" />
+
+    <!-- Top green system banner -->
+    <rect x="0" y="0" width="880" height="42" rx="8" fill="#15803d" />
+    <circle cx="28" cy="21" r="10" fill="#ffffff" />
+    <text x="24" y="25" font-size="13" font-weight="bold" fill="#15803d">統</text>
+    <text x="46" y="26" font-size="16" font-weight="bold" fill="#ffffff">公務統計系統</text>
+
+    <!-- Nav modules bar -->
+    <g transform="translate(10, 48)">
+      <rect x="0" y="0" width="130" height="30" rx="3" fill="#e2e8f0" />
+      <text x="65" y="20" font-size="12" fill="#334155" text-anchor="middle">住宅發展統計</text>
+
+      <rect x="136" y="0" width="110" height="30" rx="3" fill="#e2e8f0" />
+      <text x="191" y="20" font-size="12" fill="#334155" text-anchor="middle">都計統計</text>
+
+      <!-- 國土計畫統計 Tab (Active & Highlighted in Red) -->
+      <rect x="252" y="0" width="150" height="30" rx="3" fill="#b45309" />
+      <text x="327" y="20" font-size="13" fill="#ffffff" font-weight="bold" text-anchor="middle">國土計畫統計 ▾</text>
+      <rect x="250" y="-2" width="154" height="34" rx="4" fill="none" stroke="#dc2626" stroke-width="2.5" />
+
+      <rect x="408" y="0" width="130" height="30" rx="3" fill="#e2e8f0" />
+      <text x="473" y="20" font-size="12" fill="#334155" text-anchor="middle">公共工程統計</text>
+
+      <rect x="544" y="0" width="150" height="30" rx="3" fill="#e2e8f0" />
+      <text x="619" y="20" font-size="12" fill="#334155" text-anchor="middle">都市基礎工程組</text>
+    </g>
+
+    <!-- Left Welcome Box -->
+    <g transform="translate(15, 95)">
+      <rect x="0" y="0" width="230" height="195" rx="6" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.2" />
+      <text x="16" y="32" font-size="15" font-weight="bold" fill="#0f172a">歡迎使用公務統計系統</text>
+      <text x="16" y="62" font-size="14" fill="#0369a1" font-weight="bold">您好：承辦人</text>
+      <text x="16" y="90" font-size="11" fill="#64748b">登錄時間：115/10/19 14:44:54</text>
+
+      <!-- System notice box -->
+      <rect x="12" y="115" width="206" height="68" rx="4" fill="#fef2f2" stroke="#fecaca" />
+      <text x="20" y="135" font-size="11" font-weight="bold" fill="#b91c1c">⚠️ 系統防呆注意事項：</text>
+      <text x="20" y="152" font-size="11" fill="#991b1b">• 90 天未登錄會自動停用</text>
+      <text x="20" y="169" font-size="11" fill="#991b1b">• 報送前請先確認帳號權限</text>
+    </g>
+
+    <!-- Right Dropdown Menu: 4 Main Reports Highlighted -->
+    <g transform="translate(258, 88)">
+      <rect x="0" y="0" width="605" height="210" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2" filter="url(#card-shadow)" />
+
+      <!-- List items -->
+      <text x="14" y="24" font-size="12" fill="#94a3b8">112510201-土石方資源堆置處理場處數及處理能量</text>
+      <line x1="10" y1="32" x2="595" y2="32" stroke="#f1f5f9" />
+
+      <text x="14" y="48" font-size="12" fill="#94a3b8">119200301-非都市土地施設型使用分區及使用地變更同意案件概況</text>
+      <line x1="10" y1="56" x2="595" y2="56" stroke="#f1f5f9" />
+
+      <text x="14" y="72" font-size="12" fill="#94a3b8">119200302-非都市土地資源型使用分區劃定及檢討變更核定概況</text>
+      <line x1="10" y1="80" x2="595" y2="80" stroke="#f1f5f9" />
+
+      <!-- 4 Core Reports Highlight Box in Red -->
+      <rect x="6" y="86" width="593" height="98" rx="5" fill="#fffbeb" stroke="#dc2626" stroke-width="2.5" />
+      <text x="14" y="106" font-size="12.5" font-weight="bold" fill="#1e293b">★ 119200303 - 非都市土地使用分區與編定筆數及面積</text>
+      <text x="14" y="128" font-size="12.5" font-weight="bold" fill="#1e293b">★ 119200304 - 非都市土地使用分區改劃</text>
+      <text x="14" y="150" font-size="12.5" font-weight="bold" fill="#1e293b">★ 119200305 - 非都市土地變更編定筆數及面積</text>
+      <text x="14" y="172" font-size="12.5" font-weight="bold" fill="#1e293b">★ 119200306 - 非都市土地使用地變更編定筆數及面積</text>
+
+      <text x="14" y="200" font-size="11" fill="#94a3b8">119200307-非都市土地使用分區編定筆數及面積 ...</text>
+    </g>
+
+    <!-- Red indicator callout -->
+    <g transform="translate(560, 205)">
+      <polygon points="0,15 15,0 15,30" fill="#dc2626" />
+      <rect x="15" y="-5" width="295" height="40" rx="4" fill="#dc2626" />
+      <text x="25" y="14" font-size="12" font-weight="bold" fill="#ffffff">找到這 4 張表（先選其中一張）</text>
+      <text x="25" y="28" font-size="11" fill="#fee2e2">填寫年份與上下半年後執行查詢</text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,184 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 520" width="100%" height="100%" style="background-color: #f8fafc; font-family: 'Microsoft JhengHei', 'PingFang TC', 'Noto Sans TC', sans-serif;">
+  <defs>
+    <filter id="shadow-submit" x="-3%" y="-3%" width="106%" height="106%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.12" />
+    </filter>
+  </defs>
+
+  <!-- Left: 報表編送對話框 (Step 5) -->
+  <g transform="translate(20, 16)">
+    <rect x="0" y="0" width="460" height="340" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow-submit)" />
+
+    <!-- Window title bar -->
+    <rect x="0" y="0" width="460" height="30" rx="6" fill="#0f172a" />
+    <text x="14" y="20" font-size="12" font-weight="bold" fill="#ffffff">報表報送 ─ 報送及存檔管理</text>
+
+    <!-- Top Action Buttons with Red highlight on 空值檢查 -->
+    <g transform="translate(14, 38)">
+      <rect x="0" y="0" width="110" height="26" rx="3" fill="#0284c7" />
+      <text x="55" y="17" font-size="11" font-weight="bold" fill="#ffffff" text-anchor="middle">報送及存檔管理</text>
+
+      <rect x="118" y="0" width="80" height="26" rx="3" fill="#ffffff" stroke="#0284c7" stroke-width="1.5" />
+      <text x="158" y="17" font-size="11" font-weight="bold" fill="#0284c7" text-anchor="middle">空值檢查</text>
+      <!-- Red outline on 空值檢查 -->
+      <rect x="116" y="-2" width="84" height="30" rx="4" fill="none" stroke="#dc2626" stroke-width="2.5" />
+
+      <rect x="206" y="0" width="90" height="26" rx="3" fill="#b45309" />
+      <text x="251" y="17" font-size="11" font-weight="bold" fill="#ffffff" text-anchor="middle">報送及存檔 ➔</text>
+    </g>
+
+    <!-- Form Fields -->
+    <g transform="translate(14, 80)">
+      <!-- 狀態 -->
+      <text x="10" y="20" font-size="12" fill="#475569" font-weight="bold">狀態：</text>
+      <text x="75" y="20" font-size="12" fill="#0f172a">編報(1)</text>
+
+      <!-- 編報說明 -->
+      <text x="10" y="52" font-size="12" fill="#475569" font-weight="bold">編報說明：</text>
+      <rect x="75" y="36" width="350" height="26" rx="3" fill="#f8fafc" stroke="#94a3b8" />
+      <text x="85" y="53" font-size="11" fill="#0f172a">115年度新北市非都市土地變更編定筆數及面積</text>
+      <text x="85" y="74" font-size="10.5" fill="#dc2626" font-weight="bold">★ 編報說明：填表名即可！</text>
+
+      <!-- 傳送下一關 (Red highlight) -->
+      <text x="10" y="105" font-size="12" fill="#475569" font-weight="bold">傳送下一關：</text>
+      <rect x="85" y="90" width="130" height="26" rx="3" fill="#eff6ff" stroke="#2563eb" />
+      <text x="95" y="107" font-size="12" font-weight="bold" fill="#1d4ed8">業務審核 ▾</text>
+      <!-- Red outline on 業務審核 -->
+      <rect x="83" y="88" width="134" height="30" rx="4" fill="none" stroke="#dc2626" stroke-width="2.5" />
+
+      <!-- 人員 (Red highlight) -->
+      <text x="235" y="105" font-size="12" fill="#475569" font-weight="bold">人員：</text>
+      <rect x="275" y="90" width="150" height="26" rx="3" fill="#eff6ff" stroke="#2563eb" />
+      <text x="285" y="107" font-size="12" font-weight="bold" fill="#1d4ed8">選專員或股長 ▾</text>
+      <!-- Red outline on 人員 -->
+      <rect x="273" y="88" width="154" height="30" rx="4" fill="none" stroke="#dc2626" stroke-width="2.5" />
+    </g>
+
+    <!-- Dialog Footer Buttons -->
+    <g transform="translate(14, 250)">
+      <rect x="75" y="0" width="85" height="30" rx="3" fill="#f1f5f9" stroke="#cbd5e1" />
+      <text x="117" y="19" font-size="12" fill="#475569" text-anchor="middle">存檔不送出</text>
+
+      <!-- 確定送出 Button (Highlighted in Red) -->
+      <rect x="175" y="0" width="95" height="30" rx="3" fill="#0284c7" />
+      <text x="222" y="19" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">確定送出</text>
+      <rect x="173" y="-2" width="99" height="34" rx="4" fill="none" stroke="#dc2626" stroke-width="2.8" />
+
+      <rect x="285" y="0" width="65" height="30" rx="3" fill="#f1f5f9" stroke="#cbd5e1" />
+      <text x="317" y="19" font-size="12" fill="#475569" text-anchor="middle">取消</text>
+    </g>
+
+    <!-- Red Prompt Badge -->
+    <g transform="translate(14, 296)">
+      <rect x="0" y="0" width="432" height="32" rx="4" fill="#fef2f2" stroke="#fecaca" />
+      <text x="10" y="21" font-size="11.5" font-weight="bold" fill="#dc2626">
+        ★ 空值檢查 ➔ 填寫編報說明 ➔ 下一關選【業務審核】➔ 選專員或股長送出
+      </text>
+    </g>
+  </g>
+
+  <!-- Right: 自然人憑證驗證 (Page 7 Screenshot) -->
+  <g transform="translate(500, 16)">
+    <rect x="0" y="0" width="420" height="340" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow-submit)" />
+
+    <!-- Window title bar -->
+    <rect x="0" y="0" width="420" height="30" rx="6" fill="#1e293b" />
+    <text x="14" y="20" font-size="12" font-weight="bold" fill="#ffffff">自然人憑證驗證</text>
+
+    <!-- Cert Icon & Header -->
+    <g transform="translate(20, 48)">
+      <circle cx="20" cy="20" r="18" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.5" />
+      <text x="14" y="26" font-size="18">💳</text>
+      <text x="48" y="22" font-size="13" font-weight="bold" fill="#0f172a">身分簽章安全驗證</text>
+      <text x="48" y="38" font-size="11" fill="#64748b">請插入自然人憑證 IC 卡並輸入 PIN 碼</text>
+    </g>
+
+    <!-- Cert Reader Fields -->
+    <g transform="translate(20, 115)">
+      <text x="10" y="16" font-size="11.5" fill="#475569" font-weight="bold">請選擇卡號：</text>
+      <rect x="10" y="26" width="375" height="26" rx="3" fill="#f1f5f9" stroke="#cbd5e1" />
+      <text x="18" y="43" font-size="10.5" fill="#334155" font-family="monospace">Generic Smart Card Reader [TP071802...] ▾</text>
+
+      <text x="10" y="80" font-size="11.5" fill="#475569" font-weight="bold">使用者：</text>
+      <rect x="10" y="90" width="375" height="26" rx="3" fill="#f8fafc" stroke="#cbd5e1" />
+      <text x="18" y="107" font-size="11" fill="#0f172a">承辦人憑證</text>
+
+      <text x="10" y="140" font-size="12" fill="#dc2626" font-weight="bold">PIN 碼（密碼）：</text>
+      <rect x="10" y="150" width="230" height="28" rx="3" fill="#ffffff" stroke="#dc2626" stroke-width="2" />
+      <text x="20" y="170" font-size="16" fill="#0f172a" font-family="monospace">••••••</text>
+      <!-- Red outline on PIN input -->
+      <rect x="8" y="148" width="234" height="32" rx="4" fill="none" stroke="#dc2626" stroke-width="2.5" />
+
+      <!-- 驗證 Button (Highlighted in Red) -->
+      <rect x="255" y="150" width="90" height="28" rx="3" fill="#0284c7" />
+      <text x="300" y="169" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">驗證</text>
+      <rect x="253" y="148" width="94" height="32" rx="4" fill="none" stroke="#dc2626" stroke-width="2.5" />
+    </g>
+
+    <!-- Cert prompt notice -->
+    <g transform="translate(20, 300)">
+      <rect x="0" y="0" width="380" height="28" rx="4" fill="#fffbeb" stroke="#fde68a" />
+      <text x="10" y="18" font-size="11" font-weight="bold" fill="#92400e">
+        🔑 插入自然人憑證 ➔ 輸入 PIN 碼 ➔ 點【驗證】完成簽署送出！
+      </text>
+    </g>
+  </g>
+
+  <!-- Bottom: 簽核流程鏈可視化 (Step 6) -->
+  <g transform="translate(20, 372)">
+    <rect x="0" y="0" width="900" height="132" rx="8" fill="#ffffff" stroke="#dc2626" stroke-width="2" filter="url(#shadow-submit)" />
+
+    <!-- Header bar -->
+    <rect x="0" y="0" width="900" height="32" rx="8" fill="#fef2f2" />
+    <text x="14" y="21" font-size="13" font-weight="bold" fill="#dc2626">
+      ★【步驟 6】送出後，提醒主管去簽核（一定要！不然主管不會知道）
+    </text>
+
+    <!-- Sign-off Path Diagram -->
+    <g transform="translate(18, 48)">
+      <g transform="translate(0, 0)">
+        <rect x="0" y="0" width="105" height="42" rx="6" fill="#1e3a8a" />
+        <text x="52" y="26" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">你（承辦人）</text>
+      </g>
+
+      <text x="118" y="27" font-size="18" font-weight="bold" fill="#94a3b8">→</text>
+
+      <g transform="translate(142, 0)">
+        <rect x="0" y="0" width="125" height="42" rx="6" fill="#f1f5f9" stroke="#94a3b8" />
+        <text x="62" y="26" font-size="12" font-weight="bold" fill="#334155" text-anchor="middle">專員 或 股長</text>
+      </g>
+
+      <text x="279" y="27" font-size="18" font-weight="bold" fill="#94a3b8">→</text>
+
+      <g transform="translate(303, 0)">
+        <rect x="0" y="0" width="95" height="42" rx="6" fill="#f1f5f9" stroke="#94a3b8" />
+        <text x="47" y="26" font-size="12" font-weight="bold" fill="#334155" text-anchor="middle">科長</text>
+      </g>
+
+      <text x="410" y="27" font-size="18" font-weight="bold" fill="#94a3b8">→</text>
+
+      <g transform="translate(434, 0)">
+        <rect x="0" y="0" width="105" height="42" rx="6" fill="#f1f5f9" stroke="#94a3b8" />
+        <text x="52" y="26" font-size="12" font-weight="bold" fill="#334155" text-anchor="middle">會計室</text>
+      </g>
+
+      <text x="551" y="27" font-size="18" font-weight="bold" fill="#94a3b8">→</text>
+
+      <g transform="translate(575, 0)">
+        <rect x="0" y="0" width="120" height="42" rx="6" fill="#b45309" />
+        <text x="60" y="26" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">科長決行</text>
+      </g>
+
+      <text x="707" y="27" font-size="18" font-weight="bold" fill="#15803d">→</text>
+
+      <g transform="translate(731, 0)">
+        <rect x="0" y="0" width="130" height="42" rx="6" fill="#15803d" />
+        <text x="65" y="26" font-size="13" font-weight="bold" fill="#ffffff" text-anchor="middle">🎉 完成報送！</text>
+      </g>
+    </g>
+
+    <text x="24" y="115" font-size="11.5" fill="#7f1d1d" font-weight="medium">
+      ★ 時限提醒：上半年報於 <strong>7 月底前</strong> 完成報送 ｜ 下半年報於 <strong>1 月底前</strong> 完成報送！
+    </text>
+  </g>
+</svg>

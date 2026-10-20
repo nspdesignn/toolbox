@@ -1,0 +1,8 @@
+{
+  "name": "Remix 非都市土地業務輔助小工具",
+  "description": "來看看嗎",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

@@ -1,0 +1,182 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 500" width="100%" height="100%" style="background-color: #ffffff; font-family: 'Microsoft JhengHei', 'PingFang TC', 'Noto Sans TC', sans-serif;">
+  <defs>
+    <filter id="shadow-ntpc" x="-3%" y="-3%" width="106%" height="106%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.12" />
+    </filter>
+  </defs>
+
+  <!-- Left Side: 公務雲首頁 常用應用程式 (Step 1) -->
+  <g transform="translate(18, 16)">
+    <rect x="0" y="0" width="280" height="468" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow-ntpc)" />
+
+    <!-- Top badge -->
+    <rect x="0" y="0" width="280" height="38" rx="8" fill="#0369a1" />
+    <text x="14" y="24" font-size="14" font-weight="bold" fill="#ffffff">新北市公務雲首頁</text>
+    <text x="14" y="60" font-size="12" font-weight="bold" fill="#334155">常用應用程式</text>
+
+    <!-- App Button: 二代公文 -->
+    <g transform="translate(14, 72)">
+      <rect x="0" y="0" width="252" height="38" rx="4" fill="#ffffff" stroke="#cbd5e1" />
+      <rect x="4" y="4" width="30" height="30" rx="3" fill="#0284c7" />
+      <text x="19" y="23" font-size="12" fill="#ffffff" font-weight="bold" text-anchor="middle">文</text>
+      <text x="44" y="24" font-size="12" fill="#1e293b">二代公文</text>
+    </g>
+
+    <!-- App Button: 人力差勤差勤管理 -->
+    <g transform="translate(14, 116)">
+      <rect x="0" y="0" width="252" height="38" rx="4" fill="#ffffff" stroke="#cbd5e1" />
+      <rect x="4" y="4" width="30" height="30" rx="3" fill="#16a34a" />
+      <text x="19" y="23" font-size="12" fill="#ffffff" font-weight="bold" text-anchor="middle">勤</text>
+      <text x="44" y="24" font-size="12" fill="#1e293b">人力差勤業務管理</text>
+    </g>
+
+    <!-- App Button: 訊息整合平台 -->
+    <g transform="translate(14, 160)">
+      <rect x="0" y="0" width="252" height="38" rx="4" fill="#ffffff" stroke="#cbd5e1" />
+      <rect x="4" y="4" width="30" height="30" rx="3" fill="#0284c7" />
+      <text x="19" y="23" font-size="12" fill="#ffffff" font-weight="bold" text-anchor="middle">訊</text>
+      <text x="44" y="24" font-size="12" fill="#1e293b">訊息整合平台</text>
+    </g>
+
+    <!-- App Button: 公務統計行政管理系統 (Target Step 1 - Big Red Box) -->
+    <g transform="translate(14, 204)">
+      <rect x="0" y="0" width="252" height="42" rx="4" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5" />
+      <rect x="4" y="4" width="34" height="34" rx="3" fill="#1d4ed8" />
+      <text x="21" y="25" font-size="14" fill="#ffffff" font-weight="bold" text-anchor="middle">統</text>
+      <text x="46" y="26" font-size="13" font-weight="bold" fill="#1e40af">公務統計行政管理系統</text>
+
+      <!-- Red Highlight Frame -->
+      <rect x="-3" y="-3" width="258" height="48" rx="5" fill="none" stroke="#dc2626" stroke-width="3" />
+    </g>
+
+    <!-- Step 1 Instruction Card -->
+    <g transform="translate(14, 275)">
+      <rect x="0" y="0" width="252" height="175" rx="6" fill="#fffbeb" stroke="#fde68a" />
+      <text x="12" y="24" font-size="12.5" font-weight="bold" fill="#92400e">【步驟 1】至公務雲點選：</text>
+      <text x="12" y="50" font-size="11.5" fill="#78350f" font-weight="medium">1. 登入新北公務雲</text>
+      <text x="12" y="74" font-size="11.5" fill="#78350f" font-weight="medium">2. 常用應用程式中找到</text>
+      <text x="12" y="98" font-size="12" fill="#dc2626" font-weight="bold">➔「公務統計行政管理系統」</text>
+      <text x="12" y="128" font-size="11" fill="#78350f">（新系統改版後功能階層較多，請依右側步驟導覽點選）</text>
+    </g>
+  </g>
+
+  <!-- Right Side Top: Menu Hierarchy (Step 2) -->
+  <g transform="translate(315, 16)">
+    <rect x="0" y="0" width="608" height="155" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow-ntpc)" />
+
+    <!-- Top window title -->
+    <rect x="0" y="0" width="608" height="32" rx="8" fill="#1e293b" />
+    <text x="14" y="21" font-size="13" font-weight="bold" fill="#ffffff">【步驟 2】選單路徑：報表編制及報送作業</text>
+
+    <!-- Menu columns -->
+    <!-- Col 1: 公務統計行政作業 -->
+    <g transform="translate(12, 42)">
+      <rect x="0" y="0" width="160" height="98" rx="4" fill="#0284c7" />
+      <text x="12" y="24" font-size="11" fill="#bae6fd" font-weight="bold">系統選單 ▾</text>
+      <rect x="8" y="32" width="144" height="32" rx="3" fill="#0369a1" />
+      <text x="16" y="52" font-size="12" font-weight="bold" fill="#ffffff">公務統計行政作業</text>
+      <text x="16" y="82" font-size="11" fill="#e0f2fe">系統管理作業</text>
+    </g>
+
+    <!-- Arrow -->
+    <text x="180" y="95" font-size="18" fill="#dc2626" font-weight="bold">→</text>
+
+    <!-- Col 2: 報表編送作業 -->
+    <g transform="translate(202, 42)">
+      <rect x="0" y="0" width="185" height="98" rx="4" fill="#0f172a" />
+      <text x="12" y="24" font-size="11" fill="#94a3b8">公務統計行政作業 ▾</text>
+      <rect x="8" y="32" width="169" height="32" rx="3" fill="#1e293b" />
+      <text x="16" y="52" font-size="12" font-weight="bold" fill="#ffffff">公務統計報表編送作業</text>
+      <text x="16" y="82" font-size="11" fill="#94a3b8">行政考核管理</text>
+    </g>
+
+    <!-- Arrow -->
+    <text x="395" y="95" font-size="18" fill="#dc2626" font-weight="bold">→</text>
+
+    <!-- Col 3: 報表編制及報送作業 (Highlighted in Red Box) -->
+    <g transform="translate(418, 42)">
+      <rect x="0" y="0" width="178" height="98" rx="4" fill="#ffffff" stroke="#cbd5e1" />
+      <rect x="6" y="8" width="166" height="36" rx="3" fill="#fff1f2" stroke="#dc2626" stroke-width="2" />
+      <text x="14" y="31" font-size="13" font-weight="bold" fill="#dc2626">報表編制及報送作業</text>
+      <text x="14" y="62" font-size="11" fill="#64748b">報表報送待簽核作業</text>
+      <text x="14" y="84" font-size="11" fill="#64748b">發布報表欄位修改作業</text>
+
+      <!-- Red Outline Box -->
+      <rect x="4" y="6" width="170" height="40" rx="4" fill="none" stroke="#dc2626" stroke-width="2.5" />
+    </g>
+  </g>
+
+  <!-- Right Side Bottom: 4 Tables & Export Empty Blank Report (Step 3) -->
+  <g transform="translate(315, 185)">
+    <rect x="0" y="0" width="608" height="298" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow-ntpc)" />
+
+    <!-- Sub header -->
+    <rect x="0" y="0" width="608" height="34" rx="8" fill="#0369a1" />
+    <text x="14" y="22" font-size="13" font-weight="bold" fill="#ffffff">
+      【步驟 3】點【新增報表】➔ 找到 4 張表 ➔ 點【開啟系統報表】➔ 匯出空白報表
+    </text>
+
+    <!-- Buttons Toolbar -->
+    <g transform="translate(12, 42)">
+      <!-- 新增報表 Button (Red border) -->
+      <rect x="0" y="0" width="105" height="28" rx="3" fill="#0284c7" />
+      <text x="52" y="19" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">➕ 新增報表</text>
+      <rect x="-2" y="-2" width="109" height="32" rx="4" fill="none" stroke="#dc2626" stroke-width="2.5" />
+
+      <rect x="115" y="0" width="95" height="28" rx="3" fill="#f1f5f9" stroke="#cbd5e1" />
+      <text x="162" y="19" font-size="11" fill="#475569" text-anchor="middle">重整清單</text>
+
+      <!-- 開啟系統報表 Button (Red border) -->
+      <rect x="220" y="0" width="130" height="28" rx="3" fill="#b45309" />
+      <text x="285" y="19" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">📑 開啟系統報表</text>
+      <rect x="218" y="-2" width="134" height="32" rx="4" fill="none" stroke="#dc2626" stroke-width="2.5" />
+
+      <!-- 匯出空白報表 Button -->
+      <rect x="360" y="0" width="125" height="28" rx="3" fill="#15803d" />
+      <text x="422" y="19" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">📥 匯出空白報表</text>
+    </g>
+
+    <!-- 4 Reports Table Grid -->
+    <g transform="translate(12, 78)">
+      <rect x="0" y="0" width="584" height="152" rx="4" fill="#ffffff" stroke="#dc2626" stroke-width="2.2" />
+
+      <!-- Row 1: 11920-03-03-2 -->
+      <rect x="0" y="0" width="584" height="38" fill="#eff6ff" />
+      <text x="14" y="24" font-size="12" font-weight="bold" fill="#1e3a8a" font-family="monospace">11920-03-03-2</text>
+      <text x="135" y="24" font-size="12" font-weight="bold" fill="#0f172a">新北市非都市土地使用分區與編定筆數及面積</text>
+      <text x="510" y="24" font-size="11" fill="#64748b">半年報</text>
+      <line x1="0" y1="38" x2="584" y2="38" stroke="#cbd5e1" />
+
+      <!-- Row 2: 11920-03-06-2 -->
+      <rect x="0" y="38" width="584" height="38" fill="#ffffff" />
+      <text x="14" y="62" font-size="12" font-weight="bold" fill="#1e3a8a" font-family="monospace">11920-03-06-2</text>
+      <text x="135" y="62" font-size="12" font-weight="bold" fill="#0f172a">新北市非都市土地使用地變更編定筆數及面積</text>
+      <text x="510" y="62" font-size="11" fill="#64748b">半年報</text>
+      <line x1="0" y1="76" x2="584" y2="76" stroke="#cbd5e1" />
+
+      <!-- Row 3: 11920-03-05-2 -->
+      <rect x="0" y="76" width="584" height="38" fill="#f8fafc" />
+      <text x="14" y="100" font-size="12" font-weight="bold" fill="#1e3a8a" font-family="monospace">11920-03-05-2</text>
+      <text x="135" y="100" font-size="12" font-weight="bold" fill="#0f172a">新北市非都市土地變更編定筆數及面積</text>
+      <text x="510" y="100" font-size="11" fill="#64748b">半年報</text>
+      <line x1="0" y1="114" x2="584" y2="114" stroke="#cbd5e1" />
+
+      <!-- Row 4: 11920-03-04-2 -->
+      <rect x="0" y="114" width="584" height="38" fill="#ffffff" />
+      <text x="14" y="138" font-size="12" font-weight="bold" fill="#1e3a8a" font-family="monospace">11920-03-04-2</text>
+      <text x="135" y="138" font-size="12" font-weight="bold" fill="#0f172a">新北市非都市土地使用分區改劃</text>
+      <text x="510" y="138" font-size="11" fill="#64748b">半年報</text>
+    </g>
+
+    <!-- Bottom prompt text in red -->
+    <g transform="translate(12, 240)">
+      <rect x="0" y="0" width="584" height="46" rx="4" fill="#fef2f2" stroke="#fecaca" />
+      <text x="14" y="22" font-size="12" font-weight="bold" fill="#dc2626">
+        ★ 找到這 4 張表，先點其中一張 ➔ 按【開啟系統報表】➔ 匯出空白報表
+      </text>
+      <text x="14" y="38" font-size="11" fill="#991b1b">
+        （4 張空白表匯出後，後續將內政部 29 區下載的 Excel 數據以純文字貼上填入）
+      </text>
+    </g>
+  </g>
+</svg>

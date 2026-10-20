@@ -1,0 +1,238 @@
+const fs = require('fs');
+const path = require('path');
+
+const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 345" width="100%" height="100%" style="background-color: #f7f7f7; font-family: 'PMingLiU', 'MingLiU', 'Microsoft JhengHei', 'PingFang TC', sans-serif;">
+  <defs>
+    <style>
+      .txt { font-size: 11.5px; fill: #222222; }
+      .req { color: #cc0000; fill: #cc0000; font-weight: bold; }
+      .input-box { fill: #ffffff; stroke: #8d99a6; stroke-width: 1; }
+      .input-readonly { fill: #ffffff; stroke: #8d99a6; stroke-width: 0.8; stroke-dasharray: 2 1; }
+      .btn-sys { fill: #f5f5f5; stroke: #8c8c8c; stroke-width: 1; rx: 1; }
+      .btn-txt { font-size: 10px; fill: #111111; text-anchor: middle; }
+      .red-box { stroke: #e00000; stroke-width: 2.2; fill: none; }
+      .red-note { fill: #d60000; font-size: 12.5px; font-weight: bold; font-family: 'Microsoft JhengHei', sans-serif; }
+      .red-note-lg { fill: #e00000; font-size: 14px; font-weight: bold; font-family: 'Microsoft JhengHei', sans-serif; letter-spacing: 1px; }
+      .red-note-sm { fill: #d60000; font-size: 11px; font-family: 'Microsoft JhengHei', sans-serif; }
+      .sub-note { font-size: 10px; fill: #555555; }
+    </style>
+  </defs>
+
+  <!-- Top Tabs Bar -->
+  <g transform="translate(0, 0)">
+    <rect x="2" y="2" width="90" height="20" fill="#d8e8cc" stroke="#b0b0b0" stroke-width="0.8" />
+    <text x="10" y="16" font-size="11" fill="#222">處分書資料維護</text>
+
+    <!-- Active Tab: 繳款資料維護 (with Red Box) -->
+    <rect x="94" y="2" width="98" height="20" fill="#ffff00" stroke="#b0b0b0" stroke-width="0.8" />
+    <text x="108" y="16" font-size="11" fill="#111" font-weight="bold">繳款資料維護</text>
+    <rect x="93" y="1" width="100" height="22" class="red-box" />
+
+    <rect x="194" y="2" width="80" height="20" fill="#d8e8cc" stroke="#b0b0b0" stroke-width="0.8" />
+    <text x="202" y="16" font-size="11" fill="#222">催繳資料維護</text>
+
+    <rect x="276" y="2" width="125" height="20" fill="#d8e8cc" stroke="#b0b0b0" stroke-width="0.8" />
+    <text x="282" y="16" font-size="11" fill="#222">移送行政執行資料維護</text>
+
+    <rect x="403" y="2" width="115" height="20" fill="#d8e8cc" stroke="#b0b0b0" stroke-width="0.8" />
+    <text x="410" y="16" font-size="11" fill="#222">債權憑證資料維護</text>
+
+    <rect x="520" y="2" width="115" height="20" fill="#d8e8cc" stroke="#b0b0b0" stroke-width="0.8" />
+    <text x="527" y="16" font-size="11" fill="#222">行政救濟資料維護</text>
+
+    <rect x="637" y="2" width="115" height="20" fill="#d8e8cc" stroke="#b0b0b0" stroke-width="0.8" />
+    <text x="644" y="16" font-size="11" fill="#222">財產清查資料維護</text>
+
+    <rect x="754" y="2" width="226" height="20" fill="#f0f0f0" stroke="#b0b0b0" stroke-width="0.8" />
+  </g>
+
+  <!-- Form Metadata Section (Above Banner 1) -->
+  <rect x="0" y="23" width="980" height="98" fill="#fcfcfc" stroke="#cccccc" stroke-width="0.8" />
+
+  <g transform="translate(10, 26)">
+    <!-- Row 1: 案件年度, 案件流水號 -->
+    <text x="0" y="14" class="txt"><tspan class="req">*</tspan>案件年度 :</text>
+    <rect x="65" y="2" width="58" height="16" class="input-readonly" />
+    <text x="72" y="14" font-size="11" fill="#000">115</text>
+
+    <text x="550" y="14" class="txt"><tspan class="req">*</tspan>案件流水號 :</text>
+    <rect x="635" y="2" width="95" height="16" class="input-readonly" />
+    <text x="642" y="14" font-size="11" fill="#000">11515413</text>
+
+    <!-- Row 2: 單位 -->
+    <text x="0" y="32" class="txt"><tspan class="req">*</tspan>單位 :</text>
+    <rect x="65" y="20" width="460" height="16" class="input-readonly" />
+    <text x="70" y="32" font-size="10.5" fill="#333">0400110080000 新北市政府地政局主管-新北市政府地政局-新北市政府地政局編定管制科</text>
+
+    <!-- Row 3: 姓名, 案件狀態 -->
+    <text x="0" y="50" class="txt"><tspan class="req">*</tspan>姓名 :</text>
+    <rect x="65" y="38" width="95" height="16" class="input-readonly" />
+    <text x="70" y="50" font-size="11" fill="#000">王正強</text>
+
+    <text x="550" y="50" class="txt"><tspan class="req">*</tspan>案件狀態 :</text>
+    <rect x="635" y="38" width="55" height="16" class="input-box" />
+    <text x="640" y="50" font-size="10.5" fill="#333">未結案</text>
+    <path d="M 680 43 L 685 43 L 682.5 48 Z" fill="#444" />
+
+    <!-- Row 4: 處分金額, 已繳金額 -->
+    <text x="0" y="68" class="txt"><tspan class="req">*</tspan>處分金額 :</text>
+    <rect x="65" y="56" width="95" height="16" class="input-readonly" />
+    <text x="120" y="68" font-size="11" fill="#000" text-anchor="end">60,000</text>
+
+    <text x="550" y="68" class="txt">已繳金額 :</text>
+    <rect x="635" y="56" width="95" height="16" class="input-readonly" />
+    <text x="722" y="68" font-size="11" fill="#000" text-anchor="end">0</text>
+
+    <!-- Row 5: 繳款方式 (with Red Box), 開立日期 -->
+    <text x="0" y="86" class="txt"><tspan class="req">*</tspan>繳款方式 :</text>
+    <rect x="65" y="74" width="70" height="17" class="input-box" fill="#ffffff" />
+    <text x="72" y="86" font-size="10.5" fill="#888">繳費單</text>
+    <path d="M 125 79 L 130 79 L 127.5 84 Z" fill="#444" />
+
+    <!-- Red Box around 繳款方式 -->
+    <rect x="-2" y="71" width="142" height="22" class="red-box" />
+    <!-- Red Note: 選繳費單！！！ -->
+    <text x="150" y="88" class="red-note-lg">選繳費單！！！</text>
+
+    <text x="550" y="86" class="txt"><tspan class="req">*</tspan>開立日期 :</text>
+    <rect x="635" y="74" width="65" height="16" class="input-readonly" />
+    <text x="640" y="86" font-size="11" fill="#000">1151014</text>
+    <rect x="702" y="74" width="16" height="16" class="btn-sys" />
+    <text x="710" y="85" font-size="9" fill="#222" text-anchor="middle">...</text>
+  </g>
+
+  <!-- Yellow Banner 1: 繳費單資料 -->
+  <rect x="0" y="121" width="980" height="18" fill="#ffff00" stroke="#d4d400" stroke-width="0.8" />
+  <text x="490" y="134" font-size="11.5" fill="#000000" font-weight="bold" text-anchor="middle">繳費單資料</text>
+
+  <!-- Fields under Banner 1 -->
+  <rect x="0" y="139" width="980" height="35" fill="#ffffff" stroke="#cccccc" stroke-width="0.8" />
+  <g transform="translate(10, 142)">
+    <text x="0" y="14" class="txt">繳費單編號 :</text>
+    <rect x="80" y="2" width="200" height="16" class="input-readonly" />
+    <text x="85" y="14" font-size="10.5" fill="#000">95484311515413</text>
+
+    <text x="545" y="14" class="txt">繳費單銷帳批號 :</text>
+    <rect x="640" y="2" width="95" height="16" class="input-box" />
+
+    <text x="0" y="30" class="txt">實際收入日期 :</text>
+    <rect x="80" y="18" width="65" height="15" class="input-box" />
+    <rect x="147" y="18" width="16" height="15" class="btn-sys" />
+    <text x="155" y="28" font-size="9" fill="#222" text-anchor="middle">...</text>
+
+    <text x="545" y="30" class="txt">預計繳款金額 :</text>
+    <rect x="640" y="18" width="95" height="15" class="input-readonly" />
+    <text x="728" y="30" font-size="10.5" fill="#000" text-anchor="end">60,000</text>
+  </g>
+
+  <!-- Middle Buttons Bar with Red Box annotations -->
+  <g transform="translate(440, 177)">
+    <rect x="0" y="0" width="530" height="21" fill="#e9edf2" stroke="#b5c0cc" stroke-width="1" />
+    <g transform="translate(4, 1.5)">
+      <!-- 新增 with Red Box & Note -->
+      <rect x="0" y="0" width="30" height="18" class="btn-sys" />
+      <text x="15" y="13" class="btn-txt">新增</text>
+      <rect x="-2" y="-2" width="34" height="22" class="red-box" />
+      <!-- Red text: 先按新增 (above) -->
+      <text x="15" y="-6" class="red-note" text-anchor="middle">先按新增</text>
+
+      <rect x="33" y="0" width="30" height="18" class="btn-sys" />
+      <text x="48" y="13" class="btn-txt">修改</text>
+
+      <rect x="66" y="0" width="30" height="18" class="btn-sys" />
+      <text x="81" y="13" class="btn-txt">取消</text>
+
+      <!-- 確定 with Red Box & Note -->
+      <rect x="99" y="0" width="30" height="18" class="btn-sys" />
+      <text x="114" y="13" class="btn-txt">確定</text>
+      <rect x="97" y="-2" width="34" height="22" class="red-box" />
+
+      <rect x="132" y="0" width="46" height="18" class="btn-sys" />
+      <text x="155" y="13" class="btn-txt">列表檔案</text>
+
+      <rect x="180" y="0" width="46" height="18" class="btn-sys" />
+      <text x="203" y="13" class="btn-txt">列表隱藏</text>
+
+      <rect x="228" y="0" width="60" height="18" class="btn-sys" />
+      <text x="258" y="13" class="btn-txt">列印繳款書</text>
+
+      <rect x="290" y="0" width="60" height="18" class="btn-sys" />
+      <text x="320" y="13" class="btn-txt">列印繳費單</text>
+
+      <rect x="352" y="0" width="60" height="18" class="btn-sys" />
+      <text x="382" y="13" class="btn-txt">繳費單複製</text>
+    </g>
+  </g>
+
+  <!-- Yellow Banner 2: 繳費單資料 (分期範例展示) -->
+  <rect x="0" y="202" width="980" height="18" fill="#ffff00" stroke="#d4d400" stroke-width="0.8" />
+  <text x="490" y="215" font-size="11.5" fill="#000000" font-weight="bold" text-anchor="middle">繳費單資料</text>
+  <!-- Red Note: 完成後按確定 -->
+  <text x="550" y="215" class="red-note">完成後按確定</text>
+
+  <!-- Fields under Banner 2 (Showing 分期期別 01) -->
+  <rect x="0" y="220" width="980" height="106" fill="#f8f8f8" stroke="#cccccc" stroke-width="0.8" />
+  <g transform="translate(10, 224)">
+    <!-- Row 1 -->
+    <text x="0" y="14" class="txt">繳費單編號 :</text>
+    <rect x="80" y="2" width="200" height="16" class="input-readonly" />
+    <text x="85" y="14" font-size="10.5" fill="#000">95480711507217</text>
+
+    <text x="545" y="14" class="txt">繳費單銷帳批號 :</text>
+    <rect x="640" y="2" width="95" height="16" class="input-readonly" />
+    <text x="645" y="14" font-size="10.5" fill="#000">W115073101</text>
+
+    <!-- Row 2 -->
+    <text x="0" y="31" class="txt">實際收入日期 :</text>
+    <rect x="80" y="19" width="65" height="16" class="input-readonly" />
+    <text x="85" y="31" font-size="10.5" fill="#000">1150730</text>
+    <rect x="147" y="19" width="16" height="16" class="btn-sys" />
+    <text x="155" y="30" font-size="9" fill="#222" text-anchor="middle">...</text>
+
+    <text x="545" y="31" class="txt">預計繳款金額 :</text>
+    <rect x="640" y="19" width="95" height="16" class="input-readonly" />
+    <text x="728" y="31" font-size="10.5" fill="#000" text-anchor="end">12,000</text>
+
+    <!-- Row 3: 期別 (with Red Box & Note), 繳費期限 -->
+    <text x="0" y="50" class="txt">期別 :</text>
+    <rect x="80" y="37" width="55" height="18" class="input-box" />
+    <text x="87" y="50" font-size="11" fill="#000">01</text>
+    <path d="M 124 44 L 129 44 L 126.5 49 Z" fill="#444" />
+
+    <!-- Red Box around 期別 -->
+    <rect x="-2" y="34" width="140" height="23" class="red-box" />
+
+    <!-- Red text: 如果有申請分期，這裡要選期別 -->
+    <text x="148" y="44" class="red-note">如果有申請分期，</text>
+    <text x="148" y="59" class="red-note">這裡要選期別</text>
+
+    <text x="545" y="50" class="txt">繳費期限 :</text>
+    <rect x="640" y="37" width="65" height="16" class="input-box" />
+    <rect x="707" y="37" width="16" height="16" class="btn-sys" />
+    <text x="715" y="48" font-size="9" fill="#222" text-anchor="middle">...</text>
+
+    <!-- Row 4: 撤銷, 已繳來源 -->
+    <text x="0" y="69" class="txt">撤銷 :</text>
+    <rect x="80" y="58" width="11" height="11" fill="#fff" stroke="#555" />
+
+    <text x="545" y="69" class="txt">已繳來源 :</text>
+    <line x1="640" y1="71" x2="780" y2="71" stroke="#888" stroke-dasharray="1 1" />
+    <text x="785" y="69" class="sub-note">(系統自動帶入)</text>
+
+    <!-- Row 5: 撤銷日期, 撤銷原因 -->
+    <text x="0" y="87" class="txt">撤銷日期 :</text>
+    <rect x="80" y="75" width="65" height="16" class="input-box" />
+    <rect x="147" y="75" width="16" height="16" class="btn-sys" />
+    <text x="155" y="86" font-size="9" fill="#222" text-anchor="middle">...</text>
+
+    <text x="545" y="87" class="txt">撤銷原因 :</text>
+    <rect x="640" y="75" width="200" height="16" class="input-box" />
+  </g>
+
+  <!-- Bottom Banner: 繳款書資料 -->
+  <rect x="0" y="326" width="980" height="18" fill="#ffff00" stroke="#d4d400" stroke-width="0.8" />
+  <text x="490" y="339" font-size="11.5" fill="#000000" font-weight="bold" text-anchor="middle">繳款書資料</text>
+</svg>`;
+
+fs.writeFileSync(path.join(__dirname, '../public/penalty_step5_image.svg'), svgContent, 'utf8');
+console.log('Successfully generated public/penalty_step5_image.svg');

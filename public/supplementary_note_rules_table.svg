@@ -1,0 +1,208 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 950 1200" width="100%" height="100%" style="background-color: #ffffff; font-family: 'PMingLiU', 'MingLiU', 'DFKai-SB', 'BiauKai', 'Noto Serif TC', serif;">
+  <defs>
+    <style>
+      .title { font-size: 21px; font-weight: bold; letter-spacing: 2px; fill: #000000; text-anchor: middle; }
+      .tbl-border { stroke: #000000; stroke-width: 1.2; fill: none; }
+      .tbl-border-thick { stroke: #000000; stroke-width: 2; fill: none; }
+      .th-txt { font-size: 13px; font-weight: bold; fill: #000000; text-anchor: middle; }
+      .td-txt { font-size: 13.5px; fill: #000000; text-anchor: middle; }
+      .td-left { font-size: 13.5px; fill: #000000; }
+      .symbol { font-size: 15px; font-weight: bold; text-anchor: middle; font-family: sans-serif; }
+      .footnote { font-size: 11px; fill: #222222; }
+    </style>
+  </defs>
+
+  <!-- Title -->
+  <text x="475" y="45" class="title">製定非都市土地使用分區圖及編定各種使用地作業須知編定原則表</text>
+
+  <!-- Outer Border -->
+  <rect x="25" y="70" width="900" height="1100" class="tbl-border-thick" />
+
+  <!-- Vertical Column Lines -->
+  <!-- Col 0: 使用地類別 (x=25 to 175, w=150) -->
+  <!-- Col 1: 一特定農業區 田 (x=175 to 235, w=60) -->
+  <!-- Col 2: 一特定農業區 旱 (x=235 to 295, w=60) -->
+  <!-- Col 3: 二一般農業區 田 (x=295 to 355, w=60) -->
+  <!-- Col 4: 二一般農業區 旱 (x=355 to 415, w=60) -->
+  <!-- Col 5: 三鄉村區 (x=415 to 480, w=65) -->
+  <!-- Col 6: 四工業區 (x=480 to 545, w=65) -->
+  <!-- Col 7: 五森林區 (x=545 to 610, w=65) -->
+  <!-- Col 8: 六山坡地保育區 (x=610 to 685, w=75) -->
+  <!-- Col 9: 七風景區 (x=685 to 745, w=60) -->
+  <!-- Col 10: 八河川區 (x=745 to 805, w=60) -->
+  <!-- Col 11: 九特定專用區 (x=805 to 865, w=60) -->
+  <!-- Col 12: 十海域區 (x=865 to 925, w=60) -->
+
+  <line x1="175" y1="70" x2="175" y2="1170" class="tbl-border" />
+  <line x1="235" y1="125" x2="235" y2="1080" class="tbl-border" />
+  <line x1="295" y1="70" x2="295" y2="1080" class="tbl-border" />
+  <line x1="355" y1="125" x2="355" y2="1080" class="tbl-border" />
+  <line x1="415" y1="70" x2="415" y2="1080" class="tbl-border" />
+  <line x1="480" y1="70" x2="480" y2="1080" class="tbl-border" />
+  <line x1="545" y1="70" x2="545" y2="1080" class="tbl-border" />
+  <line x1="610" y1="70" x2="610" y2="1080" class="tbl-border" />
+  <line x1="685" y1="70" x2="685" y2="1080" class="tbl-border" />
+  <line x1="745" y1="70" x2="745" y2="1080" class="tbl-border" />
+  <line x1="805" y1="70" x2="805" y2="1080" class="tbl-border" />
+  <line x1="865" y1="70" x2="865" y2="1080" class="tbl-border" />
+
+  <!-- Diagonal line in top-left cell -->
+  <line x1="25" y1="70" x2="175" y2="155" class="tbl-border" />
+  <text x="135" y="95" class="th-txt">使用分區</text>
+  <text x="45" y="145" class="th-txt">使用地類別</text>
+
+  <!-- Horizontal Lines for Headers -->
+  <line x1="175" y1="98" x2="925" y2="98" class="tbl-border" />
+  <line x1="175" y1="125" x2="415" y2="125" class="tbl-border" />
+  <line x1="25" y1="155" x2="925" y2="155" class="tbl-border" />
+
+  <!-- Header Row 1: 分區編號 -->
+  <text x="235" y="88" class="th-txt">一</text>
+  <text x="355" y="88" class="th-txt">二</text>
+  <text x="447" y="88" class="th-txt">三</text>
+  <text x="512" y="88" class="th-txt">四</text>
+  <text x="577" y="88" class="th-txt">五</text>
+  <text x="647" y="88" class="th-txt">六</text>
+  <text x="715" y="88" class="th-txt">七</text>
+  <text x="775" y="88" class="th-txt">八</text>
+  <text x="835" y="88" class="th-txt">九</text>
+  <text x="895" y="88" class="th-txt">十</text>
+
+  <!-- Header Row 2: 分區名稱 -->
+  <text x="235" y="115" class="th-txt">特定農業區</text>
+  <text x="355" y="115" class="th-txt">一般農業區</text>
+  <text x="447" y="138" class="th-txt">鄉村區</text>
+  <text x="512" y="138" class="th-txt">工業區</text>
+  <text x="577" y="138" class="th-txt">森林區</text>
+  <text x="647" y="125" class="th-txt">山坡地</text>
+  <text x="647" y="143" class="th-txt">保育區</text>
+  <text x="715" y="138" class="th-txt">風景區</text>
+  <text x="775" y="138" class="th-txt">河川區</text>
+  <text x="835" y="125" class="th-txt">特定專</text>
+  <text x="835" y="143" class="th-txt">用區</text>
+  <text x="895" y="138" class="th-txt">海域區</text>
+
+  <!-- Subheaders for 田 / 旱 -->
+  <text x="205" y="145" class="th-txt">田</text>
+  <text x="265" y="145" class="th-txt">旱</text>
+  <text x="325" y="145" class="th-txt">田</text>
+  <text x="385" y="145" class="th-txt">旱</text>
+
+  <!-- Table Body Rows (19 使用地類別 + 備註) -->
+  <!-- Row height ~45px -->
+  
+    <line x1="25" y1="200" x2="925" y2="200" class="tbl-border" />
+    <text x="35" y="183" class="td-left font-bold">一、甲種建築用地</text>
+    <text x="205" y="183" class="symbol" fill="#006600">✓</text><text x="265" y="183" class="symbol" fill="#cc0000">✕</text><text x="325" y="183" class="symbol" fill="#006600">✓</text><text x="385" y="183" class="symbol" fill="#cc0000">✕</text><text x="447" y="183" class="symbol" fill="#cc0000">✕</text><text x="512" y="183" class="symbol" fill="#cc0000">✕</text><text x="577" y="183" class="symbol" fill="#cc0000">✕</text><text x="647" y="183" class="symbol" fill="#cc0000">✕</text><text x="715" y="183" class="symbol" fill="#cc0000">✕</text><text x="775" y="183" class="symbol" fill="#cc0000">✕</text><text x="835" y="183" class="symbol" fill="#006600">✓</text><text x="895" y="183" class="symbol" fill="#cc0000">✕</text>
+    
+    <line x1="25" y1="245" x2="925" y2="245" class="tbl-border" />
+    <text x="35" y="228" class="td-left font-bold">二、乙種建築用地</text>
+    <text x="205" y="228" class="symbol" fill="#cc0000">✕</text><text x="265" y="228" class="symbol" fill="#cc0000">✕</text><text x="325" y="228" class="symbol" fill="#cc0000">✕</text><text x="385" y="228" class="symbol" fill="#cc0000">✕</text><text x="447" y="228" class="symbol" fill="#006600">✓</text><text x="512" y="228" class="symbol" fill="#cc0000">✕</text><text x="577" y="228" class="symbol" fill="#cc0000">✕</text><text x="647" y="228" class="symbol" fill="#cc0000">✕</text><text x="715" y="228" class="symbol" fill="#cc0000">✕</text><text x="775" y="228" class="symbol" fill="#cc0000">✕</text><text x="835" y="228" class="symbol" fill="#cc0000">✕</text><text x="895" y="228" class="symbol" fill="#cc0000">✕</text>
+    
+    <line x1="25" y1="290" x2="925" y2="290" class="tbl-border" />
+    <text x="35" y="273" class="td-left font-bold">三、丙種建築用地</text>
+    <text x="205" y="273" class="symbol" fill="#cc0000">✕</text><text x="265" y="273" class="symbol" fill="#006600">✓</text><text x="325" y="273" class="symbol" fill="#cc0000">✕</text><text x="385" y="273" class="symbol" fill="#006600">✓</text><text x="447" y="273" class="symbol" fill="#cc0000">✕</text><text x="512" y="273" class="symbol" fill="#cc0000">✕</text><text x="577" y="273" class="symbol" fill="#885500">△</text><text x="647" y="273" class="symbol" fill="#885500">△</text><text x="715" y="273" class="symbol" fill="#885500">△</text><text x="775" y="273" class="symbol" fill="#cc0000">✕</text><text x="835" y="273" class="symbol" fill="#cc0000">✕</text><text x="895" y="273" class="symbol" fill="#cc0000">✕</text>
+    
+    <line x1="25" y1="335" x2="925" y2="335" class="tbl-border" />
+    <text x="35" y="318" class="td-left font-bold">四、丁種建築用地</text>
+    <text x="205" y="318" class="symbol" fill="#885500">△</text><text x="265" y="318" class="symbol" fill="#885500">△</text><text x="325" y="318" class="symbol" fill="#885500">△</text><text x="385" y="318" class="symbol" fill="#885500">△</text><text x="447" y="318" class="symbol" fill="#885500">△</text><text x="512" y="318" class="symbol" fill="#006600">✓</text><text x="577" y="318" class="symbol" fill="#885500">△</text><text x="647" y="318" class="symbol" fill="#885500">△</text><text x="715" y="318" class="symbol" fill="#885500">△</text><text x="775" y="318" class="symbol" fill="#cc0000">✕</text><text x="835" y="318" class="symbol" fill="#885500">△</text><text x="895" y="318" class="symbol" fill="#cc0000">✕</text>
+    
+    <line x1="25" y1="380" x2="925" y2="380" class="tbl-border" />
+    <text x="35" y="363" class="td-left font-bold">五、農牧用地</text>
+    <text x="205" y="363" class="symbol" fill="#006600">✓</text><text x="265" y="363" class="symbol" fill="#006600">✓</text><text x="325" y="363" class="symbol" fill="#006600">✓</text><text x="385" y="363" class="symbol" fill="#006600">✓</text><text x="447" y="363" class="symbol" fill="#006600">✓</text><text x="512" y="363" class="symbol" fill="#006600">✓</text><text x="577" y="363" class="symbol" fill="#006600">✓</text><text x="647" y="363" class="symbol" fill="#006600">✓</text><text x="715" y="363" class="symbol" fill="#006600">✓</text><text x="775" y="363" class="symbol" fill="#885500">△</text><text x="835" y="363" class="symbol" fill="#006600">✓</text><text x="895" y="363" class="symbol" fill="#cc0000">✕</text>
+    
+    <line x1="25" y1="425" x2="925" y2="425" class="tbl-border" />
+    <text x="35" y="408" class="td-left font-bold">六、林業用地</text>
+    <text x="205" y="408" class="symbol" fill="#cc0000">✕</text><text x="265" y="408" class="symbol" fill="#cc0000">✕</text><text x="325" y="408" class="symbol" fill="#006600">✓</text><text x="385" y="408" class="symbol" fill="#006600">✓</text><text x="447" y="408" class="symbol" fill="#006600">✓</text><text x="512" y="408" class="symbol" fill="#006600">✓</text><text x="577" y="408" class="symbol" fill="#006600">✓</text><text x="647" y="408" class="symbol" fill="#006600">✓</text><text x="715" y="408" class="symbol" fill="#006600">✓</text><text x="775" y="408" class="symbol" fill="#cc0000">✕</text><text x="835" y="408" class="symbol" fill="#006600">✓</text><text x="895" y="408" class="symbol" fill="#cc0000">✕</text>
+    
+    <line x1="25" y1="470" x2="925" y2="470" class="tbl-border" />
+    <text x="35" y="453" class="td-left font-bold">七、養殖用地</text>
+    <text x="205" y="453" class="symbol" fill="#885500">△</text><text x="265" y="453" class="symbol" fill="#885500">△</text><text x="325" y="453" class="symbol" fill="#006600">✓</text><text x="385" y="453" class="symbol" fill="#006600">✓</text><text x="447" y="453" class="symbol" fill="#006600">✓</text><text x="512" y="453" class="symbol" fill="#cc0000">✕</text><text x="577" y="453" class="symbol" fill="#006600">✓</text><text x="647" y="453" class="symbol" fill="#006600">✓</text><text x="715" y="453" class="symbol" fill="#006600">✓</text><text x="775" y="453" class="symbol" fill="#cc0000">✕</text><text x="835" y="453" class="symbol" fill="#006600">✓</text><text x="895" y="453" class="symbol" fill="#cc0000">✕</text>
+    
+    <line x1="25" y1="515" x2="925" y2="515" class="tbl-border" />
+    <text x="35" y="498" class="td-left font-bold">八、鹽業用地</text>
+    <text x="205" y="498" class="symbol" fill="#cc0000">✕</text><text x="265" y="498" class="symbol" fill="#cc0000">✕</text><text x="325" y="498" class="symbol" fill="#885500">△</text><text x="385" y="498" class="symbol" fill="#885500">△</text><text x="447" y="498" class="symbol" fill="#cc0000">✕</text><text x="512" y="498" class="symbol" fill="#cc0000">✕</text><text x="577" y="498" class="symbol" fill="#cc0000">✕</text><text x="647" y="498" class="symbol" fill="#cc0000">✕</text><text x="715" y="498" class="symbol" fill="#cc0000">✕</text><text x="775" y="498" class="symbol" fill="#cc0000">✕</text><text x="835" y="498" class="symbol" fill="#885500">△</text><text x="895" y="498" class="symbol" fill="#cc0000">✕</text>
+    
+    <line x1="25" y1="560" x2="925" y2="560" class="tbl-border" />
+    <text x="35" y="543" class="td-left font-bold">九、礦業用地</text>
+    <text x="205" y="543" class="symbol" fill="#885500">△</text><text x="265" y="543" class="symbol" fill="#885500">△</text><text x="325" y="543" class="symbol" fill="#885500">△</text><text x="385" y="543" class="symbol" fill="#885500">△</text><text x="447" y="543" class="symbol" fill="#cc0000">✕</text><text x="512" y="543" class="symbol" fill="#cc0000">✕</text><text x="577" y="543" class="symbol" fill="#885500">△</text><text x="647" y="543" class="symbol" fill="#885500">△</text><text x="715" y="543" class="symbol" fill="#885500">△</text><text x="775" y="543" class="symbol" fill="#cc0000">✕</text><text x="835" y="543" class="symbol" fill="#885500">△</text><text x="895" y="543" class="symbol" fill="#cc0000">✕</text>
+    
+    <line x1="25" y1="605" x2="925" y2="605" class="tbl-border" />
+    <text x="35" y="588" class="td-left font-bold">十、窯業用地</text>
+    <text x="205" y="588" class="symbol" fill="#cc0000">✕</text><text x="265" y="588" class="symbol" fill="#cc0000">✕</text><text x="325" y="588" class="symbol" fill="#885500">△</text><text x="385" y="588" class="symbol" fill="#885500">△</text><text x="447" y="588" class="symbol" fill="#cc0000">✕</text><text x="512" y="588" class="symbol" fill="#885500">△</text><text x="577" y="588" class="symbol" fill="#cc0000">✕</text><text x="647" y="588" class="symbol" fill="#006600">✓</text><text x="715" y="588" class="symbol" fill="#cc0000">✕</text><text x="775" y="588" class="symbol" fill="#cc0000">✕</text><text x="835" y="588" class="symbol" fill="#885500">△</text><text x="895" y="588" class="symbol" fill="#cc0000">✕</text>
+    
+    <line x1="25" y1="650" x2="925" y2="650" class="tbl-border" />
+    <text x="35" y="633" class="td-left font-bold">十一、交通用地</text>
+    <text x="205" y="633" class="symbol" fill="#006600">✓</text><text x="265" y="633" class="symbol" fill="#006600">✓</text><text x="325" y="633" class="symbol" fill="#006600">✓</text><text x="385" y="633" class="symbol" fill="#006600">✓</text><text x="447" y="633" class="symbol" fill="#006600">✓</text><text x="512" y="633" class="symbol" fill="#006600">✓</text><text x="577" y="633" class="symbol" fill="#006600">✓</text><text x="647" y="633" class="symbol" fill="#006600">✓</text><text x="715" y="633" class="symbol" fill="#006600">✓</text><text x="775" y="633" class="symbol" fill="#885500">△</text><text x="835" y="633" class="symbol" fill="#006600">✓</text><text x="895" y="633" class="symbol" fill="#cc0000">✕</text>
+    
+    <line x1="25" y1="695" x2="925" y2="695" class="tbl-border" />
+    <text x="35" y="678" class="td-left font-bold">十二、水利用地</text>
+    <text x="205" y="678" class="symbol" fill="#006600">✓</text><text x="265" y="678" class="symbol" fill="#006600">✓</text><text x="325" y="678" class="symbol" fill="#006600">✓</text><text x="385" y="678" class="symbol" fill="#006600">✓</text><text x="447" y="678" class="symbol" fill="#006600">✓</text><text x="512" y="678" class="symbol" fill="#006600">✓</text><text x="577" y="678" class="symbol" fill="#006600">✓</text><text x="647" y="678" class="symbol" fill="#006600">✓</text><text x="715" y="678" class="symbol" fill="#006600">✓</text><text x="775" y="678" class="symbol" fill="#006600">✓</text><text x="835" y="678" class="symbol" fill="#006600">✓</text><text x="895" y="678" class="symbol" fill="#cc0000">✕</text>
+    
+    <line x1="25" y1="740" x2="925" y2="740" class="tbl-border" />
+    <text x="35" y="723" class="td-left font-bold">十三、遊憩用地</text>
+    <text x="205" y="723" class="symbol" fill="#885500">△</text><text x="265" y="723" class="symbol" fill="#885500">△</text><text x="325" y="723" class="symbol" fill="#006600">✓</text><text x="385" y="723" class="symbol" fill="#006600">✓</text><text x="447" y="723" class="symbol" fill="#006600">✓</text><text x="512" y="723" class="symbol" fill="#006600">✓</text><text x="577" y="723" class="symbol" fill="#006600">✓</text><text x="647" y="723" class="symbol" fill="#006600">✓</text><text x="715" y="723" class="symbol" fill="#006600">✓</text><text x="775" y="723" class="symbol" fill="#cc0000">✕</text><text x="835" y="723" class="symbol" fill="#006600">✓</text><text x="895" y="723" class="symbol" fill="#cc0000">✕</text>
+    
+    <line x1="25" y1="785" x2="925" y2="785" class="tbl-border" />
+    <text x="35" y="768" class="td-left font-bold">十四、古蹟保存用地</text>
+    <text x="205" y="768" class="symbol" fill="#006600">✓</text><text x="265" y="768" class="symbol" fill="#006600">✓</text><text x="325" y="768" class="symbol" fill="#006600">✓</text><text x="385" y="768" class="symbol" fill="#006600">✓</text><text x="447" y="768" class="symbol" fill="#006600">✓</text><text x="512" y="768" class="symbol" fill="#006600">✓</text><text x="577" y="768" class="symbol" fill="#006600">✓</text><text x="647" y="768" class="symbol" fill="#006600">✓</text><text x="715" y="768" class="symbol" fill="#006600">✓</text><text x="775" y="768" class="symbol" fill="#885500">△</text><text x="835" y="768" class="symbol" fill="#006600">✓</text><text x="895" y="768" class="symbol" fill="#cc0000">✕</text>
+    
+    <line x1="25" y1="830" x2="925" y2="830" class="tbl-border" />
+    <text x="35" y="813" class="td-left font-bold">十五、生態保護用地</text>
+    <text x="205" y="813" class="symbol" fill="#006600">✓</text><text x="265" y="813" class="symbol" fill="#006600">✓</text><text x="325" y="813" class="symbol" fill="#006600">✓</text><text x="385" y="813" class="symbol" fill="#006600">✓</text><text x="447" y="813" class="symbol" fill="#006600">✓</text><text x="512" y="813" class="symbol" fill="#006600">✓</text><text x="577" y="813" class="symbol" fill="#006600">✓</text><text x="647" y="813" class="symbol" fill="#006600">✓</text><text x="715" y="813" class="symbol" fill="#006600">✓</text><text x="775" y="813" class="symbol" fill="#885500">△</text><text x="835" y="813" class="symbol" fill="#006600">✓</text><text x="895" y="813" class="symbol" fill="#cc0000">✕</text>
+    
+    <line x1="25" y1="875" x2="925" y2="875" class="tbl-border" />
+    <text x="35" y="858" class="td-left font-bold">十六、國土保安用地</text>
+    <text x="205" y="858" class="symbol" fill="#006600">✓</text><text x="265" y="858" class="symbol" fill="#006600">✓</text><text x="325" y="858" class="symbol" fill="#006600">✓</text><text x="385" y="858" class="symbol" fill="#006600">✓</text><text x="447" y="858" class="symbol" fill="#006600">✓</text><text x="512" y="858" class="symbol" fill="#006600">✓</text><text x="577" y="858" class="symbol" fill="#006600">✓</text><text x="647" y="858" class="symbol" fill="#006600">✓</text><text x="715" y="858" class="symbol" fill="#006600">✓</text><text x="775" y="858" class="symbol" fill="#885500">△</text><text x="835" y="858" class="symbol" fill="#006600">✓</text><text x="895" y="858" class="symbol" fill="#cc0000">✕</text>
+    
+    <line x1="25" y1="920" x2="925" y2="920" class="tbl-border" />
+    <text x="35" y="903" class="td-left font-bold">十七、墳墓用地</text>
+    <text x="205" y="903" class="symbol" fill="#885500">△</text><text x="265" y="903" class="symbol" fill="#885500">△</text><text x="325" y="903" class="symbol" fill="#006600">✓</text><text x="385" y="903" class="symbol" fill="#006600">✓</text><text x="447" y="903" class="symbol" fill="#885500">△</text><text x="512" y="903" class="symbol" fill="#cc0000">✕</text><text x="577" y="903" class="symbol" fill="#885500">△</text><text x="647" y="903" class="symbol" fill="#006600">✓</text><text x="715" y="903" class="symbol" fill="#885500">△</text><text x="775" y="903" class="symbol" fill="#cc0000">✕</text><text x="835" y="903" class="symbol" fill="#006600">✓</text><text x="895" y="903" class="symbol" fill="#cc0000">✕</text>
+    
+    <line x1="25" y1="965" x2="925" y2="965" class="tbl-border" />
+    <text x="35" y="948" class="td-left font-bold">十八、特定目的事業用地</text>
+    <text x="205" y="948" class="symbol" fill="#006600">✓</text><text x="265" y="948" class="symbol" fill="#006600">✓</text><text x="325" y="948" class="symbol" fill="#006600">✓</text><text x="385" y="948" class="symbol" fill="#006600">✓</text><text x="447" y="948" class="symbol" fill="#006600">✓</text><text x="512" y="948" class="symbol" fill="#006600">✓</text><text x="577" y="948" class="symbol" fill="#006600">✓</text><text x="647" y="948" class="symbol" fill="#006600">✓</text><text x="715" y="948" class="symbol" fill="#006600">✓</text><text x="775" y="948" class="symbol" fill="#885500">△</text><text x="835" y="948" class="symbol" fill="#006600">✓</text><text x="895" y="948" class="symbol" fill="#cc0000">✕</text>
+    
+    <line x1="25" y1="1010" x2="925" y2="1010" class="tbl-border" />
+    <text x="35" y="993" class="td-left font-bold">十九、海域用地</text>
+    <text x="205" y="993" class="symbol" fill="#cc0000">✕</text><text x="265" y="993" class="symbol" fill="#cc0000">✕</text><text x="325" y="993" class="symbol" fill="#cc0000">✕</text><text x="385" y="993" class="symbol" fill="#cc0000">✕</text><text x="447" y="993" class="symbol" fill="#cc0000">✕</text><text x="512" y="993" class="symbol" fill="#cc0000">✕</text><text x="577" y="993" class="symbol" fill="#cc0000">✕</text><text x="647" y="993" class="symbol" fill="#cc0000">✕</text><text x="715" y="993" class="symbol" fill="#cc0000">✕</text><text x="775" y="993" class="symbol" fill="#cc0000">✕</text><text x="835" y="993" class="symbol" fill="#cc0000">✕</text><text x="895" y="993" class="symbol" fill="#006600">✓</text>
+    
+
+  <!-- 備註列 -->
+  <g transform="translate(0, 1010)">
+    <line x1="25" y1="1080" x2="925" y2="1080" class="tbl-border" />
+    <text x="100" y="1050" class="th-txt">備　　註</text>
+    <text x="235" y="1035" class="footnote" text-anchor="middle">以編定原則</text>
+    <text x="235" y="1052" class="footnote" text-anchor="middle">用地為主，</text>
+    <text x="235" y="1069" class="footnote" text-anchor="middle">依實際使用編定</text>
+
+    <text x="355" y="1052" class="footnote" text-anchor="middle">同左</text>
+    <text x="447" y="1052" class="footnote" text-anchor="middle">同左</text>
+    <text x="512" y="1042" class="footnote" text-anchor="middle">以編定丁種</text>
+    <text x="512" y="1060" class="footnote" text-anchor="middle">建築用地為主</text>
+    <text x="577" y="1042" class="footnote" text-anchor="middle">以編定林業</text>
+    <text x="577" y="1060" class="footnote" text-anchor="middle">用地為主</text>
+    <text x="647" y="1052" class="footnote" text-anchor="middle">同左</text>
+    <text x="715" y="1052" class="footnote" text-anchor="middle">同左</text>
+
+    <text x="775" y="1035" class="footnote" text-anchor="middle">以編定水利</text>
+    <text x="775" y="1052" class="footnote" text-anchor="middle">用地為主</text>
+    <text x="775" y="1069" class="footnote" text-anchor="middle">河川局為準</text>
+
+    <text x="835" y="1042" class="footnote" text-anchor="middle">依核准計畫</text>
+    <text x="835" y="1060" class="footnote" text-anchor="middle">之主要用途為準</text>
+  </g>
+
+  <!-- 圖例說明 -->
+  <g transform="translate(45, 1105)">
+    <text x="0" y="22" font-size="13" font-weight="bold" fill="#000000">圖例說明：</text>
+    <text x="80" y="22" font-size="14" font-weight="bold" fill="#006600">✓</text>
+    <text x="100" y="22" font-size="13" fill="#333333">編定原則主要用地</text>
+
+    <text x="240" y="22" font-size="14" font-weight="bold" fill="#885500">△</text>
+    <text x="260" y="22" font-size="13" fill="#333333">視現地實際狀況或核准計畫編定</text>
+
+    <text x="490" y="22" font-size="14" font-weight="bold" fill="#cc0000">✕</text>
+    <text x="510" y="22" font-size="13" fill="#333333">不合該使用分區性質，原則不予編定</text>
+  </g>
+</svg>

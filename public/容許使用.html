@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>容許使用分流小工具</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1F3864; --paper:#FBF7EE; --card:#FFFFFF;
+  --ink:#2A2822; --ink-soft:#5B584E; --line:#E4DCC8; --amber:#9C6B14;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --paper:#1C1A15; --card:#28251E; --ink:#F0ECE1; --ink-soft:#C2BCAA; --line:#42402F; }
+}
+:root[data-theme="dark"]{ --paper:#1C1A15; --card:#28251E; --ink:#F0ECE1; --ink-soft:#C2BCAA; --line:#42402F; }
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--paper); color:var(--ink); font-family:"Noto Sans TC",system-ui,sans-serif; line-height:1.8; font-size:17px;}
+h1,.serif{font-family:"Noto Serif TC",serif;}
+header{padding:26px clamp(18px,4vw,44px); border-bottom:3px solid var(--navy); background:var(--card);}
+header h1{font-size:clamp(21px,3vw,27px); color:var(--navy); font-weight:700;}
+header p{font-size:14px; color:var(--ink-soft); margin-top:6px;}
+main{max-width:720px; margin:0 auto; padding:clamp(18px,4vw,36px);}
+.card{background:var(--card); border:2px solid var(--line); border-radius:14px; padding:clamp(20px,3vw,28px); border-left-width:7px; border-left-color:var(--navy); margin-bottom:16px;}
+.eyebrow{font-size:13.5px; color:var(--ink-soft); font-weight:700; margin-bottom:8px;}
+.card h2{font-size:clamp(18px,2.2vw,21px); color:var(--navy); font-family:"Noto Serif TC",serif; margin-bottom:16px;}
+.opts{display:flex; flex-direction:column; gap:10px;}
+.opt-btn{text-align:left; padding:15px 18px; border:2px solid var(--line); border-radius:10px; background:var(--paper); color:var(--ink); font-size:16px; font-family:inherit; cursor:pointer;}
+.opt-btn:hover{border-color:var(--navy);}
+.result h2{font-size:clamp(19px,2.4vw,23px);}
+.section-label{font-weight:900; color:var(--navy); margin-top:16px; margin-bottom:6px; font-size:15px;}
+.quote{background:var(--paper); border-left:5px solid var(--amber); border-radius:8px; padding:16px 18px; font-size:15px; color:var(--ink-soft); font-style:italic; margin-top:4px;}
+.fill{font-size:14.5px; color:var(--ink-soft); margin-top:6px;}
+ul.check{padding-left:22px; margin-top:4px;}
+ul.check li{margin-bottom:6px; font-size:15px;}
+.ghost-btn{margin-top:20px; padding:10px 18px; background:transparent; color:var(--navy); border:2px solid var(--navy); border-radius:8px; font-family:inherit; font-size:14.5px; cursor:pointer;}
+.badge{display:inline-block; background:var(--navy); color:#fff; font-size:12.5px; font-weight:700; padding:3px 10px; border-radius:20px; margin-bottom:10px;}
+footer{max-width:720px;margin:0 auto;padding:10px clamp(18px,4vw,36px) 44px;color:var(--ink-soft);font-size:13px;}
+</style>
+</head>
+<body>
+<header>
+  <h1 class="serif">容許使用分流小工具</h1>
+  <p>兩題判斷土地屬性，對應到查證方式與回文參考架構（僅供參考，非正式公文）</p>
+</header>
+<main id="main"></main>
+<footer>依《非都市土地使用管制規則》第6條第3項附表一、第30條第6項及相關函釋整理。</footer>
+
+<script>
+const RESULTS = {
+  s3: {
+    badge: "情境３", title: "變更編定而來之土地",
+    situation: "土地係經申請變更編定而來，其使用受原核准興辦事業計畫拘束，不得另依附表一容許使用表主張其他容許使用項目或使用細目。",
+    law: "《非都市土地使用管制規則》第30條第6項",
+    check: ["查閱該筆土地之變更編定歷程（原用地別、變更後用地別）", "查閱核准之興辦事業計畫內容"],
+    quote: "（交代變更編定歷程），依非都市土地使用管制規則第30條第6項規定，申請變更編定之土地，其使用管制及開發建築應依目的事業主管機關核准之興辦事業計畫辦理，申請人不得逕依第六條附表一容許使用表作為興辦事業計畫以外之其他容許使用項目或許可使用細目使用。爰請本案請申請人向變更前目的事業主管機關及有關機關確認○○使用是否符合原計畫使用內容。",
+    fill: "待填空項目：編定歷程、欲申請之使用項目"
+  },
+  s2: {
+    badge: "情境２", title: "特定目的事業用地",
+    situation: "土地經查為特定目的事業用地，須依其特定目的事業計畫使用，而非依一般附表一容許使用表項目認定。",
+    law: "《非都市土地使用管制規則》第6條第3項附表一容許使用表；內政部「非都市土地容許使用執行要點」第4點",
+    check: ["查閱土地參考資訊檔、現況使用、異動清冊", "確認是誰申請變更為特目的用地、土地所有權人（管理機關）為何", "藉以判斷其目的事業主管機關"],
+    quote: "（交代變更為特定目的事業用地之編定歷程），依非都市土地使用管制規則第6條第3項附表一容許使用表規定，特定目的事業用地之容許使用項目係按特定目的事業計畫使用，惟依內政部頒「非都市土地容許使用執行要點」第4點規定，許可使用細目之適用範圍，係由其目的事業主管機關（○○○）認定。",
+    fill: "待填空項目：編定歷程、目的事業主管機關名稱"
+  },
+  s1: {
+    badge: "情境１", title: "一般容許使用（查附表一容許使用表）",
+    situation: "土地非因變更編定而來，亦非特定目的事業用地，回歸一般容許使用項目認定。",
+    law: "《非都市土地使用管制規則》第6條第3項附表一容許使用表；內政部「非都市土地容許使用執行要點」第4點",
+    check: ["依用地別查閱附表一容許使用表（附表一容許使用表內容龐大，請自行查閱現行法規，本工具不內建資料庫）", "找出對應的容許使用項目、使用細目、附帶條件"],
+    quote: "依非都市土地使用管制規則第6條第3項附表一容許使用表規定，○○用地之容許使用項目有「○○」，需經目的事業主管機關、使用地主管機關及有關機關許可，其使用細目有「○○」，其附帶條件為：「○○」。惟依內政部頒「非都市土地容許使用執行要點」第4點規定，許可使用細目之適用範圍，係由其目的事業主管機關認定。",
+    fill: "待填空項目：用地別、容許使用項目、使用細目、附帶條件"
+  }
+};
+
+let step = "q1";
+
+function renderQuestion(eyebrow, title, options){
+  document.getElementById("main").innerHTML = `
+    <div class="card">
+      <div class="eyebrow">${eyebrow}</div>
+      <h2>${title}</h2>
+      <div class="opts">${options.map((o,i)=>`<button class="opt-btn" data-i="${i}">${o.label}</button>`).join("")}</div>
+    </div>`;
+  document.querySelectorAll(".opt-btn").forEach((btn,i)=>{ btn.onclick = options[i].next; });
+}
+
+function renderResult(key){
+  const r = RESULTS[key];
+  document.getElementById("main").innerHTML = `
+    <div class="card result">
+      <span class="badge">${r.badge}</span>
+      <h2>${r.title}</h2>
+      <div class="section-label">適用情形</div>
+      <div>${r.situation}</div>
+      <div class="section-label">法源</div>
+      <div>${r.law}</div>
+      <div class="section-label">查證方式</div>
+      <ul class="check">${r.check.map(c=>`<li>${c}</li>`).join("")}</ul>
+      <div class="section-label">回文參考架構</div>
+      <div class="quote">${r.quote}</div>
+      <div class="fill">${r.fill}</div>
+      <button class="ghost-btn" id="restart">重新判斷另一筆土地</button>
+    </div>`;
+  document.getElementById("restart").onclick = ()=>{ step="q1"; render(); };
+}
+
+function render(){
+  if(step==="q1"){
+    renderQuestion("判斷點１", "這塊地是否為申請變更編定而來？", [
+      { label:"是，屬變更編定而來之土地", next:()=>renderResult("s3") },
+      { label:"否，非變更編定而來", next:()=>{ step="q2"; render(); } },
+    ]);
+  } else if(step==="q2"){
+    renderQuestion("判斷點２", "這塊地是否為特定目的事業用地？", [
+      { label:"是，屬特定目的事業用地", next:()=>renderResult("s2") },
+      { label:"否，一般用地", next:()=>renderResult("s1") },
+    ]);
+  }
+}
+render();
+</script>
+</body>
+</html>
