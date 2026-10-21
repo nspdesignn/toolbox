@@ -22,7 +22,8 @@ import {
   FileSpreadsheet,
   Download,
   CheckCircle2,
-  Bookmark
+  Bookmark,
+  Sliders
 } from 'lucide-react';
 
 import { SportsVenuesReport } from './SportsVenuesReport';
@@ -34,6 +35,8 @@ import { IllegalCasesReport } from './IllegalCasesReport';
 import { CeramicLandReport } from './CeramicLandReport';
 import { EnforcementAndCreditorCertReport } from './EnforcementAndCreditorCertReport';
 import { SpatialPlanningViolationsReport } from './SpatialPlanningViolationsReport';
+import { AppealAndLitigationAnalysisReport } from './AppealAndLitigationAnalysisReport';
+import { SpatialPlanningDiscretionModal } from './SpatialPlanningDiscretionModal';
 
 interface SpecialReportDetailPageProps {
   onBack: () => void;
@@ -297,9 +300,29 @@ export const SPECIAL_REPORT_TOPICS: SpecialReportTopic[] = [
     num: 11,
     title: '違規訴願訴訟案分析',
     category: '行政救濟分析',
-    keywords: ['行政處分', '訴願答辯', '行政訴訟', '原告之訴駁回', '信賴保護原則', '比例原則', '明確性原則', '判決見解'],
-    summary: '非都市土地違規裁罰案件於內政部訴願審議委員會與行政法院歷年勝敗訴關鍵、撤銷處分樣態分析與答辯防禦指南。',
-    hasFullContent: false
+    date: '115.03.16',
+    keywords: [
+      '近3年訴願訴訟盤點',
+      '更正編定4件',
+      '變更編定3件',
+      '違反區域計畫法29件',
+      '三峽十三添OOO案',
+      '按次處罰切斷單一性',
+      '舉證責任與獨立事實認定',
+      '20日答辯黃金期',
+      '土地所有人狀態責任',
+      '農地改良須事先申請',
+      '民70.2.15關鍵時間點',
+      '官方文書查調與航照比對',
+      '臺鐵雙溪擅建橋墩',
+      '榮工淡水宿舍物料場',
+      '改善完成實質認定',
+      '常見爭議說理參考庫',
+      '前端風險管理'
+    ],
+    summary:
+      '《近 3 年違規訴願訴訟案分析》（新北市政府地政局編定管制科鐘紫瑜，115.03.16，共 13 頁全文無保留、無自行摘要完整收錄）。全盤分析 112 至 115 年間 36 件救濟案（更正編定 4 件、變更編定 3 件、違反區域計畫法 29 件）。涵蓋：一、計畫緣起（土地編定與裁罰爭議增加、司法嚴格審查、航照圖判定與官方文書證據力排序）；二、作業流程（訴願收件形式審查 3-7 日、重新審查自我撤銷或答辯 20 日、訴願審議 3+2 個月、決定送達 15 日、行政訴訟起訴答辯 20 日、出庭與判決處置；實務 20 日黃金期限、航照對比證據保全、行政程序法第 102 條陳述意見）；三、案件類型分析（更正編定 4 件：三峽成福小段、鶯歌橋子頭一段、深坑新土庫段，70.2.15 前合法建築事實、門牌水電為輔助、科學航照推翻 82 年完工；變更編定 3 件：樹林、汐止、雙溪，面積形狀包圍法定要件、殯葬設施未附事業計畫技師簽證駁回；違反區域計畫法 29 件：三芝、瑞芳、三峽；三峽十三添一段OOO連續處分案時間序與第 3、4 次撤銷理由分析 — 舉證不即時未辦會勘、連續處分須獨立事實認定、證據主義優於現況推論；第 5 至 8 次處分獲維持之每次處罰獨立取證與狀態責任因應策略；114 年擴及國營企業臺鐵、榮工工程與馬術莊園）；四、常見疑義與風險觀察（合法建物 vs 存在過建物、編定錯誤 vs 政策調整、合理使用 vs 法定要件、農地改良 vs 違規使用、改善完成判斷標準、一行為不二罰與刑事責任）；五、後續精進方向（法定要件導向、制度化改善完成原則、常見爭議說理庫、重複違規分級管理）與六、結語（被動應訴轉為前端風險治理）。',
+    hasFullContent: true
   }
 ];
 
@@ -309,6 +332,9 @@ export const SpecialReportDetailPage: React.FC<SpecialReportDetailPageProps> = (
 
   // 關鍵字搜尋字串
   const [searchQuery, setSearchQuery] = useState<string>('');
+
+  // 實務裁量與處分流程速查工具彈窗狀態
+  const [showDiscretionModal, setShowDiscretionModal] = useState<boolean>(false);
 
   // 複製提示
   const [copiedTip, setCopiedTip] = useState<string | null>(null);
@@ -639,15 +665,26 @@ export const SpecialReportDetailPage: React.FC<SpecialReportDetailPageProps> = (
                   </a>
                 )}
                 {currentTopic.id === 'spatial-planning-violations' && (
+                  <button
+                    type="button"
+                    onClick={() => setShowDiscretionModal(true)}
+                    className="px-3 py-1.5 rounded-lg bg-[#1F3864] hover:bg-[#152747] text-white text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 shadow-2xs"
+                    title="開啟實務裁量與處分流程速查工具（第 38 條情境模擬）"
+                  >
+                    <Sliders className="w-3.5 h-3.5 text-amber-300" />
+                    <span>速查工具</span>
+                  </button>
+                )}
+                {currentTopic.id === 'appeal-and-litigation-analysis' && (
                   <a
-                    href="/assets/aistudio/_________a6775eab.pdf"
+                    href="/assets/aistudio/__________ba3db041.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="px-3 py-1.5 rounded-lg bg-[#1F3864] hover:bg-[#152747] text-white text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 shadow-2xs"
                     title="開啟原始 PDF 檔案"
                   >
                     <ExternalLink className="w-3.5 h-3.5" />
-                    <span>查看原始 PDF (12頁)</span>
+                    <span>查看原始 PDF (13頁)</span>
                   </a>
                 )}
                 <button
@@ -1571,7 +1608,13 @@ export const SpecialReportDetailPage: React.FC<SpecialReportDetailPageProps> = (
               <EnforcementAndCreditorCertReport onCopy={handleCopy} />
             ) : currentTopic.id === 'spatial-planning-violations' ? (
               /* 主題 10：國土計畫違規查處完整內容呈現（依《國土計畫違規查處.pdf》全文無保留完整排版） */
-              <SpatialPlanningViolationsReport onCopy={handleCopy} />
+              <SpatialPlanningViolationsReport
+                onCopy={handleCopy}
+                onOpenDiscretionTool={() => setShowDiscretionModal(true)}
+              />
+            ) : currentTopic.id === 'appeal-and-litigation-analysis' ? (
+              /* 主題 11：違規訴願訴訟案分析完整內容呈現（依《違規訴願訴訟案分析.pdf》全文無保留完整排版） */
+              <AppealAndLitigationAnalysisReport onCopy={handleCopy} />
             ) : (
               /* 其他 7 個主題的待提供狀態卡片 */
               <div className="space-y-5">
@@ -1650,6 +1693,13 @@ export const SpecialReportDetailPage: React.FC<SpecialReportDetailPageProps> = (
           </div>
         </div>
       </div>
+
+      {/* 國土計畫法第 38 條實務裁量與處分流程速查工具彈窗 */}
+      <SpatialPlanningDiscretionModal
+        isOpen={showDiscretionModal}
+        onClose={() => setShowDiscretionModal(false)}
+        onCopy={handleCopy}
+      />
     </div>
   );
 };

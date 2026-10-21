@@ -31,20 +31,16 @@ import {
 
 interface SpatialPlanningViolationsReportProps {
   onCopy?: (text: string, label: string) => void;
+  onOpenDiscretionTool?: () => void;
 }
 
 export const SpatialPlanningViolationsReport: React.FC<SpatialPlanningViolationsReportProps> = ({
-  onCopy
+  onCopy,
+  onOpenDiscretionTool
 }) => {
   const [activeTab, setActiveTab] = useState<string>('all');
   const [copiedTip, setCopiedTip] = useState<string | null>(null);
   const [filterQuery, setFilterQuery] = useState<string>('');
-
-  // 互動裁量檢核計算器狀態
-  const [selectedViolationType, setSelectedViolationType] = useState<number>(1);
-  const [hasLicense, setHasLicense] = useState<boolean>(false);
-  const [isPerpetratorFound, setIsPerpetratorFound] = useState<boolean>(true);
-  const [landOwnership, setLandOwnership] = useState<'private' | 'public'>('private');
 
   const handleLocalCopy = (text: string, label: string) => {
     if (onCopy) {
@@ -63,8 +59,7 @@ export const SpatialPlanningViolationsReport: React.FC<SpatialPlanningViolations
     { id: 'regulatory-and-execution', label: '管制處分與行政執行（斷水電／拆除／怠金）', icon: Zap },
     { id: 'investigation-and-discretion', label: '行政調查與裁量原則（職權調查／比例原則）', icon: Scale },
     { id: 'conclusions-and-recommendations', label: '結論與執法建議（六大具體建議）', icon: CheckCircle2 },
-    { id: 'appendix-statutory-text', label: '附件一：第38條法條全文（1～7項精解）', icon: FileCheck },
-    { id: 'discretion-simulator', label: '實務裁量與處分流程速查工具', icon: Sliders }
+    { id: 'appendix-statutory-text', label: '附件一：第38條法條全文（1～7項精解）', icon: FileCheck }
   ];
 
   return (
@@ -94,15 +89,28 @@ export const SpatialPlanningViolationsReport: React.FC<SpatialPlanningViolations
           </div>
 
           <div className="flex flex-row md:flex-col items-center md:items-end justify-between gap-3 shrink-0 pt-2 md:pt-0 border-t md:border-t-0 border-white/10">
-            <a
-              href="/assets/aistudio/_________a6775eab.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-4 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-900 text-xs sm:text-sm font-black transition-all cursor-pointer flex items-center gap-2 shadow-md hover:scale-105"
-            >
-              <ExternalLink className="w-4 h-4" />
-              <span>查看原始 PDF (12頁)</span>
-            </a>
+            <div className="flex items-center gap-2">
+              {onOpenDiscretionTool && (
+                <button
+                  type="button"
+                  onClick={onOpenDiscretionTool}
+                  className="px-4 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-900 text-xs sm:text-sm font-black transition-all cursor-pointer flex items-center gap-2 shadow-md hover:scale-105"
+                  title="開啟第38條實務裁量與處分流程速查工具"
+                >
+                  <Sliders className="w-4 h-4 text-slate-900" />
+                  <span>速查工具</span>
+                </button>
+              )}
+              <a
+                href="/assets/aistudio/_________a6775eab.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3.5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-bold transition-all cursor-pointer flex items-center gap-2 border border-white/20"
+              >
+                <ExternalLink className="w-4 h-4" />
+                <span>查看原始 PDF (12頁)</span>
+              </a>
+            </div>
             <span className="text-[11px] text-slate-300">
               新制行政罰 • 限期改善 • 強制拆除 • 怠金斷水電
             </span>
@@ -1291,219 +1299,6 @@ export const SpatialPlanningViolationsReport: React.FC<SpatialPlanningViolations
                 </blockquote>
                 <div className="text-xs text-emerald-900 space-y-1">
                   <strong>實務剖析：</strong>兼顧公產管理實務之彈性；但若有立即危及公安之情形，不得緩辦，必須立即排除危險。
-                </div>
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* ======================= 實務裁量與處分流程速查工具 ======================= */}
-        {(activeTab === 'all' || activeTab === 'discretion-simulator') && (
-          <section className="bg-white rounded-2xl border border-[#DDD5C7] p-6 sm:p-8 space-y-6 shadow-xs">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-[#EEE8DE] gap-3">
-              <div className="flex items-center gap-3">
-                <span className="w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center font-bold text-sm">
-                  🎛️
-                </span>
-                <div>
-                  <h2 className="text-base sm:text-lg font-black text-[#1F3864]">
-                    實務裁量與處分流程速查工具（第 38 條情境模擬）
-                  </h2>
-                  <p className="text-xs text-[#6E5D53]">
-                    第一線承辦人員快速判斷適用條項、罰鍰區間、管制處分與行政執行程序
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* 互動設定選項 */}
-            <div className="p-5 rounded-xl bg-[#FAF7F2] border border-[#DDD5C7] space-y-5">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/* 違規態樣選取 */}
-                <div className="space-y-2">
-                  <label className="text-xs sm:text-sm font-bold text-[#1F3864] flex items-center gap-1.5">
-                    <Gavel className="w-4 h-4 text-[#8C5A4B]" />
-                    <span>1. 違規使用行為類型</span>
-                  </label>
-                  <select
-                    value={selectedViolationType}
-                    onChange={(e) => setSelectedViolationType(Number(e.target.value))}
-                    className="w-full p-2.5 bg-white rounded-lg border border-[#DDD5C7] text-xs sm:text-sm text-[#3A2F2A] font-medium focus:ring-2 focus:ring-[#1F3864]"
-                  >
-                    <option value={1}>
-                      態樣一：未符合分區原則，且達一定規模或性質特殊（第38條第1項）
-                    </option>
-                    <option value={2}>
-                      態樣二：符合分區原則，但應申請使用許可而未申請（第38條第2項第1款）
-                    </option>
-                    <option value={3}>
-                      態樣三：已取得使用許可，但未依核准計畫內容使用（第38條第2項第2款）
-                    </option>
-                    <option value={4}>
-                      態樣四：輕微違反土地使用管制規則（未達規模非特殊）（第38條第3項）
-                    </option>
-                  </select>
-                </div>
-
-                {/* 是否找得到行為人 */}
-                <div className="space-y-2">
-                  <label className="text-xs sm:text-sm font-bold text-[#1F3864] flex items-center gap-1.5">
-                    <Users className="w-4 h-4 text-[#8C5A4B]" />
-                    <span>2. 是否找得到行為人（自然人/施工人/縱容人）</span>
-                  </label>
-                  <div className="flex items-center gap-3">
-                    <button
-                      type="button"
-                      onClick={() => setIsPerpetratorFound(true)}
-                      className={`flex-1 py-2 px-3 rounded-lg text-xs font-bold border transition-all cursor-pointer ${
-                        isPerpetratorFound
-                          ? 'bg-[#1F3864] text-white border-[#1F3864]'
-                          : 'bg-white text-[#4A3E39] border-[#DDD5C7]'
-                      }`}
-                    >
-                      ✓ 找得到行為人（可舉證故意或過失）
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setIsPerpetratorFound(false)}
-                      className={`flex-1 py-2 px-3 rounded-lg text-xs font-bold border transition-all cursor-pointer ${
-                        !isPerpetratorFound
-                          ? 'bg-rose-700 text-white border-rose-700'
-                          : 'bg-white text-[#4A3E39] border-[#DDD5C7]'
-                      }`}
-                    >
-                      ✕ 找不到行為人（適用第6項）
-                    </button>
-                  </div>
-                </div>
-
-                {/* 土地權屬（當找不到行為人時） */}
-                {!isPerpetratorFound && (
-                  <div className="space-y-2 md:col-span-2 p-3 bg-white rounded-lg border border-amber-200">
-                    <label className="text-xs sm:text-sm font-bold text-[#1F3864] flex items-center gap-1.5">
-                      <Building2 className="w-4 h-4 text-amber-700" />
-                      <span>3. 土地權屬性質（適用第 6 項 vs 第 7 項）</span>
-                    </label>
-                    <div className="flex items-center gap-4">
-                      <label className="flex items-center gap-1.5 text-xs font-bold text-[#4A3E39] cursor-pointer">
-                        <input
-                          type="radio"
-                          name="landOwnership"
-                          checked={landOwnership === 'private'}
-                          onChange={() => setLandOwnership('private')}
-                          className="accent-[#1F3864]"
-                        />
-                        <span>私有土地（依序命使用人 → 管理人 → 所有人限期改善）</span>
-                      </label>
-                      <label className="flex items-center gap-1.5 text-xs font-bold text-[#4A3E39] cursor-pointer">
-                        <input
-                          type="radio"
-                          name="landOwnership"
-                          checked={landOwnership === 'public'}
-                          onChange={() => setLandOwnership('public')}
-                          className="accent-[#1F3864]"
-                        />
-                        <span>公有土地（管理人得擬定改善計畫報核備；有公安立即危害不得緩辦）</span>
-                      </label>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-
-            {/* 速查試算結果呈現 */}
-            <div className="p-5 rounded-2xl bg-gradient-to-br from-slate-900 to-slate-800 text-white space-y-4 shadow-sm">
-              <div className="flex items-center justify-between border-b border-slate-700 pb-3">
-                <span className="text-xs font-black text-amber-400 flex items-center gap-2">
-                  <FileCheck className="w-4 h-4" />
-                  <span>第一線處分審核結果建議</span>
-                </span>
-                <span className="text-[11px] text-slate-400">系統依本手冊準則即時計算</span>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {/* 罰鍰結果 */}
-                <div className="p-4 bg-white/10 rounded-xl border border-white/10 space-y-1.5">
-                  <span className="text-[11px] text-slate-300 font-bold">法定行政罰鍰階層</span>
-                  {isPerpetratorFound ? (
-                    <div className="text-xl font-black text-amber-300">
-                      {selectedViolationType === 1
-                        ? '100 萬 ~ 500 萬元'
-                        : selectedViolationType === 2
-                        ? '30 萬 ~ 150 萬元'
-                        : selectedViolationType === 3
-                        ? '30 萬 ~ 150 萬元'
-                        : '6 萬 ~ 30 萬元'}
-                    </div>
-                  ) : (
-                    <div className="text-sm font-bold text-slate-400">
-                      不科處罰鍰（先命限期改善）
-                    </div>
-                  )}
-                  <p className="text-[11px] text-slate-300">
-                    {isPerpetratorFound
-                      ? selectedViolationType === 1
-                        ? '依第 38 條第 1 項裁處（重大違規）'
-                        : selectedViolationType === 2
-                        ? '依第 38 條第 2 項第 1 款裁處'
-                        : selectedViolationType === 3
-                        ? '依第 38 條第 2 項第 2 款裁處'
-                        : '依第 38 條第 3 項裁處（輕微違規）'
-                      : '無法發現行為人時，無法適用行政罰法科處罰鍰'}
-                  </p>
-                </div>
-
-                {/* 管制處分對象 */}
-                <div className="p-4 bg-white/10 rounded-xl border border-white/10 space-y-1.5">
-                  <span className="text-[11px] text-slate-300 font-bold">管制性處分命改善對象</span>
-                  <div className="text-sm font-black text-emerald-300">
-                    {isPerpetratorFound
-                      ? '行為人（施工人/承租人/縱容人）'
-                      : landOwnership === 'private'
-                      ? '依序：使用人 → 管理人 → 所有人'
-                      : '公有土地管理機關（得擬改善計畫）'}
-                  </div>
-                  <p className="text-[11px] text-slate-300">
-                    {isPerpetratorFound
-                      ? '第 4 項：命限期變更使用、停止使用或拆除恢復原狀'
-                      : landOwnership === 'private'
-                      ? '第 6 項：法定嚴格順序，切勿越級跳過使用人逕罰地主'
-                      : '第 7 項：得送改善計畫核備，但危害公共安全應立即排除'}
-                  </p>
-                </div>
-
-                {/* 後續強制執行手段 */}
-                <div className="p-4 bg-white/10 rounded-xl border border-white/10 space-y-1.5">
-                  <span className="text-[11px] text-slate-300 font-bold">屆期不遵從之後續強制手段</span>
-                  <div className="text-sm font-black text-rose-300">
-                    按次處罰 • 怠金 • 斷水電 • 強拆
-                  </div>
-                  <p className="text-[11px] text-slate-300">
-                    依第 5 項按次處罰；並依行政執行法第27/28/32條書面告誡後強制執行
-                  </p>
-                </div>
-              </div>
-
-              {/* 實務檢核清單 */}
-              <div className="p-3.5 bg-white/5 rounded-xl border border-white/10 text-xs space-y-2">
-                <span className="font-bold text-amber-200">承辦人發函前合憲合法性 Checklist：</span>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-slate-300 text-[11px]">
-                  <div className="flex items-center gap-1.5">
-                    <span className="text-emerald-400">✓</span>
-                    <span>已自行職權調查，非僅憑他機關通報資料</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <span className="text-emerald-400">✓</span>
-                    <span>已給予行政程序法第 102 條陳述意見機會</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <span className="text-emerald-400">✓</span>
-                    <span>符合比例原則，先命限期改善再採斷水斷電拆除</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <span className="text-emerald-400">✓</span>
-                    <span>執行前已完成書面告誡（明確期限與費用估算）</span>
-                  </div>
                 </div>
               </div>
             </div>

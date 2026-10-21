@@ -18,8 +18,10 @@ import {
   BookOpen,
   Send,
   Building,
-  UserCheck
+  UserCheck,
+  Sliders
 } from 'lucide-react';
+import { AdministrativeSelfCheckTool } from './AdministrativeSelfCheckTool';
 
 interface AdministrativeAppealDetailPageProps {
   onBack: () => void;
@@ -473,8 +475,8 @@ const APPEAL_OFFICIAL_DRAFTS: AppealOfficialDraft[] = [
 ];
 
 export const AdministrativeAppealDetailPage: React.FC<AdministrativeAppealDetailPageProps> = ({ onBack }) => {
-  // 4 個主要分頁
-  const [activeTab, setActiveTab] = useState<'appeal' | 'litigation' | 'laws' | 'drafts'>('appeal');
+  // 5 個主要分頁
+  const [activeTab, setActiveTab] = useState<'appeal' | 'litigation' | 'laws' | 'drafts' | 'checker'>('appeal');
 
   // 訴願案件流程：目前選取步驟 (1~6)
   const [selectedAppealStepNumber, setSelectedAppealStepNumber] = useState<number>(1);
@@ -580,6 +582,18 @@ export const AdministrativeAppealDetailPage: React.FC<AdministrativeAppealDetail
           >
             <FileText className="w-4 h-4" />
             <span>公文函稿參考</span>
+          </button>
+
+          <button
+            onClick={() => setActiveTab('checker')}
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all cursor-pointer whitespace-nowrap font-semibold ${
+              activeTab === 'checker'
+                ? 'bg-[#8C5A4B] text-white shadow-xs'
+                : 'bg-[#F5EFE7] text-[#4A3E39] hover:bg-[#EAE2D7] border border-[#DDD5C7]'
+            }`}
+          >
+            <Sliders className="w-4 h-4" />
+            <span>自檢工具</span>
           </button>
         </div>
       </div>
@@ -1224,6 +1238,11 @@ export const AdministrativeAppealDetailPage: React.FC<AdministrativeAppealDetail
             </div>
           </div>
         </div>
+      )}
+
+      {/* 5. 實務救濟答辯與處分自檢工具 */}
+      {activeTab === 'checker' && (
+        <AdministrativeSelfCheckTool onCopy={handleCopyText} />
       )}
     </div>
   );
