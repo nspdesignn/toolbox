@@ -17,10 +17,12 @@ import {
   Calendar,
   Search,
   BookOpen,
-  Layers
+  Layers,
+  FileSpreadsheet
 } from 'lucide-react';
 import { CORRECTION_RULINGS } from '../data/correctionRulings';
 import { CORRECTION_DRAFTS } from '../data/correctionDrafts';
+import { CaseSupervisionTableTutorialModal } from './CaseSupervisionTableTutorialModal';
 
 interface CorrectionDetailPageProps {
   onBack: () => void;
@@ -132,12 +134,15 @@ export const CorrectionDetailPage: React.FC<CorrectionDetailPageProps> = ({ onBa
     setTimeout(() => setCopied(false), 2000);
   };
 
+  // 列管表繕打說明 Modal 狀態
+  const [showSupervisionModal, setShowSupervisionModal] = useState<boolean>(false);
+
   return (
     <div className="w-full max-w-6xl mx-auto space-y-5">
       {/* 頂部標題區 */}
       <div className="bg-[#FFFFFF] border-2 border-[#DDD5C7] rounded-2xl p-5 sm:p-6 shadow-xs">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#ECE6DB]">
-          <div className="flex items-center gap-3.5">
+          <div className="flex flex-wrap items-center gap-3.5">
             <button
               onClick={onBack}
               className="flex items-center gap-1.5 px-3.5 py-2 text-sm sm:text-base font-semibold text-[#4A3E39] bg-[#F5EFE7] hover:bg-[#EAE2D7] border border-[#DDD5C7] rounded-xl transition-colors cursor-pointer"
@@ -145,14 +150,28 @@ export const CorrectionDetailPage: React.FC<CorrectionDetailPageProps> = ({ onBa
               <ArrowLeft className="w-4 h-4" />
               <span>返回業務選單</span>
             </button>
-            <div className="h-6 w-px bg-[#DDD5C7]" />
-            <div>
-              <h1 className="text-2xl sm:text-3xl font-serif-tc font-semibold text-[#2D2623]">
-                更正編定
-              </h1>
-              <p className="text-sm sm:text-base text-[#665A54] mt-0.5">
-                新北市非都市土地更正編定作業指引與應備文件審查
-              </p>
+            <div className="h-6 w-px bg-[#DDD5C7] hidden sm:block" />
+            <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+              <div>
+                <h1 className="text-2xl sm:text-3xl font-serif-tc font-semibold text-[#2D2623]">
+                  更正編定
+                </h1>
+                <p className="text-sm sm:text-base text-[#665A54] mt-0.5">
+                  新北市非都市土地更正編定作業指引與應備文件審查
+                </p>
+              </div>
+
+              {/* 大按鈕「先填列管表」 */}
+              <button
+                onClick={() => setShowSupervisionModal(true)}
+                className="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white font-bold text-base sm:text-lg rounded-xl shadow-md hover:shadow-lg transition-all cursor-pointer border border-amber-800/30 shrink-0 group active:scale-95"
+              >
+                <FileSpreadsheet className="w-5 h-5 text-amber-200 group-hover:scale-110 transition-transform" />
+                <span className="tracking-wide">先填列管表</span>
+                <span className="text-xs bg-amber-500/30 border border-amber-300/40 px-2 py-0.5 rounded-full font-medium text-amber-100 hidden sm:inline-block">
+                  教學與注意事項
+                </span>
+              </button>
             </div>
           </div>
         </div>
@@ -1115,6 +1134,13 @@ export const CorrectionDetailPage: React.FC<CorrectionDetailPageProps> = ({ onBa
           </div>
         </div>
       )}
+
+      {/* 列管表繕打教學與注意事項彈窗 */}
+      <CaseSupervisionTableTutorialModal
+        isOpen={showSupervisionModal}
+        onClose={() => setShowSupervisionModal(false)}
+        defaultScope="correction"
+      />
     </div>
   );
 };
