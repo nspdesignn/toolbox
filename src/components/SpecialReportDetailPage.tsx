@@ -37,6 +37,7 @@ import { EnforcementAndCreditorCertReport } from './EnforcementAndCreditorCertRe
 import { SpatialPlanningViolationsReport } from './SpatialPlanningViolationsReport';
 import { AppealAndLitigationAnalysisReport } from './AppealAndLitigationAnalysisReport';
 import { SpatialPlanningDiscretionModal } from './SpatialPlanningDiscretionModal';
+import { SpecialReportMediaPreparationView } from './SpecialReportMediaPreparationView';
 
 interface SpecialReportDetailPageProps {
   onBack: () => void;
@@ -330,6 +331,9 @@ export const SpecialReportDetailPage: React.FC<SpecialReportDetailPageProps> = (
   // 當前選取之主題 ID（預設為第 1 個：殯葬設施）
   const [selectedTopicId, setSelectedTopicId] = useState<string>('funeral-facilities');
 
+  // 多媒體呈現分頁狀態（方案 A：[📄報告全文] [🎨漫畫懶人包] [🎬解說影片] [🎙️Podcast]）
+  const [mediaTab, setMediaTab] = useState<'report' | 'comic' | 'video' | 'podcast'>('report');
+
   // 關鍵字搜尋字串
   const [searchQuery, setSearchQuery] = useState<string>('');
 
@@ -488,16 +492,11 @@ export const SpecialReportDetailPage: React.FC<SpecialReportDetailPageProps> = (
                       </span>
                       <div className="min-w-0">
                         <div
-                          className={`font-bold text-sm truncate flex items-center gap-1.5 ${
+                          className={`font-bold text-sm truncate ${
                             isActive ? 'text-white' : 'text-[#1F3864]'
                           }`}
                         >
-                          <span>{item.title}</span>
-                          {item.hasFullContent && (
-                            <span className={`text-[10px] px-1.5 py-0.2 rounded font-normal ${isActive ? 'bg-emerald-500/30 text-emerald-200' : 'bg-emerald-100 text-emerald-800'}`}>
-                              完整收錄
-                            </span>
-                          )}
+                          {item.title}
                         </div>
                         <div
                           className={`text-[11px] truncate mt-0.5 ${
@@ -699,10 +698,54 @@ export const SpecialReportDetailPage: React.FC<SpecialReportDetailPageProps> = (
               </div>
             </div>
 
-            {/* ================================================================= */}
-            {/* 主題 1：殯葬設施完整內容呈現（依《殯葬設施.pdf》全文無保留完整排版） */}
-            {/* ================================================================= */}
-            {currentTopic.id === 'funeral-facilities' ? (
+            {/* 多媒體呈現分頁（方案 A） */}
+            <div className="bg-[#FAF7F2] p-1.5 rounded-xl border border-[#DDD5C7] flex flex-wrap gap-2 items-center">
+              {[
+                { id: 'report' as const, label: '📄 報告全文', isReady: true },
+                {
+                  id: 'comic' as const,
+                  label: '🎨 漫畫懶人包',
+                  isReady: currentTopic.id === 'ceramic-land'
+                },
+                { id: 'video' as const, label: '🎬 解說影片', isReady: false },
+                { id: 'podcast' as const, label: '🎙️ Podcast', isReady: false }
+              ].map((tab) => {
+                const isActive = mediaTab === tab.id;
+                return (
+                  <button
+                    key={tab.id}
+                    type="button"
+                    onClick={() => setMediaTab(tab.id)}
+                    className={`px-3 sm:px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                      isActive
+                        ? 'bg-[#1F3864] text-white shadow-xs'
+                        : 'bg-white text-[#4A3E39] hover:bg-[#EAE2D7] border border-[#DDD5C7]'
+                    }`}
+                  >
+                    <span>{tab.label}</span>
+                    {!tab.isReady && (
+                      <span
+                        className={`text-[10px] px-1.5 py-0.2 rounded-full font-semibold ${
+                          isActive
+                            ? 'bg-amber-400 text-stone-900'
+                            : 'bg-amber-100 text-amber-800 border border-amber-200'
+                        }`}
+                      >
+                        籌備中
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* 根據選取之多媒體分頁展示內容 */}
+            {mediaTab !== 'report' ? (
+              <SpecialReportMediaPreparationView
+                topic={currentTopic}
+                mediaType={mediaTab}
+              />
+            ) : currentTopic.id === 'funeral-facilities' ? (
               <div className="space-y-8 text-[#2D2623] leading-relaxed text-sm sm:text-base">
                 {/* 報告主標題與日期 */}
                 <div className="text-center py-4 bg-[#FAF7F2] border border-[#DDD5C7] rounded-xl space-y-1">
