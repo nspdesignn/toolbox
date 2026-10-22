@@ -8,8 +8,8 @@ export const CaseExamplesView: React.FC = () => {
   const [copied, setCopied] = useState<boolean>(false);
 
   // Dynamic template customization state
-  const [customApplicant, setCustomApplicant] = useState<string>('王大明');
-  const [customLot, setCustomLot] = useState<string>('竹北段 888 地號');
+  const [customApplicant, setCustomApplicant] = useState<string>('OOO');
+  const [customLot, setCustomLot] = useState<string>('OO段 OO 地號');
   const [customArea, setCustomArea] = useState<string>('350');
 
   const selectedCase = CASE_EXAMPLES.find((c) => c.id === selectedCaseId) || CASE_EXAMPLES[0];
@@ -17,11 +17,11 @@ export const CaseExamplesView: React.FC = () => {
   const handleCopyDraft = () => {
     const formattedDraft = `${selectedCase.documentTemplate.title}
 【受文者】：${selectedCase.documentTemplate.recipient}
-【主旨】：${selectedCase.documentTemplate.subject.replace(/張先生|陳某|黃○○|台端/g, customApplicant).replace(/123地號|456地號|789地號|333地號/g, customLot)}
+【主旨】：${selectedCase.documentTemplate.subject.replace(/張先生|陳某|黃○○|台端|OOO/g, customApplicant).replace(/123地號|456地號|789地號|333地號|OO地號/g, customLot)}
 
 【說明】：
 ${selectedCase.documentTemplate.descriptions
-  .map((d) => d.replace(/123地號|456地號|789地號|333地號/g, customLot).replace(/280平方公尺|1,800平方公尺/g, `${customArea}平方公尺`))
+  .map((d) => d.replace(/123地號|456地號|789地號|333地號|OO地號/g, customLot).replace(/280平方公尺|1,800平方公尺/g, `${customArea}平方公尺`))
   .join('\n')}
 `;
     navigator.clipboard.writeText(formattedDraft);
@@ -195,15 +195,15 @@ ${selectedCase.documentTemplate.descriptions
                 <div>
                   <span className="font-bold">主旨：</span>
                   {selectedCase.documentTemplate.subject
-                    .replace(/張先生|陳某|黃○○|台端/g, customApplicant)
-                    .replace(/123地號|456地號|789地號|333地號/g, customLot)}
+                    .replace(/張先生|陳某|黃○○|台端|OOO/g, customApplicant)
+                    .replace(/123地號|456地號|789地號|333地號|OO地號/g, customLot)}
                 </div>
                 <div className="space-y-1 pt-1">
                   <div className="font-bold">說明：</div>
                   {selectedCase.documentTemplate.descriptions.map((desc, idx) => (
                     <div key={idx}>
                       {desc
-                        .replace(/123地號|456地號|789地號|333地號/g, customLot)
+                        .replace(/123地號|456地號|789地號|333地號|OO地號/g, customLot)
                         .replace(/280平方公尺|1,800平方公尺/g, `${customArea}平方公尺`)}
                     </div>
                   ))}

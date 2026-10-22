@@ -1169,10 +1169,10 @@ export const CeramicLandReport: React.FC<CeramicLandReportProps> = ({ onCopy }) 
             </h4>
             <ul className="space-y-1 text-slate-700 text-xs">
               <li>
-                <strong>(一) 鶯歌實例：</strong>鶯歌區大湖段大竹圍小段 58-2、58-3、58-6、58-8 地號申請變更為丁建（文號：1081389215）。
+                <strong>(一) 鶯歌實例：</strong>鶯歌區OO段OO小段 OO-OO、OO-OO、OO-OO、OO-OO 地號申請變更為丁建（文號：1081389215）。
               </li>
               <li>
-                <strong>(二) 三芝實例：</strong>三芝區後厝段番子崙小段 26 地號申請變更為丁建（文號：1090773742）。
+                <strong>(二) 三芝實例：</strong>三芝區OO段OO小段 OO 地號申請變更為丁建（文號：1090773742）。
               </li>
               <li>(三) 內政部解釋函令-非都市土地使用管制規則第 34、35、57 條。</li>
               <li>(四) 非都市土地使用管制規則。</li>

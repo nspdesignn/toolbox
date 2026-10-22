@@ -614,7 +614,7 @@ export const AppealAndLitigationAnalysisReport: React.FC<AppealAndLitigationAnal
                 </div>
                 <ul className="text-xs sm:text-sm text-emerald-900 space-y-1.5 pl-4 list-disc">
                   <li><strong>每次處罰、獨立取證：</strong>每次裁罰前必先辦理現場會勘並製作影像紀錄，建立無懈可擊的完整證據鏈。</li>
-                  <li><strong>行政裁罰與刑事移送雙管齊下：</strong>移送地檢署偵辦，陳鍾銘即被判處有期徒刑二月。</li>
+                  <li><strong>行政裁罰與刑事移送雙管齊下：</strong>移送地檢署偵辦，OOO即被判處有期徒刑二月。</li>
                   <li><strong>強化「狀態責任」論述：</strong>土地所有權人或管理人負有「維持合法使用」之責任，不論違規是否為前人或承租人所為，均應受罰並限期改善。</li>
                   <li><strong>歷年航照與現況照片科學比對：</strong>精準推翻違規人「已復耕100%」之虛偽抗辯。</li>
                   <li><strong>按次處罰符合目的：</strong>按次處罰係切斷違法行為之單一性，不違反一事不二罰原則，自第5次處分起均獲內政部及法院判決維持。</li>

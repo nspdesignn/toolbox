@@ -1350,7 +1350,7 @@ export const SpecialReportDetailPage: React.FC<SpecialReportDetailPageProps> = (
                             <tbody className="divide-y divide-[#DDD5C7] text-[#2D2623]">
                               <tr className="hover:bg-[#FAF7F2]">
                                 <td className="p-2.5 font-bold text-[#1F3864]">欣隆寵物生活有限公司</td>
-                                <td className="p-2.5">新北市淡水區忠寮里破子崙10號</td>
+                                <td className="p-2.5">新北市淡水區OO里OO號</td>
                                 <td className="p-2.5 text-center">既有業者</td>
                                 <td className="p-2.5 text-center font-bold">●</td>
                                 <td className="p-2.5 text-center">文化</td>
@@ -1358,7 +1358,7 @@ export const SpecialReportDetailPage: React.FC<SpecialReportDetailPageProps> = (
                               </tr>
                               <tr className="hover:bg-[#FAF7F2]">
                                 <td className="p-2.5 font-bold text-[#1F3864]">萬里福田寵物城堡有限公司</td>
-                                <td className="p-2.5">新北市萬里區大坪1之1號</td>
+                                <td className="p-2.5">新北市萬里區OO號</td>
                                 <td className="p-2.5 text-center">既有業者</td>
                                 <td className="p-2.5 text-center font-bold">●</td>
                                 <td className="p-2.5 text-center">文化</td>
@@ -1366,7 +1366,7 @@ export const SpecialReportDetailPage: React.FC<SpecialReportDetailPageProps> = (
                               </tr>
                               <tr className="hover:bg-[#FAF7F2]">
                                 <td className="p-2.5 font-bold text-[#1F3864]">慈愛寵物樂園</td>
-                                <td className="p-2.5">新北市三峽區介壽路三段172巷30號</td>
+                                <td className="p-2.5">新北市三峽區OO路OO巷OO號</td>
                                 <td className="p-2.5 text-center">既有業者</td>
                                 <td className="p-2.5 text-center font-bold">●</td>
                                 <td className="p-2.5 text-center">文化</td>
@@ -1374,7 +1374,7 @@ export const SpecialReportDetailPage: React.FC<SpecialReportDetailPageProps> = (
                               </tr>
                               <tr className="hover:bg-[#FAF7F2]">
                                 <td className="p-2.5 font-bold text-[#1F3864]">翡翠森林寵物生命紀念館</td>
-                                <td className="p-2.5">新北市萬里區中萬里加投段荖寮湖小段10-1、10-3地號</td>
+                                <td className="p-2.5">新北市萬里區OO段OO小段OO-OO、OO-OO地號</td>
                                 <td className="p-2.5 text-center">既有業者</td>
                                 <td className="p-2.5 text-center font-bold">●</td>
                                 <td className="p-2.5 text-center">文化</td>
@@ -1382,7 +1382,7 @@ export const SpecialReportDetailPage: React.FC<SpecialReportDetailPageProps> = (
                               </tr>
                               <tr className="hover:bg-[#FAF7F2]">
                                 <td className="p-2.5 font-bold text-[#1F3864]">愛物園寵物紀念館</td>
-                                <td className="p-2.5">新北市淡水區南勢埔46號之2</td>
+                                <td className="p-2.5">新北市淡水區OO號</td>
                                 <td className="p-2.5 text-center">既有業者</td>
                                 <td className="p-2.5 text-center font-bold">●</td>
                                 <td className="p-2.5 text-center">文化</td>
@@ -1390,19 +1390,19 @@ export const SpecialReportDetailPage: React.FC<SpecialReportDetailPageProps> = (
                               </tr>
                               <tr className="hover:bg-[#FAF7F2]">
                                 <td className="p-2.5 font-bold text-[#1F3864]">賀茸花園</td>
-                                <td className="p-2.5">新北市汐止區八連路二段329巷130號之一(汐止區八連段頂小段9-21地號)</td>
+                                <td className="p-2.5">新北市汐止區OO路OO巷OO號(汐止區OO段OO小段OO-OO地號)</td>
                                 <td className="p-2.5 text-center">既有業者</td>
                                 <td className="p-2.5 text-center font-bold">●</td>
                                 <td className="p-2.5 text-center">文化</td>
                                 <td className="p-2.5 leading-relaxed">
                                   1. 經查無裁罰紀錄，續查續辦。<br />
                                   2. 已請公所114年12月5日現場勘查。<br />
-                                  3. 經查該地號現況農業局查證無違規非耕作使用；另211地號現況為花草苗木，判定尚無違反管制規定。
+                                  3. 經查該地號現況農業局查證無違規非耕作使用；另OO地號現況為花草苗木，判定尚無違反管制規定。
                                 </td>
                               </tr>
                               <tr className="hover:bg-[#FAF7F2]">
                                 <td className="p-2.5 font-bold text-[#1F3864]">陽明山寵物天堂企業有限公司</td>
-                                <td className="p-2.5">新北市三芝區興華里車埕16之6號</td>
+                                <td className="p-2.5">新北市三芝區OO里OO號</td>
                                 <td className="p-2.5 text-center">既有業者</td>
                                 <td className="p-2.5 text-center font-bold">●</td>
                                 <td className="p-2.5 text-center">文化</td>
@@ -1410,7 +1410,7 @@ export const SpecialReportDetailPage: React.FC<SpecialReportDetailPageProps> = (
                               </tr>
                               <tr className="hover:bg-[#FAF7F2]">
                                 <td className="p-2.5 font-bold text-[#1F3864]">淡水寵物天愛寶業社</td>
-                                <td className="p-2.5">新北市三芝區橫山里南勢崗2之7號</td>
+                                <td className="p-2.5">新北市三芝區OO里OO號</td>
                                 <td className="p-2.5 text-center">既有業者</td>
                                 <td className="p-2.5 text-center font-bold">●</td>
                                 <td className="p-2.5 text-center">文化</td>
@@ -1418,39 +1418,39 @@ export const SpecialReportDetailPage: React.FC<SpecialReportDetailPageProps> = (
                               </tr>
                               <tr className="hover:bg-[#FAF7F2]">
                                 <td className="p-2.5 font-bold text-[#1F3864]">國寶寵物</td>
-                                <td className="p-2.5">新北市三芝區北新莊店子里9之2號</td>
+                                <td className="p-2.5">新北市三芝區OO里OO號</td>
                                 <td className="p-2.5 text-center">既有業者</td>
                                 <td className="p-2.5 text-center font-bold">●</td>
                                 <td className="p-2.5 text-center">殯葬</td>
                                 <td className="p-2.5 text-[#5A4B43]">經查無裁罰紀錄，續查續辦</td>
                               </tr>
                               <tr className="hover:bg-[#FAF7F2]">
-                                <td className="p-2.5 font-bold text-[#1F3864]">林東翰</td>
-                                <td className="p-2.5">淡水區水源段865-1地號</td>
+                                <td className="p-2.5 font-bold text-[#1F3864]">OOO</td>
+                                <td className="p-2.5">淡水區OO段OO-OO地號</td>
                                 <td className="p-2.5 text-center">既有業者</td>
                                 <td className="p-2.5 text-center font-bold">●</td>
                                 <td className="p-2.5 text-center">文化</td>
                                 <td className="p-2.5 text-rose-700 font-semibold">已開立處分書裁罰在案</td>
                               </tr>
                               <tr className="hover:bg-[#FAF7F2]">
-                                <td className="p-2.5 font-bold text-[#1F3864]">張國全</td>
-                                <td className="p-2.5">金山區西勢段336-1地號</td>
+                                <td className="p-2.5 font-bold text-[#1F3864]">OOO</td>
+                                <td className="p-2.5">金山區OO段OO-OO地號</td>
                                 <td className="p-2.5 text-center">新興業者</td>
                                 <td className="p-2.5 text-center font-bold">●</td>
                                 <td className="p-2.5 text-center">文化</td>
                                 <td className="p-2.5 text-[#5A4B43]">經現場勘查無違規情形</td>
                               </tr>
                               <tr className="hover:bg-[#FAF7F2]">
-                                <td className="p-2.5 font-bold text-[#1F3864]">蕭松和</td>
-                                <td className="p-2.5">三芝區芝蘭段278-1地號</td>
+                                <td className="p-2.5 font-bold text-[#1F3864]">OOO</td>
+                                <td className="p-2.5">三芝區OO段OO-OO地號</td>
                                 <td className="p-2.5 text-center">新興業者</td>
                                 <td className="p-2.5 text-center font-bold">●</td>
                                 <td className="p-2.5 text-center">文化</td>
                                 <td className="p-2.5 text-[#5A4B43]">經查無裁罰紀錄，續查續辦</td>
                               </tr>
                               <tr className="hover:bg-[#FAF7F2]">
-                                <td className="p-2.5 font-bold text-[#1F3864]">蘇明德</td>
-                                <td className="p-2.5">瑞芳區九份段347地號</td>
+                                <td className="p-2.5 font-bold text-[#1F3864]">OOO</td>
+                                <td className="p-2.5">瑞芳區OO段OO地號</td>
                                 <td className="p-2.5 text-center">新興業者</td>
                                 <td className="p-2.5 text-center font-bold">●</td>
                                 <td className="p-2.5 text-center">-</td>
@@ -1458,23 +1458,23 @@ export const SpecialReportDetailPage: React.FC<SpecialReportDetailPageProps> = (
                               </tr>
                               <tr className="hover:bg-[#FAF7F2]">
                                 <td className="p-2.5 font-bold text-[#1F3864]">幸福天使企業社</td>
-                                <td className="p-2.5">淡水區蕃薯寮107、108地號</td>
+                                <td className="p-2.5">淡水區OO段OO、OO地號</td>
                                 <td className="p-2.5 text-center">新興業者</td>
                                 <td className="p-2.5 text-center font-bold">●</td>
                                 <td className="p-2.5 text-center">文化</td>
                                 <td className="p-2.5 text-[#5A4B43]">經現場勘查無違規情形</td>
                               </tr>
                               <tr className="hover:bg-[#FAF7F2]">
-                                <td className="p-2.5 font-bold text-[#1F3864]">劉致璘</td>
-                                <td className="p-2.5">石碇區新興坑段八分寮小段0017-0001等地號</td>
+                                <td className="p-2.5 font-bold text-[#1F3864]">OOO</td>
+                                <td className="p-2.5">石碇區OO段OO小段OO等地號</td>
                                 <td className="p-2.5 text-center">新興業者</td>
                                 <td className="p-2.5 text-center font-bold">●</td>
                                 <td className="p-2.5 text-center">-</td>
                                 <td className="p-2.5 text-rose-700 font-semibold">113年5月21日依區域計畫法裁罰在案 (文號 1131529003)</td>
                               </tr>
                               <tr className="hover:bg-[#FAF7F2]">
-                                <td className="p-2.5 font-bold text-[#1F3864]">陳俊蒼</td>
-                                <td className="p-2.5">瑞芳區鮑魚坑段粗坑口小段183等4筆地號</td>
+                                <td className="p-2.5 font-bold text-[#1F3864]">OOO</td>
+                                <td className="p-2.5">瑞芳區OO段OO小段OO等4筆地號</td>
                                 <td className="p-2.5 text-center">新興業者</td>
                                 <td className="p-2.5 text-center font-bold">●</td>
                                 <td className="p-2.5 text-center">-</td>
@@ -1482,7 +1482,7 @@ export const SpecialReportDetailPage: React.FC<SpecialReportDetailPageProps> = (
                               </tr>
                               <tr className="hover:bg-[#FAF7F2]">
                                 <td className="p-2.5 font-bold text-[#1F3864]">頂邑開發股份有限公司</td>
-                                <td className="p-2.5">瑞芳區吉安段418、423-1地號</td>
+                                <td className="p-2.5">瑞芳區OO段OO、OO-OO地號</td>
                                 <td className="p-2.5 text-center">新興業者</td>
                                 <td className="p-2.5 text-center font-bold">●</td>
                                 <td className="p-2.5 text-center">-</td>
@@ -1490,7 +1490,7 @@ export const SpecialReportDetailPage: React.FC<SpecialReportDetailPageProps> = (
                               </tr>
                               <tr className="hover:bg-[#FAF7F2]">
                                 <td className="p-2.5 font-bold text-[#1F3864]">珍愛彩虹村</td>
-                                <td className="p-2.5">瑞芳區粗坑口段粗坑口小段125-9、330-2地號</td>
+                                <td className="p-2.5">瑞芳區OO段OO小段OO-OO、OO-OO地號</td>
                                 <td className="p-2.5 text-center">新興業者</td>
                                 <td className="p-2.5 text-center font-bold">●</td>
                                 <td className="p-2.5 text-center">-</td>
@@ -1498,7 +1498,7 @@ export const SpecialReportDetailPage: React.FC<SpecialReportDetailPageProps> = (
                               </tr>
                               <tr className="hover:bg-[#FAF7F2]">
                                 <td className="p-2.5 font-bold text-[#1F3864]">德年國際股份有限公司</td>
-                                <td className="p-2.5">貢寮區長洋段314-1、314-8地號</td>
+                                <td className="p-2.5">貢寮區OO段OO-OO、OO-OO地號</td>
                                 <td className="p-2.5 text-center">新興業者</td>
                                 <td className="p-2.5 text-center font-bold">●</td>
                                 <td className="p-2.5 text-center">-</td>
@@ -1506,7 +1506,7 @@ export const SpecialReportDetailPage: React.FC<SpecialReportDetailPageProps> = (
                               </tr>
                               <tr className="hover:bg-[#FAF7F2]">
                                 <td className="p-2.5 font-bold text-[#1F3864]">大德資產管理(琥珀森林)</td>
-                                <td className="p-2.5">汐止區北港段烘內小段118等5筆地號</td>
+                                <td className="p-2.5">汐止區OO段OO小段OO等5筆地號</td>
                                 <td className="p-2.5 text-center">新興業者</td>
                                 <td className="p-2.5 text-center font-bold">●</td>
                                 <td className="p-2.5 text-center">-</td>

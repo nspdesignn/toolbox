@@ -1448,7 +1448,7 @@ export const ChangeDesignationDetailPage: React.FC<ChangeDesignationDetailPagePr
                   <button
                     type="button"
                     onClick={() => {
-                      navigator.clipboard?.writeText('1120626636，林正道申請本市雙溪區平林段內平林小段 303、303-1、304-3 地號等 3 筆土地，面積 0.2934 公頃，擬由一般農業區農牧用地變更編定為同區特定目的事業用地、交通用地一案。');
+                      navigator.clipboard?.writeText('1120626636，OOO申請本市OO區OO段OO小段 OO、OO-OO、OO-OO 地號等 3 筆土地，面積 0.2934 公頃，擬由一般農業區農牧用地變更編定為同區特定目的事業用地、交通用地一案。');
                       setCopiedPaymentDesc(true);
                       setTimeout(() => setCopiedPaymentDesc(false), 2000);
                     }}
@@ -1468,7 +1468,7 @@ export const ChangeDesignationDetailPage: React.FC<ChangeDesignationDetailPagePr
                   </button>
                 </div>
                 <div className="p-3 bg-[#FAF7F2] rounded-lg border border-[#DDD5C7] text-xs sm:text-sm text-[#3E342F] font-mono leading-relaxed select-text">
-                  1120626636，林正道申請本市雙溪區平林段內平林小段 303、303-1、304-3 地號等 3 筆土地，面積 0.2934 公頃，擬由一般農業區農牧用地變更編定為同區特定目的事業用地、交通用地一案。
+                  1120626636，OOO申請本市OO區OO段OO小段 OO、OO-OO、OO-OO 地號等 3 筆土地，面積 0.2934 公頃，擬由一般農業區農牧用地變更編定為同區特定目的事業用地、交通用地一案。
                 </div>
               </div>
             </div>
