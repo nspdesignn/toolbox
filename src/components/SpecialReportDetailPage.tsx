@@ -707,7 +707,11 @@ export const SpecialReportDetailPage: React.FC<SpecialReportDetailPageProps> = (
                   label: '🎨 漫畫懶人包',
                   isReady: currentTopic.id === 'ceramic-land'
                 },
-                { id: 'video' as const, label: '🎬 解說影片', isReady: false },
+                {
+                  id: 'video' as const,
+                  label: '🎬 解說影片',
+                  isReady: currentTopic.id === 'ceramic-land'
+                },
                 { id: 'podcast' as const, label: '🎙️ Podcast', isReady: false }
               ].map((tab) => {
                 const isActive = mediaTab === tab.id;

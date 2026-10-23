@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ExternalLink, ZoomIn } from 'lucide-react';
+import { ExternalLink, ZoomIn, Play } from 'lucide-react';
 import { SpecialReportTopic } from './SpecialReportDetailPage';
 
 interface SpecialReportMediaPreparationViewProps {
@@ -13,6 +13,62 @@ export const SpecialReportMediaPreparationView: React.FC<SpecialReportMediaPrepa
 }) => {
   // 記錄各圖片載入狀態
   const [loadedImages, setLoadedImages] = useState<Record<number, boolean>>({});
+
+  // 窯業用地之解說影片（YouTube: https://youtu.be/1bVJpPV7kRo）
+  if (topic.id === 'ceramic-land' && mediaType === 'video') {
+    return (
+      <div className="space-y-4 max-w-4xl mx-auto animate-fade-in">
+        <div className="bg-white border-2 border-[#DDD5C7] rounded-2xl p-4 sm:p-6 shadow-xs space-y-5">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-[#ECE6DB] gap-2">
+            <div className="flex items-center gap-2">
+              <span className="text-xl">🎬</span>
+              <h3 className="font-bold text-base sm:text-lg text-[#1F3864]">
+                窯業用地・解說影片
+              </h3>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-[11px] font-semibold text-rose-800 bg-rose-50 px-2.5 py-1 rounded-md border border-rose-200 flex items-center gap-1.5">
+                <Play className="w-3 h-3 fill-rose-600 text-rose-600" />
+                <span>YouTube 影音解說</span>
+              </span>
+              <a
+                href="https://youtu.be/1bVJpPV7kRo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-xs font-semibold text-[#8C5A4B] hover:text-[#1F3864] bg-[#FAF7F2] hover:bg-[#EAE2D7] px-2.5 py-1 rounded-md border border-[#DDD5C7] transition-colors"
+                title="於新視窗開啟 YouTube 觀看"
+              >
+                <ExternalLink className="w-3.5 h-3.5" />
+                <span>在 YouTube 開啟</span>
+              </a>
+            </div>
+          </div>
+
+          {/* 16:9 響應式嵌入播放器 */}
+          <div className="relative w-full rounded-xl overflow-hidden border-2 border-[#DDD5C7] shadow-sm bg-black aspect-video">
+            <iframe
+              src="https://www.youtube.com/embed/1bVJpPV7kRo?rel=0"
+              title="非都市土地窯業用地涉容許使用、變更及更正編定 解說影片"
+              className="absolute inset-0 w-full h-full border-0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          </div>
+
+          {/* 影片重點提示與說明 */}
+          <div className="p-4 rounded-xl bg-[#FAF7F2] border border-[#DDD5C7] text-xs sm:text-sm text-[#5A4B43] space-y-2">
+            <div className="font-bold text-[#1F3864] flex items-center gap-1.5 text-sm">
+              <span>📌</span>
+              <span>影片簡介與導讀重點</span>
+            </div>
+            <p className="leading-relaxed text-[#4A3E39]">
+              本解說影片重點解析非都市土地「窯業用地」業務實務，包括：新北市窯業用地現況分布、免申請容許使用之陶製品製造與綠能許可、丁種建築用地夾雜包圍與毗鄰擴展處理原則、70 年 2 月 15 日前之更正編定與變更編定審查要件，以及國土計畫法上路後的管制接軌。建議配合【📄報告全文】與【🎨漫畫懶人包】深入了解完整法規脈絡。
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   // 窯業用地之漫畫懶人包（A-1, B-1, C-1 共 3 張圖，已提供高畫質 WebP 極速輕量化格式）
   if (topic.id === 'ceramic-land' && mediaType === 'comic') {
