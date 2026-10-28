@@ -705,12 +705,12 @@ export const SpecialReportDetailPage: React.FC<SpecialReportDetailPageProps> = (
                 {
                   id: 'comic' as const,
                   label: '🎨 漫畫懶人包',
-                  isReady: currentTopic.id === 'ceramic-land'
+                  isReady: currentTopic.id === 'ceramic-land' || currentTopic.id === 'funeral-facilities'
                 },
                 {
                   id: 'video' as const,
                   label: '🎬 解說影片',
-                  isReady: currentTopic.id === 'ceramic-land'
+                  isReady: currentTopic.id === 'ceramic-land' || currentTopic.id === 'funeral-facilities'
                 },
                 { id: 'podcast' as const, label: '🎙️ Podcast', isReady: false }
               ].map((tab) => {
