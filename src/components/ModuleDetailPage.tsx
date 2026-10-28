@@ -13,6 +13,7 @@ import { AdministrativeAppealDetailPage } from './AdministrativeAppealDetailPage
 import { ReportsEvaluationsDetailPage } from './ReportsEvaluationsDetailPage';
 import { PublicityDetailPage } from './PublicityDetailPage';
 import { SpecialReportDetailPage } from './SpecialReportDetailPage';
+import { SpatialPlanningZoningDetailPage } from './SpatialPlanningZoningDetailPage';
 
 interface ModuleDetailPageProps {
   moduleId: string;
@@ -52,6 +53,9 @@ export const ModuleDetailPage: React.FC<ModuleDetailPageProps> = ({ moduleId, on
   }
   if (moduleId === 'publicity') {
     return <PublicityDetailPage onBack={onBack} />;
+  }
+  if (moduleId === 'spatial-planning-zoning') {
+    return <SpatialPlanningZoningDetailPage onBack={onBack} />;
   }
   if (moduleId === 'others') {
     return <SpecialReportDetailPage onBack={onBack} />;

@@ -12,6 +12,7 @@ export type ModuleId =
   | 'administrative-appeal' // 訴願＆訴訟
   | 'reports-evaluations' // 報表、考核、會議
   | 'publicity' // 宣導
+  | 'spatial-planning-zoning' // 國土功能分區
   | 'others'; // 專題報告
 
 export interface BusinessModule {
