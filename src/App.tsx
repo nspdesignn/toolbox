@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { HomePage } from './components/HomePage';
 import { ModuleDetailPage } from './components/ModuleDetailPage';
+import { SmartAssistantModal } from './components/SmartAssistantModal';
+import { ModuleId } from './types';
 
 export default function App() {
   const [selectedModuleId, setSelectedModuleId] = useState<string | null>(null);
@@ -24,6 +26,11 @@ export default function App() {
           <ModuleDetailPage moduleId={selectedModuleId} onBack={handleBackToHome} />
         )}
       </main>
+
+      {/* 常駐智能小幫手：直接連至 NotebookLM 專題題庫進行問答 */}
+      <SmartAssistantModal
+        onNavigateModule={(moduleId: ModuleId) => handleSelectModule(moduleId)}
+      />
     </div>
   );
 }
